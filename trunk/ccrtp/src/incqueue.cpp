@@ -484,8 +484,8 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 //		size_t len = packet->getPayloadSize();
 
 #ifdef HAVE_SRPP
-	// if (srpp::isSignalingComplete())
-	// {
+	if (srpp::SRPP_Enabled() == 1)
+	{
 		//Convert SRPP Message to RTP Message
 		std::cout << "Saswat:: Will convert SRPP Message to RTP Message here\n";
 		SRPPMessage* srpp_msg = (SRPPMessage *)packet;
@@ -526,7 +526,8 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 			result = NULL;
 			return result;
 		}
-	 //}
+	 }
+
 #endif
 
 		SyncSource &src = *(pl->getSourceLink()->getSource());

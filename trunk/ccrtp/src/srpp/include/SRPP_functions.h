@@ -29,6 +29,9 @@ namespace srpp {
 	//initialize stuff
 	int init_SRPP();
 
+	//verify if SRPP has been disabled or not: Returns 0, if disabled
+	int SRPP_Enabled();
+
 	//create SRPP session
 	SRPPSession* create_session(string address, int port, CryptoProfile crypto);
 
