@@ -489,6 +489,14 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 		//Convert SRPP Message to RTP Message
 		std::cout << "Saswat:: Will convert SRPP Message to RTP Message here\n";
 		SRPPMessage* srpp_msg = (SRPPMessage *)packet;
+
+		//verify if we need to look for signaling and enabling srpp still
+	    if (srpp::verifySignalling((char *)packet) < 0)
+	    	return NULL;
+
+		int packet_size = packet->getPayloadSize();
+		srpp_msg->network_to_srpp((char *)packet, packet_size, srpp::get_session()->encryption_key);
+
 		// Convert to RTP message
 		RTPMessage rtp_msg = srpp::srpp_to_rtp(srpp_msg);
 

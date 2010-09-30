@@ -97,6 +97,10 @@ namespace srpp {
 
 	  //Set the encryption in the session
 	  int setKey(int key);
+
+ 	  //verify if we need to look for signaling and enabling srpp still
+	  int verifySignalling(char * buff);
+
 }
 
 
