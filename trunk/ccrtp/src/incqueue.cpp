@@ -487,13 +487,15 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 	if (srpp::SRPP_Enabled() == 1)
 	{
 
-		while (srpp::isSignalingComplete() == 0){
+		if (srpp::isSignalingComplete() == 0){
 			/*if (srpp::verifySignalling((char *)packet) < 0)
 							return NULL;
 			else
 			{
 				cout << "YIPPEE" << endl;*/
 				SRPPMessage srpp = srpp::processReceivedData((char*)packet, packet->getPayloadSize());
+
+				return NULL;
 			//}
 		}
 
