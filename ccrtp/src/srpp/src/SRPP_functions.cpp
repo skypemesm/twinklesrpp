@@ -17,6 +17,9 @@ using namespace std;
 
 int lastSequenceNo = 0;
 int rtpSequenceNo = 0;
+int nonsrpp_message_count = 0;
+int MAX_NONSRPP_MESSAGES = 100; // 100 non-srpp messages can be received before we infer that srpp signaling is not possible
+
 
 namespace srpp {
 
@@ -24,6 +27,8 @@ namespace srpp {
 SRPPSession * srpp_session;
 PaddingFunctions padding_functions;
 SignalingFunctions signaling_functions;
+int srpp_enabled = 1;
+
 
 	//initialize stuff
 	int init_SRPP(){
@@ -33,8 +38,13 @@ SignalingFunctions signaling_functions;
 		//Initialize the SRPP parameter..
 
 
-		cout << "SRPP initiated inside CCRTP stack." << endl;
+		cout << "\nSRPP initiated inside CCRTP stack." << endl;
 		return 0;
+	}
+
+	int SRPP_Enabled()
+	{
+		return srpp_enabled;
 	}
 
 	//create SRPP session
@@ -75,6 +85,12 @@ SignalingFunctions signaling_functions;
 		//we stop the srpp session object
 		srpp_session->stop_session();
 
+		if (srpp_enabled == 0)
+		{
+			cout << "SRPP IS NOT SUPPORTED AT THE OTHER END. \n";
+			return -10;
+		}
+
 		//We send BYE message
 		signaling_functions.sendByeMessage();
 		receive_message();
@@ -93,8 +109,8 @@ SignalingFunctions signaling_functions;
 	//Signaling start
 	int signaling()
 	{
-		signaling_functions.signaling();
-		return 0;
+		return signaling_functions.signaling();
+
 	}
 
 
@@ -374,6 +390,8 @@ int send_message(SRPPMessage * message)
 
 SRPPMessage receive_message()
 	{
+		int dont_continue = 0;
+
 		int addr_len = sizeof(struct sockaddr);
 		SRPPMessage srpp_msg = srpp::create_srpp_message("");
 
@@ -389,74 +407,100 @@ SRPPMessage receive_message()
 		if (bytes_read < 0)
 					cout << "ERROR IN RECEIVING DATA: " << strerror(errno)<< endl;
 
-		srpp_msg.network_to_srpp(buff,bytes_read, srpp_session->encryption_key);
+		// Are we waiting for a HELLO ACK MESSAGE? We need to check that the reply is SRPP
+		// or not. Otherwise, we need to disable SRPP
+		if (signaling_functions.isHelloSent() == 1)
+		{
+			// CHECK IF WE HAVE SRPP EXTENSION IN THE RECEIVED MESSAGE.
+			// IF NOT, WE DISABLE SRPP AND STOP RECEIVING HERE.
+		    SRPPHeader* srpp_header1 = (SRPPHeader *) buff;
+		    SRPPHeader srpp_header = *srpp_header1;
 
-	/*	cout << "Read " << bytes_read << " bytes from the other endpoint at "
-				<< inet_ntoa(srpp_session->sender_addr.sin_addr) << ":"
-				<< ntohs(srpp_session->sender_addr.sin_port ) << endl;
-*/
-			//Set the sender_addr's port correctly
-			srpp_session->sender_addr.sin_port = htons(ntohs(srpp_session->sender_addr.sin_port) + 2);
+		    if (srpp_header.srpp_signalling != 13 && srpp_header.pt != 69) //not helloack signaling message
+		    {
+		    	// NOT SRPP MESSAGE.
+		    	if (++nonsrpp_message_count > MAX_NONSRPP_MESSAGES)
+		    	{
+		    		// STOP SESSIONS ETC AFTER 100 such messages. ?? CHANGE IF REQD. ??
+		    		dont_continue = 1;
+		    		srpp_enabled = 0;
+		    		stop_session();
+		    	}
+		    }
+
+		}
+
+		if (dont_continue == 0)
+		{
+			srpp_msg.network_to_srpp(buff,bytes_read, srpp_session->encryption_key);
+
+		/*	cout << "Read " << bytes_read << " bytes from the other endpoint at "
+					<< inet_ntoa(srpp_session->sender_addr.sin_addr) << ":"
+					<< ntohs(srpp_session->sender_addr.sin_port ) << endl;
+	*/
+				//Set the sender_addr's port correctly
+				srpp_session->sender_addr.sin_port = htons(ntohs(srpp_session->sender_addr.sin_port) + 2);
 
 
-		// If this is a signaling message, point to the signaling handler
-			if (isSignalingMessage(&srpp_msg) == 1)
+			// If this is a signaling message, point to the signaling handler
+				if (isSignalingMessage(&srpp_msg) == 1)
+				{
+
+					if (srpp_msg.srpp_header.srpp_signalling == 12)
+					{
+						cout << "\n\n----------------------------------------------------------------------------------------------\n";
+						cout << "Received HELLO message " << endl;
+
+						//extract key from the payload
+						string options (srpp_msg.encrypted_part.original_payload.begin(),srpp_msg.encrypted_part.original_payload.end());
+						string thiskey = options.substr(0,options.find_first_of(','));
+						setKey(atoi(thiskey.c_str()));
+
+						cout << "KEY RECVD: " << thiskey << endl;
+						signaling_functions.receivedHelloMessage();
+
+					}
+					else if (srpp_msg.srpp_header.srpp_signalling == 13)
+					{
+						cout << "Received HELLO ACK message " << endl;
+
+						if (signaling_functions.receivedHelloAckMessage() < 0)
+							cout << "ERROR IN PROCESSING HELLOACK" << endl;
+
+						if (signaling_functions.isSignalingComplete() == 1)
+						{
+							cout << "\n\n SIGNALING IS COMPLETE NOW. STARTING MEDIA SESSION with key " <<
+													srpp_session->encryption_key << "... \n\n" ;
+							cout << "-----------------------------------------------------------------------------------------------\n";
+						}
+
+					}
+					else if (srpp_msg.srpp_header.srpp_signalling == 22)
+					{
+						cout << "\n\n------------------------------------------------------------------------------------------------\n";
+						cout << "Received BYE message " << endl;
+						signaling_functions.receivedByeMessage();
+					}
+					else if (srpp_msg.srpp_header.srpp_signalling == 23)
+					{
+						cout << "Received BYE ACK message " << endl;
+						signaling_functions.receivedByeAckMessage();
+
+						if (signaling_functions.isSessionComplete() == 1)
+						{
+							cout << "\n\n SESSION IS COMPLETE NOW. EXITING NOW... \n\n" ;
+							cout << "-----------------------------------------------------------------------------------------------\n";
+						}
+
+					}
+
+				}
+			else
 			{
 
-				if (srpp_msg.srpp_header.srpp_signalling == 12)
-				{
-					cout << "\n\n----------------------------------------------------------------------------------------------\n";
-					cout << "Received HELLO message " << endl;
-
-					//extract key from the payload
-					string options (srpp_msg.encrypted_part.original_payload.begin(),srpp_msg.encrypted_part.original_payload.end());
-					string thiskey = options.substr(0,options.find_first_of(','));
-					setKey(atoi(thiskey.c_str()));
-
-					cout << "KEY RECVD: " << thiskey << endl;
-					signaling_functions.receivedHelloMessage();
-
-				}
-				else if (srpp_msg.srpp_header.srpp_signalling == 13)
-				{
-					cout << "Received HELLO ACK message " << endl;
-
-					if (signaling_functions.receivedHelloAckMessage() < 0)
-						cout << "ERROR IN PROCESSING HELLOACK" << endl;
-
-					if (signaling_functions.isSignalingComplete() == 1)
-					{
-						cout << "\n\n SIGNALING IS COMPLETE NOW. STARTING MEDIA SESSION with key " <<
-												srpp_session->encryption_key << "... \n\n" ;
-						cout << "-----------------------------------------------------------------------------------------------\n";
-					}
-
-				}
-				else if (srpp_msg.srpp_header.srpp_signalling == 22)
-				{
-					cout << "\n\n------------------------------------------------------------------------------------------------\n";
-					cout << "Received BYE message " << endl;
-					signaling_functions.receivedByeMessage();
-				}
-				else if (srpp_msg.srpp_header.srpp_signalling == 23)
-				{
-					cout << "Received BYE ACK message " << endl;
-					signaling_functions.receivedByeAckMessage();
-
-					if (signaling_functions.isSessionComplete() == 1)
-					{
-						cout << "\n\n SESSION IS COMPLETE NOW. EXITING NOW... \n\n" ;
-						cout << "-----------------------------------------------------------------------------------------------\n";
-					}
-
-				}
-
+				//cout << "Not a signaling message" << endl;
+				return srpp_msg;
 			}
-		else
-		{
-
-			//cout << "Not a signaling message" << endl;
-			return srpp_msg;
 		}
 	}
 

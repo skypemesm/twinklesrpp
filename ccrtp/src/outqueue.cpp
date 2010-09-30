@@ -483,46 +483,64 @@ OutgoingDataQueue::putData(uint32 stamp, const unsigned char *data,
 
 		//------------------------------------------Added SRPP workings here -------------------------------------------------//
 #ifdef HAVE_SRPP
-                //Check if signalling shows that we need to use SRPP
+        //Check if signalling shows that we need to use SRPP
+		if (srpp::SRPP_Enabled() == 1)
+		{
 
-        /*
-		 std::cout << "Saswat: Converting this packet to SRPP now, to send using socket" <<
-				 srpp::get_session()->sendersocket << " OR " << srpp::get_session()->receiversocket<<"\n\n";
-*/
-
-
-		//get a rtp packet
-		 uint8_t padlen = sendInfo.paddinglen;
-		char *paddingleng = (char*)&padlen;
-		RTPMessage rtp_msg = srpp::create_rtp_message(string(paddingleng)+string((char *)(data+offset)));
-
-		//Set the params
-		rtp_msg.rtp_header.version = 2;
-		rtp_msg.rtp_header.p = 1;
-		rtp_msg.rtp_header.x = 0;
-		rtp_msg.rtp_header.cc = sendInfo.sendCC;
-		rtp_msg.rtp_header.m = getMark();
-		rtp_msg.rtp_header.pt = getCurrentPayloadType();
-		rtp_msg.rtp_header.seq = sendInfo.sendSeq;
-		rtp_msg.rtp_header.ts = stamp + getInitialTimestamp();
-		rtp_msg.rtp_header.ssrc = getLocalSSRCNetwork();
-
-	    for (int i = 0; i<10; i++)
-	    	rtp_msg.rtp_header.csrc[i] = sendInfo.sendSources[i];
+			/*
+			 std::cout << "Saswat: Converting this packet to SRPP now, to send using socket" <<
+					 srpp::get_session()->sendersocket << " OR " << srpp::get_session()->receiversocket<<"\n\n";
+	*/
 
 
-		//Pad it and make a SRPP message
-		SRPPMessage srpp_msg = srpp::rtp_to_srpp(&rtp_msg);
+			//get a rtp packet
+			 uint8_t padlen = sendInfo.paddinglen;
+			char *paddingleng = (char*)&padlen;
+			RTPMessage rtp_msg = srpp::create_rtp_message(string(paddingleng)+string((char *)(data+offset)));
 
-		//Change it to network format OR send using SRPP sockets
-		srpp::send_message(&srpp_msg);
+			//Set the params
+			rtp_msg.rtp_header.version = 2;
+			rtp_msg.rtp_header.p = 1;
+			rtp_msg.rtp_header.x = 0;
+			rtp_msg.rtp_header.cc = sendInfo.sendCC;
+			rtp_msg.rtp_header.m = getMark();
+			rtp_msg.rtp_header.pt = getCurrentPayloadType();
+			rtp_msg.rtp_header.seq = sendInfo.sendSeq;
+			rtp_msg.rtp_header.ts = stamp + getInitialTimestamp();
+			rtp_msg.rtp_header.ssrc = getLocalSSRCNetwork();
 
-		//packet = (OutgoingRTPPkt*)&srpp_msg;
+			for (int i = 0; i<10; i++)
+				rtp_msg.rtp_header.csrc[i] = sendInfo.sendSources[i];
 
 
-		//cout << "..Sending packet with data " << data << "..." << endl;
-		// cout << "Version in SRPP Message:" << srpp_msg.srpp_header.version << endl;
-		//------------------------------------------------------------------ -------------------------------------------------//
+			//Pad it and make a SRPP message
+			SRPPMessage srpp_msg = srpp::rtp_to_srpp(&rtp_msg);
+
+			//Change it to network format OR send using SRPP sockets
+			srpp::send_message(&srpp_msg);
+
+			//packet = (OutgoingRTPPkt*)&srpp_msg;
+
+
+			//cout << "..Sending packet with data " << data << "..." << endl;
+			// cout << "Version in SRPP Message:" << srpp_msg.srpp_header.version << endl;
+
+		} else  // DO WHATS DONE FOR NO SRPP
+		{
+			// insert the packet into the "tail" of the sending queue
+			sendLock.writeLock();
+			OutgoingRTPPktLink *link =
+				new OutgoingRTPPktLink(packet,sendLast,NULL);
+			if (sendLast)
+				sendLast->setNext(link);
+			else
+				sendFirst = link;
+			sendLast = link;
+			sendLock.unlock();
+
+			offset += step;
+		}
+//------------------------------------------------------------------ -------------------------------------------------//
 
 
 #else
@@ -553,32 +571,37 @@ void OutgoingDataQueue::setSRPPSockets(int sender_sock,int receiver_sock,int sen
 		std::string sender_ip,std::string receiver_ip )
 {
 #ifdef HAVE_SRPP
-	//create sock_addr object
-	cout << "Setting it to " << sender_sock << "::" <<receiver_sock << "::" <<sender_port << "::" <<receiver_port << "::" << sender_ip << "::" << receiver_ip << endl;
+	if (srpp::SRPP_Enabled() == 1)
+	{
+		//create sock_addr object
+		cout << "Setting it to " << sender_sock << "::" <<receiver_sock << "::" <<sender_port << "::" <<receiver_port << "::" << sender_ip << "::" << receiver_ip << endl;
 
-	struct sockaddr_in receiver_addr , sender_addr;
+		struct sockaddr_in receiver_addr , sender_addr;
 
-	 receiver_addr.sin_family = AF_INET;
-	 receiver_addr.sin_port = htons(receiver_port);
-	 receiver_addr.sin_addr.s_addr = INADDR_ANY;
-	 bzero(&(receiver_addr.sin_zero),8);
+		 receiver_addr.sin_family = AF_INET;
+		 receiver_addr.sin_port = htons(receiver_port);
+		 receiver_addr.sin_addr.s_addr = INADDR_ANY;
+		 bzero(&(receiver_addr.sin_zero),8);
 
-	 sender_addr.sin_family = AF_INET;
-     sender_addr.sin_port = htons(sender_port);
+		 sender_addr.sin_family = AF_INET;
+		 sender_addr.sin_port = htons(sender_port);
 
-	 sender_addr.sin_addr.s_addr = inet_addr(sender_ip.c_str());
-	 bzero(&(sender_addr.sin_zero),8);
+		 sender_addr.sin_addr.s_addr = inet_addr(sender_ip.c_str());
+		 bzero(&(sender_addr.sin_zero),8);
 
-	//set the sockets etc in the session
+		//set the sockets etc in the session
 
-	srpp::get_session()->set_sockets(sender_sock,receiver_sock,sender_addr,receiver_addr);
+		srpp::get_session()->set_sockets(sender_sock,receiver_sock,sender_addr,receiver_addr);
 
-	//SEE IF SIGNALLING IS COMPLETE THROUGH SIP
-	// Initiate the session..
-	srpp::start_session(0);
-
-	srpp::get_session()->srpp_timer->pauseTimer();
-
+		//SEE IF SIGNALLING IS COMPLETE THROUGH SIP
+		// Initiate the session..
+		if (srpp::start_session(0) < 0)
+		{
+			// TODO: Handle something to SHOW the MESSAGE IN GUI
+		}
+		else
+			srpp::get_session()->srpp_timer->pauseTimer();
+	}
 #endif
 }
 

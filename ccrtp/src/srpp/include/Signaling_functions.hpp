@@ -50,6 +50,11 @@ public:
 		return signaling_complete;
 	}
 
+	int isHelloSent()
+	{
+		return hellosent;
+	}
+
 	int isSessionComplete()
 		{
 			return session_complete;
@@ -91,11 +96,16 @@ public:
 			if ( helloacksent == 0 )
 			{
 				signaling_complete = 1;
+				hellosent = 0;
+				helloackrecvd = 0;
 				return sendHelloAckMessage();
 			}
 			else
 			{
 				signaling_complete = 1;
+
+				hellosent = 0;
+				helloackrecvd = 0;
 				return 0;
 			}
 
@@ -133,13 +143,12 @@ public:
 
 		//generate a key now.
 		int key = srpp::srpp_rand(0,65535);
-		srpp::setKey(key);
-		char buf[5];
+		char buf[6];
 		sprintf(buf,"%d",key);
 		string options = buf;
 
 		options.append(", YES, YES, YES,YES, DEFAULT, DEFAULT, DEFAULT");
-
+		srpp::setKey(key);
 
 		// PSP YES/NO, CBP YES/NO, EBP YES/NO, VITP YES/NO, PSP_ALGO, CBP_ALGO, EBP_ALGO
 
@@ -151,7 +160,11 @@ public:
 		srpp::send_message(&srpp_msg);
 
 		hellosent = 1;
+
 		srpp::receive_message();
+
+		if (srpp::SRPP_Enabled() == 0)
+			return -10;
 
 		return 0;
 
