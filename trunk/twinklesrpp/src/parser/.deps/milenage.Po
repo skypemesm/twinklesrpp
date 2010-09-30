@@ -1,5 +1,0 @@
-milenage.o: milenage.cpp milenage.h rijndael.h
-
-milenage.h:
-
-rijndael.h:
