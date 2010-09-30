@@ -1,0 +1,164 @@
+.TH "MembershipBookkeeping::IncomingRTPPktLink" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MembershipBookkeeping::IncomingRTPPktLink \- 
+.PP
+Incoming RTP data packets control structure within the incoming packet queue class.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <iqueue.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP (\fBIncomingRTPPkt\fP *pkt, \fBSyncSourceLink\fP *sLink, struct timeval &recv_ts, uint32 shifted_ts, \fBIncomingRTPPktLink\fP *sp, \fBIncomingRTPPktLink\fP *sn, \fBIncomingRTPPktLink\fP *p, \fBIncomingRTPPktLink\fP *n)"
+.br
+.ti -1c
+.RI "\fB~IncomingRTPPktLink\fP ()"
+.br
+.ti -1c
+.RI "\fBSyncSourceLink\fP * \fBgetSourceLink\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetSourceLink\fP (\fBSyncSourceLink\fP *src)"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBgetNext\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetNext\fP (\fBIncomingRTPPktLink\fP *nl)"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBgetPrev\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetPrev\fP (\fBIncomingRTPPktLink\fP *pl)"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBgetSrcNext\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetSrcNext\fP (\fBIncomingRTPPktLink\fP *sn)"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBgetSrcPrev\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetSrcPrev\fP (\fBIncomingRTPPktLink\fP *sp)"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPkt\fP * \fBgetPacket\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetPacket\fP (\fBIncomingRTPPkt\fP *pkt)"
+.br
+.ti -1c
+.RI "void \fBsetRecvTime\fP (const timeval &t)"
+.br
+.RI "\fISet the time this packet was received at. \fP"
+.ti -1c
+.RI "timeval \fBgetRecvTime\fP () const "
+.br
+.RI "\fIGet the time this packet was received at. \fP"
+.ti -1c
+.RI "uint32 \fBgetTimestamp\fP () const "
+.br
+.RI "\fIGet timestamp of this packet. \fP"
+.ti -1c
+.RI "void \fBsetTimestamp\fP (uint32 ts)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBIncomingRTPPkt\fP * \fBpacket\fP"
+.br
+.ti -1c
+.RI "\fBSyncSourceLink\fP * \fBsourceLink\fP"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBprev\fP"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBnext\fP"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBsrcPrev\fP"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBsrcNext\fP"
+.br
+.ti -1c
+.RI "struct timeval \fBreceptionTime\fP"
+.br
+.ti -1c
+.RI "uint32 \fBshiftedTimestamp\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Incoming RTP data packets control structure within the incoming packet queue class. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "MembershipBookkeeping::IncomingRTPPktLink::IncomingRTPPktLink (\fBIncomingRTPPkt\fP * pkt, \fBSyncSourceLink\fP * sLink, struct timeval & recv_ts, uint32 shifted_ts, \fBIncomingRTPPktLink\fP * sp, \fBIncomingRTPPktLink\fP * sn, \fBIncomingRTPPktLink\fP * p, \fBIncomingRTPPktLink\fP * n)\fC [inline]\fP"
+.SS "MembershipBookkeeping::IncomingRTPPktLink::~IncomingRTPPktLink ()\fC [inline]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBIncomingRTPPktLink\fP* MembershipBookkeeping::IncomingRTPPktLink::getNext () const\fC [inline]\fP"
+.SS "\fBIncomingRTPPkt\fP* MembershipBookkeeping::IncomingRTPPktLink::getPacket () const\fC [inline]\fP"
+.SS "\fBIncomingRTPPktLink\fP* MembershipBookkeeping::IncomingRTPPktLink::getPrev () const\fC [inline]\fP"
+.SS "timeval MembershipBookkeeping::IncomingRTPPktLink::getRecvTime () const\fC [inline]\fP"
+.PP
+Get the time this packet was received at. 
+.SS "\fBSyncSourceLink\fP* MembershipBookkeeping::IncomingRTPPktLink::getSourceLink () const\fC [inline]\fP"
+.SS "\fBIncomingRTPPktLink\fP* MembershipBookkeeping::IncomingRTPPktLink::getSrcNext () const\fC [inline]\fP"
+.SS "\fBIncomingRTPPktLink\fP* MembershipBookkeeping::IncomingRTPPktLink::getSrcPrev () const\fC [inline]\fP"
+.SS "uint32 MembershipBookkeeping::IncomingRTPPktLink::getTimestamp () const\fC [inline]\fP"
+.PP
+Get timestamp of this packet. The timestamp of incoming packets is filtered so that the timestamp this method provides for the first packet received from every source starts from 0.
+.PP
+\fBReturns:\fP
+.RS 4
+32 bit timestamp starting from 0 for each source. 
+.RE
+.PP
+
+.SS "void MembershipBookkeeping::IncomingRTPPktLink::setNext (\fBIncomingRTPPktLink\fP * nl)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::IncomingRTPPktLink::setPacket (\fBIncomingRTPPkt\fP * pkt)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::IncomingRTPPktLink::setPrev (\fBIncomingRTPPktLink\fP * pl)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::IncomingRTPPktLink::setRecvTime (const timeval & t)\fC [inline]\fP"
+.PP
+Set the time this packet was received at. \fBParameters:\fP
+.RS 4
+\fIt\fP time of reception. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+this has almost nothing to do with the 32-bit timestamp contained in the packet header. 
+.RE
+.PP
+
+.SS "void MembershipBookkeeping::IncomingRTPPktLink::setSourceLink (\fBSyncSourceLink\fP * src)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::IncomingRTPPktLink::setSrcNext (\fBIncomingRTPPktLink\fP * sn)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::IncomingRTPPktLink::setSrcPrev (\fBIncomingRTPPktLink\fP * sp)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::IncomingRTPPktLink::setTimestamp (uint32 ts)\fC [inline]\fP"
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBIncomingRTPPktLink\fP * \fBMembershipBookkeeping::IncomingRTPPktLink::next\fP"
+.SS "\fBIncomingRTPPkt\fP* \fBMembershipBookkeeping::IncomingRTPPktLink::packet\fP"
+.SS "\fBIncomingRTPPktLink\fP* \fBMembershipBookkeeping::IncomingRTPPktLink::prev\fP"
+.SS "struct timeval \fBMembershipBookkeeping::IncomingRTPPktLink::receptionTime\fP"
+.SS "uint32 \fBMembershipBookkeeping::IncomingRTPPktLink::shiftedTimestamp\fP"
+.SS "\fBSyncSourceLink\fP* \fBMembershipBookkeeping::IncomingRTPPktLink::sourceLink\fP"
+.SS "\fBIncomingRTPPktLink\fP * \fBMembershipBookkeeping::IncomingRTPPktLink::srcNext\fP"
+.SS "\fBIncomingRTPPktLink\fP* \fBMembershipBookkeeping::IncomingRTPPktLink::srcPrev\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

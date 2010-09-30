@@ -1,0 +1,99 @@
+.TH "RTPApplication::ParticipantsIterator" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RTPApplication::ParticipantsIterator \- 
+.PP
+Iterator through the list of participants in this session.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <sources.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef std::forward_iterator_tag \fBiterator_category\fP"
+.br
+.ti -1c
+.RI "typedef \fBParticipant\fP \fBvalue_type\fP"
+.br
+.ti -1c
+.RI "typedef ptrdiff_t \fBdifference_type\fP"
+.br
+.ti -1c
+.RI "typedef const \fBParticipant\fP * \fBpointer\fP"
+.br
+.ti -1c
+.RI "typedef const \fBParticipant\fP & \fBreference\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBParticipantsIterator\fP (ParticipantLink *p=NULL)"
+.br
+.ti -1c
+.RI "\fBParticipantsIterator\fP (const \fBParticipantsIterator\fP &pi)"
+.br
+.ti -1c
+.RI "\fBreference\fP \fBoperator*\fP () const "
+.br
+.ti -1c
+.RI "\fBpointer\fP \fBoperator->\fP () const "
+.br
+.ti -1c
+.RI "\fBParticipantsIterator\fP & \fBoperator++\fP ()"
+.br
+.ti -1c
+.RI "\fBParticipantsIterator\fP \fBoperator++\fP (int)"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBParticipantsIterator\fP &l, const \fBParticipantsIterator\fP &r)"
+.br
+.ti -1c
+.RI "bool \fBoperator!=\fP (const \fBParticipantsIterator\fP &l, const \fBParticipantsIterator\fP &r)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Iterator through the list of participants in this session. 
+
+Somehow resembles and standard const_iterator 
+.PP
+\fBExamples: \fP
+.in +1c
+.PP
+\fBccrtptest.cpp\fP.
+.SH "Member Typedef Documentation"
+.PP 
+.SS "typedef ptrdiff_t \fBRTPApplication::ParticipantsIterator::difference_type\fP"
+.SS "typedef std::forward_iterator_tag \fBRTPApplication::ParticipantsIterator::iterator_category\fP"
+.SS "typedef const \fBParticipant\fP* \fBRTPApplication::ParticipantsIterator::pointer\fP"
+.SS "typedef const \fBParticipant\fP& \fBRTPApplication::ParticipantsIterator::reference\fP"
+.SS "typedef \fBParticipant\fP \fBRTPApplication::ParticipantsIterator::value_type\fP"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "RTPApplication::ParticipantsIterator::ParticipantsIterator (ParticipantLink * p = \fCNULL\fP)\fC [inline]\fP"
+.SS "RTPApplication::ParticipantsIterator::ParticipantsIterator (const \fBParticipantsIterator\fP & pi)\fC [inline]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBreference\fP RTPApplication::ParticipantsIterator::operator* () const\fC [inline]\fP"
+.SS "\fBParticipantsIterator\fP RTPApplication::ParticipantsIterator::operator++ (int)\fC [inline]\fP"
+.SS "\fBParticipantsIterator\fP& RTPApplication::ParticipantsIterator::operator++ ()\fC [inline]\fP"
+.SS "\fBpointer\fP RTPApplication::ParticipantsIterator::operator-> () const\fC [inline]\fP"
+.SH "Friends And Related Function Documentation"
+.PP 
+.SS "bool operator!= (const \fBParticipantsIterator\fP & l, const \fBParticipantsIterator\fP & r)\fC [friend]\fP"
+.SS "bool operator== (const \fBParticipantsIterator\fP & l, const \fBParticipantsIterator\fP & r)\fC [friend]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

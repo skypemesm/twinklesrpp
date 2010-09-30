@@ -1,0 +1,68 @@
+.TH "IncomingDataQueueBase" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IncomingDataQueueBase \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <queuebase.h>\fP
+.PP
+Inherits \fBRTPQueueBase\fP.
+.PP
+Inherited by \fBIncomingDataQueue\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBgetDefaultMaxRecvPacketSize\fP () const "
+.br
+.ti -1c
+.RI "size_t \fBgetMaxRecvPacketSize\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetMaxRecvPacketSize\fP (size_t maxsize)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBIncomingDataQueueBase\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~IncomingDataQueueBase\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "IncomingDataQueueBase::IncomingDataQueueBase ()\fC [inline, protected]\fP"
+.SS "virtual IncomingDataQueueBase::~IncomingDataQueueBase ()\fC [inline, protected, virtual]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "size_t IncomingDataQueueBase::getDefaultMaxRecvPacketSize () const\fC [inline]\fP"
+.SS "size_t IncomingDataQueueBase::getMaxRecvPacketSize () const\fC [inline]\fP"
+.SS "void IncomingDataQueueBase::setMaxRecvPacketSize (size_t maxsize)\fC [inline]\fP"\fBParameters:\fP
+.RS 4
+\fImaxsize\fP maximum length of received RTP data packets, in octets. Defaults to the value returned by \fBgetDefaultMaxRecvPacketSize()\fP.
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+This method sets a filter for incoming packets. Setting higher values does not necessarily imply higher memory usage (this method does not set any buffer size). 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

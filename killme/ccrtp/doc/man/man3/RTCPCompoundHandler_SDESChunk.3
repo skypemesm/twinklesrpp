@@ -1,0 +1,50 @@
+.TH "RTCPCompoundHandler::SDESChunk" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RTCPCompoundHandler::SDESChunk \- 
+.PP
+Struct for a chunk of items in a SDES RTCP packet.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <rtcppkt.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "uint32 \fBgetSSRC\fP () const "
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "uint32 \fBssrc\fP"
+.br
+.RI "\fISSRC identifer from sender. \fP"
+.ti -1c
+.RI "\fBSDESItem\fP \fBitem\fP"
+.br
+.RI "\fISDES item from sender. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Struct for a chunk of items in a SDES RTCP packet. 
+.SH "Member Function Documentation"
+.PP 
+.SS "uint32 RTCPCompoundHandler::SDESChunk::getSSRC () const\fC [inline]\fP"
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBSDESItem\fP \fBRTCPCompoundHandler::SDESChunk::item\fP"
+.PP
+SDES item from sender. 
+.SS "uint32 \fBRTCPCompoundHandler::SDESChunk::ssrc\fP"
+.PP
+SSRC identifer from sender. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

@@ -1,0 +1,178 @@
+.TH "RTPDuplex" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RTPDuplex \- 
+.PP
+A peer associated RTP socket pair for physically connected peer hosts.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <cc++/rtp.h>\fP
+.PP
+Inherits \fBRTPDataQueue\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRTPDuplex\fP (const InetAddress &bind, tpport_t local, tpport_t remote)"
+.br
+.ti -1c
+.RI "virtual \fB~RTPDuplex\fP ()"
+.br
+.ti -1c
+.RI "UDPTransmit::Error \fBconnect\fP (const InetHostAddress &host, tpport_t port=0)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBisPendingData\fP (\fBmicrotimeout_t\fP timeout)"
+.br
+.ti -1c
+.RI "size_t \fBsendData\fP (const unsigned char *const buffer, size_t len)"
+.br
+.ti -1c
+.RI "size_t \fBrecvData\fP (unsigned char *buffer, size_t len, InetHostAddress &na, tpport_t &tp)"
+.br
+.ti -1c
+.RI "void \fBsetDataPeer\fP (const InetAddress &, tpport_t)"
+.br
+.ti -1c
+.RI "void \fBsetControlPeer\fP (const InetAddress &, tpport_t)"
+.br
+.ti -1c
+.RI "size_t \fBgetNextDataPacketSize\fP () const "
+.br
+.ti -1c
+.RI "\fBSyncSource\fP & \fBgetPeer\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A peer associated RTP socket pair for physically connected peer hosts. 
+
+This has no RTCP and assumes the receiver is connected to a known transmitter, hence no 'foreign' packets will arrive.
+.PP
+\fBAuthor:\fP
+.RS 4
+David Sugar RTP peer host over UDP. 
+.RE
+.PP
+
+.PP
+\fBExamples: \fP
+.in +1c
+.PP
+\fBrtpduphello.cpp\fP.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "RTPDuplex::RTPDuplex (const InetAddress & bind, tpport_t local, tpport_t remote)"\fBParameters:\fP
+.RS 4
+\fIbind\fP network address this socket is to be bound 
+.br
+\fIlocal\fP transport port this socket is to be bound 
+.br
+\fIremote\fP peer transpor port 
+.RE
+.PP
+
+.SS "virtual RTPDuplex::~RTPDuplex ()\fC [virtual]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "UDPTransmit::Error RTPDuplex::connect (const InetHostAddress & host, tpport_t port = \fC0\fP)"\fBParameters:\fP
+.RS 4
+\fIhost\fP peer address 
+.br
+\fIport\fP peer port. If not specified, the same as the local is used 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+socket status 
+.RE
+.PP
+
+.SS "size_t RTPDuplex::getNextDataPacketSize () const\fC [inline, protected, virtual]\fP"
+.PP
+Implements \fBIncomingDataQueue\fP.
+.SS "\fBSyncSource\fP& RTPDuplex::getPeer ()\fC [protected]\fP"\fBReturns:\fP
+.RS 4
+the associated peer information 
+.RE
+.PP
+
+.SS "bool RTPDuplex::isPendingData (\fBmicrotimeout_t\fP timeout)\fC [inline, protected, virtual]\fP"\fBParameters:\fP
+.RS 4
+\fItimeout\fP how much time to wait for new data 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+if there is some new data 
+.RE
+.PP
+
+.PP
+Implements \fBRTPDataQueue\fP.
+.SS "size_t RTPDuplex::recvData (unsigned char * buffer, size_t len, InetHostAddress & na, tpport_t & tp)\fC [inline, protected, virtual]\fP"\fBParameters:\fP
+.RS 4
+\fIbuffer\fP where to store the retrieved data 
+.br
+\fIlen\fP how many octets to read 
+.br
+\fIna\fP Source network address. 
+.br
+\fItp\fP Source transport port. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+number of octets read 
+.RE
+.PP
+
+.PP
+Implements \fBIncomingDataQueue\fP.
+.SS "size_t RTPDuplex::sendData (const unsigned char *const  buffer, size_t len)\fC [inline, protected, virtual]\fP"\fBParameters:\fP
+.RS 4
+\fIbuffer\fP pointer to data to be written 
+.br
+\fIlen\fP how many octets to write 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+number of octets written 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBOutgoingDataQueue\fP.
+.SS "void RTPDuplex::setControlPeer (const InetAddress &, tpport_t)\fC [inline, protected, virtual]\fP"\fBParameters:\fP
+.RS 4
+\fI-\fP peer host network address. 
+.br
+\fI-\fP peer host RTCP transport port. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBOutgoingDataQueue\fP.
+.SS "void RTPDuplex::setDataPeer (const InetAddress &, tpport_t)\fC [inline, protected, virtual]\fP"\fBParameters:\fP
+.RS 4
+\fI-\fP peer host network address. 
+.br
+\fI-\fP peer host RTP data transport port. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBOutgoingDataQueue\fP.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

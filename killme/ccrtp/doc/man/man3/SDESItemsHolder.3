@@ -1,0 +1,71 @@
+.TH "SDESItemsHolder" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SDESItemsHolder \- 
+.PP
+Holds the SDES items and related information from a participant in an RTP application.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <sources.h>\fP
+.PP
+Inherited by \fBParticipant\fP\fC [private]\fP, and \fBRTPApplication\fP\fC [private]\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const std::string & \fBgetItem\fP (\fBSDESItemType\fP type) const "
+.br
+.ti -1c
+.RI "const std::string & \fBgetPRIVPrefix\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetItem\fP (\fBSDESItemType\fP item, const std::string &val)"
+.br
+.ti -1c
+.RI "void \fBsetPRIVPrefix\fP (const std::string &val)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSDESItemsHolder\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~SDESItemsHolder\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Holds the SDES items and related information from a participant in an RTP application. 
+
+This is a base class for participant classes.
+.PP
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SDESItemsHolder::SDESItemsHolder ()\fC [inline, protected]\fP"
+.SS "virtual SDESItemsHolder::~SDESItemsHolder ()\fC [inline, protected, virtual]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "const std::string& SDESItemsHolder::getItem (\fBSDESItemType\fP type) const"
+.SS "const std::string& SDESItemsHolder::getPRIVPrefix () const\fC [inline]\fP"
+.PP
+Reimplemented in \fBParticipant\fP, and \fBRTPApplication\fP.
+.SS "void SDESItemsHolder::setItem (\fBSDESItemType\fP item, const std::string & val)"
+.SS "void SDESItemsHolder::setPRIVPrefix (const std::string & val)\fC [inline]\fP"
+.PP
+Reimplemented in \fBRTPApplication\fP.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.
