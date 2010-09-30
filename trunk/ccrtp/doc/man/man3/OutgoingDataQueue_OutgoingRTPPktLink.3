@@ -1,0 +1,72 @@
+.TH "OutgoingDataQueue::OutgoingRTPPktLink" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+OutgoingDataQueue::OutgoingRTPPktLink \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <oqueue.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBOutgoingRTPPktLink\fP (\fBOutgoingRTPPkt\fP *pkt, \fBOutgoingRTPPktLink\fP *p, \fBOutgoingRTPPktLink\fP *n)"
+.br
+.ti -1c
+.RI "\fB~OutgoingRTPPktLink\fP ()"
+.br
+.ti -1c
+.RI "\fBOutgoingRTPPkt\fP * \fBgetPacket\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetPacket\fP (\fBOutgoingRTPPkt\fP *pkt)"
+.br
+.ti -1c
+.RI "\fBOutgoingRTPPktLink\fP * \fBgetPrev\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetPrev\fP (\fBOutgoingRTPPktLink\fP *p)"
+.br
+.ti -1c
+.RI "\fBOutgoingRTPPktLink\fP * \fBgetNext\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetNext\fP (\fBOutgoingRTPPktLink\fP *n)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBOutgoingRTPPkt\fP * \fBpacket\fP"
+.br
+.ti -1c
+.RI "\fBOutgoingRTPPktLink\fP * \fBprev\fP"
+.br
+.ti -1c
+.RI "\fBOutgoingRTPPktLink\fP * \fBnext\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "OutgoingDataQueue::OutgoingRTPPktLink::OutgoingRTPPktLink (\fBOutgoingRTPPkt\fP * pkt, \fBOutgoingRTPPktLink\fP * p, \fBOutgoingRTPPktLink\fP * n)\fC [inline]\fP"
+.SS "OutgoingDataQueue::OutgoingRTPPktLink::~OutgoingRTPPktLink ()\fC [inline]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBOutgoingRTPPktLink\fP* OutgoingDataQueue::OutgoingRTPPktLink::getNext ()\fC [inline]\fP"
+.SS "\fBOutgoingRTPPkt\fP* OutgoingDataQueue::OutgoingRTPPktLink::getPacket ()\fC [inline]\fP"
+.SS "\fBOutgoingRTPPktLink\fP* OutgoingDataQueue::OutgoingRTPPktLink::getPrev ()\fC [inline]\fP"
+.SS "void OutgoingDataQueue::OutgoingRTPPktLink::setNext (\fBOutgoingRTPPktLink\fP * n)\fC [inline]\fP"
+.SS "void OutgoingDataQueue::OutgoingRTPPktLink::setPacket (\fBOutgoingRTPPkt\fP * pkt)\fC [inline]\fP"
+.SS "void OutgoingDataQueue::OutgoingRTPPktLink::setPrev (\fBOutgoingRTPPktLink\fP * p)\fC [inline]\fP"
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBOutgoingRTPPktLink\fP * \fBOutgoingDataQueue::OutgoingRTPPktLink::next\fP"
+.SS "\fBOutgoingRTPPkt\fP* \fBOutgoingDataQueue::OutgoingRTPPktLink::packet\fP"
+.SS "\fBOutgoingRTPPktLink\fP* \fBOutgoingDataQueue::OutgoingRTPPktLink::prev\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

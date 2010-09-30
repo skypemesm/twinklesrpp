@@ -1,0 +1,44 @@
+.TH "oqueue.h" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+oqueue.h \- 
+.PP
+Generic RTP output queues.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ccrtp/queuebase.h>\fP
+.br
+\fC#include <ccrtp/CryptoContext.h>\fP
+.br
+\fC#include <list>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBDestinationListHandler\fP"
+.br
+.RI "\fIThis class handles a list of destination addresses. \fP"
+.ti -1c
+.RI "struct \fBDestinationListHandler::TransportAddress\fP"
+.br
+.ti -1c
+.RI "class \fBOutgoingDataQueue\fP"
+.br
+.RI "\fIA generic outgoing RTP data queue supporting multiple destinations. \fP"
+.ti -1c
+.RI "struct \fBOutgoingDataQueue::OutgoingRTPPktLink\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Generic RTP output queues. 
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

@@ -1,0 +1,211 @@
+.TH "OutgoingRTPPkt" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+OutgoingRTPPkt \- 
+.PP
+RTP packets being sent.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <rtppkt.h>\fP
+.PP
+Inherits \fBRTPPacket\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBOutgoingRTPPkt\fP (const uint32 *const csrcs, uint16 numcsrc, const unsigned char *const hdrext, uint32 hdrextlen, const unsigned char *const data, size_t datalen, uint8 paddinglen=0, \fBCryptoContext\fP *pcc=NULL)"
+.br
+.RI "\fIConstruct a new packet to be sent, containing several contributing source identifiers, header extensions and payload. \fP"
+.ti -1c
+.RI "\fBOutgoingRTPPkt\fP (const uint32 *const csrcs, uint16 numcsrc, const unsigned char *const data, size_t datalen, uint8 paddinglen=0, \fBCryptoContext\fP *pcc=NULL)"
+.br
+.RI "\fIConstruct a new packet to be sent, containing several contributing source identifiers and payload. \fP"
+.ti -1c
+.RI "\fBOutgoingRTPPkt\fP (const unsigned char *const data, size_t datalen, uint8 paddinglen=0, \fBCryptoContext\fP *pcc=NULL)"
+.br
+.RI "\fIConstruct a new packet (fast variant, with no contributing sources and no header extension) to be sent. \fP"
+.ti -1c
+.RI "\fB~OutgoingRTPPkt\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetPayloadType\fP (\fBPayloadType\fP pt)"
+.br
+.ti -1c
+.RI "void \fBsetSeqNum\fP (uint16 seq)"
+.br
+.RI "\fISets the sequence number in the header. \fP"
+.ti -1c
+.RI "void \fBsetTimestamp\fP (uint32 pts)"
+.br
+.ti -1c
+.RI "void \fBsetSSRC\fP (uint32 ssrc) const "
+.br
+.RI "\fISet synchronization source numeric identifier. \fP"
+.ti -1c
+.RI "void \fBsetSSRCNetwork\fP (uint32 ssrc) const "
+.br
+.RI "\fISet synchronization source numeric identifier. \fP"
+.ti -1c
+.RI "void \fBsetMarker\fP (bool mark)"
+.br
+.RI "\fISpecify the value of the marker bit. \fP"
+.ti -1c
+.RI "void \fBprotect\fP (uint32 ssrc, \fBCryptoContext\fP *pcc)"
+.br
+.RI "\fICalled packet is setup. \fP"
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBOutgoingRTPPkt\fP &p) const "
+.br
+.RI "\fIOutgoing packets are equal if their sequence numbers match. \fP"
+.ti -1c
+.RI "bool \fBoperator!=\fP (const \fBOutgoingRTPPkt\fP &p) const "
+.br
+.RI "\fIOutgoing packets are not equal if their sequence numbers differ. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+RTP packets being sent. 
+
+This class is intented to construct packet objects just before they are inserted into the sending queue, so that they are processed in a understandable and format independent manner inside the stack.
+.PP
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "OutgoingRTPPkt::OutgoingRTPPkt (const uint32 *const  csrcs, uint16 numcsrc, const unsigned char *const  hdrext, uint32 hdrextlen, const unsigned char *const  data, size_t datalen, uint8 paddinglen = \fC0\fP, \fBCryptoContext\fP * pcc = \fCNULL\fP)"
+.PP
+Construct a new packet to be sent, containing several contributing source identifiers, header extensions and payload. A new copy in memory (holding all this components along with the fixed header) is created. If the pointer to the SRTP \fBCryptoContext\fP is not NULL and holds a \fBCryptoContext\fP for the SSRC take the SSRC data into account when computing the required memory buffer.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcsrcs\fP array of countributing source 32-bit identifiers, in host order. 
+.br
+\fInumcsrc\fP number of CSRC identifiers in the array. 
+.br
+\fIhdrext\fP whole header extension. 
+.br
+\fIhdrextlen\fP size of whole header extension, in octets. 
+.br
+\fIdata\fP payload. 
+.br
+\fIdatalen\fP payload length, in octets. 
+.br
+\fIpaddinglen\fP pad packet to a multiple of paddinglen. 
+.br
+\fIpcc\fP Pointer to the SRTP \fBCryptoContext\fP, defaults to NULL if not specified.
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+For efficiency purposes, since this constructor is valid for all packets but is too complex for the common case, two simpler others are provided. 
+.RE
+.PP
+
+.SS "OutgoingRTPPkt::OutgoingRTPPkt (const uint32 *const  csrcs, uint16 numcsrc, const unsigned char *const  data, size_t datalen, uint8 paddinglen = \fC0\fP, \fBCryptoContext\fP * pcc = \fCNULL\fP)"
+.PP
+Construct a new packet to be sent, containing several contributing source identifiers and payload. A new copy in memory (holding all this components along with the fixed header) is created. If the pointer to the SRTP \fBCryptoContext\fP is not NULL and holds a \fBCryptoContext\fP for the SSRC take the SSRC data into account when computing the required memory buffer.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcsrcs\fP array of countributing source 32-bit identifiers, in host order. 
+.br
+\fInumcsrc\fP number of CSRC identifiers in the array. 
+.br
+\fIdata\fP payload. 
+.br
+\fIdatalen\fP payload length, in octets. 
+.br
+\fIpaddinglen\fP pad packet to a multiple of paddinglen. 
+.br
+\fIpcc\fP Pointer to the SRTP \fBCryptoContext\fP, defaults to NULL if not specified. 
+.RE
+.PP
+
+.SS "OutgoingRTPPkt::OutgoingRTPPkt (const unsigned char *const  data, size_t datalen, uint8 paddinglen = \fC0\fP, \fBCryptoContext\fP * pcc = \fCNULL\fP)"
+.PP
+Construct a new packet (fast variant, with no contributing sources and no header extension) to be sent. A new copy in memory (holding the whole packet) is created. If the pointer to the SRTP \fBCryptoContext\fP is not NULL and holds a \fBCryptoContext\fP for the SSRC take the SSRC data into account when computing the required memory buffer.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdata\fP payload. 
+.br
+\fIdatalen\fP payload length, in octets. 
+.br
+\fIpaddinglen\fP pad packet to a multiple of paddinglen. 
+.br
+\fIpcc\fP Pointer to the SRTP \fBCryptoContext\fP, defaults to NULL if not specified. 
+.RE
+.PP
+
+.SS "OutgoingRTPPkt::~OutgoingRTPPkt ()\fC [inline]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "bool OutgoingRTPPkt::operator!= (const \fBOutgoingRTPPkt\fP & p) const\fC [inline]\fP"
+.PP
+Outgoing packets are not equal if their sequence numbers differ. 
+.SS "bool OutgoingRTPPkt::operator== (const \fBOutgoingRTPPkt\fP & p) const\fC [inline]\fP"
+.PP
+Outgoing packets are equal if their sequence numbers match. 
+.SS "void OutgoingRTPPkt::protect (uint32 ssrc, \fBCryptoContext\fP * pcc)"
+.PP
+Called packet is setup. This private method computes the SRTP data and stores it in the packet. Then encrypt the payload data (ex padding). 
+.SS "void OutgoingRTPPkt::setMarker (bool mark)\fC [inline]\fP"
+.PP
+Specify the value of the marker bit. By default, the marker bit of outgoing packets is false/0. This method allows to explicity specify and change that value.
+.PP
+\fBParameters:\fP
+.RS 4
+\fImark\fP value for the market bit. 
+.RE
+.PP
+
+.SS "void OutgoingRTPPkt::setPayloadType (\fBPayloadType\fP pt)\fC [inline]\fP"\fBParameters:\fP
+.RS 4
+\fIpt\fP Packet payload type. 
+.RE
+.PP
+
+.SS "void OutgoingRTPPkt::setSeqNum (uint16 seq)\fC [inline]\fP"
+.PP
+Sets the sequence number in the header. \fBParameters:\fP
+.RS 4
+\fIseq\fP Packet sequence number, in host order. 
+.RE
+.PP
+
+.SS "void OutgoingRTPPkt::setSSRC (uint32 ssrc) const\fC [inline]\fP"
+.PP
+Set synchronization source numeric identifier. \fBParameters:\fP
+.RS 4
+\fIssrc\fP 32-bit Synchronization SouRCe numeric identifier, in host order. 
+.RE
+.PP
+
+.SS "void OutgoingRTPPkt::setSSRCNetwork (uint32 ssrc) const\fC [inline]\fP"
+.PP
+Set synchronization source numeric identifier. Special version to save endianness conversion.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIssrc\fP 32-bit Synchronization SouRCe numeric identifier, in network order. 
+.RE
+.PP
+
+.SS "void OutgoingRTPPkt::setTimestamp (uint32 pts)\fC [inline]\fP"\fBParameters:\fP
+.RS 4
+\fIpts\fP Packet timestamp, in host order. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

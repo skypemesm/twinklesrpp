@@ -1,0 +1,130 @@
+.TH "RTPQueueBase" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RTPQueueBase \- 
+.PP
+A virtual base class for RTP queue hierarchies.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <queuebase.h>\fP
+.PP
+Inherited by \fBIncomingDataQueueBase\fP\fC [virtual]\fP, and \fBOutgoingDataQueueBase\fP\fC [virtual]\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBsetPayloadFormat\fP (const \fBPayloadFormat\fP &pf)"
+.br
+.RI "\fISet the payload format in use, for timing and payload type identification purposes. \fP"
+.ti -1c
+.RI "uint32 \fBgetLocalSSRC\fP () const "
+.br
+.ti -1c
+.RI "uint32 \fBgetCurrentRTPClockRate\fP () const "
+.br
+.RI "\fIGet the clock rate in RTP clock units (for instance, 8000 units per second for PCMU, or 90000 units per second for MP2T). \fP"
+.ti -1c
+.RI "\fBPayloadType\fP \fBgetCurrentPayloadType\fP () const "
+.br
+.ti -1c
+.RI "timeval \fBgetInitialTime\fP () const "
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRTPQueueBase\fP (uint32 *ssrc=NULL)"
+.br
+.ti -1c
+.RI "void \fBsetLocalSSRC\fP (uint32 ssrc)"
+.br
+.ti -1c
+.RI "uint32 \fBgetLocalSSRCNetwork\fP () const "
+.br
+.ti -1c
+.RI "virtual \fB~RTPQueueBase\fP ()"
+.br
+.ti -1c
+.RI "virtual size_t \fBdispatchBYE\fP (const std::string &)"
+.br
+.RI "\fIA plugin point for posting of BYE messages. \fP"
+.ti -1c
+.RI "virtual void \fBrenewLocalSSRC\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A virtual base class for RTP queue hierarchies. 
+
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "RTPQueueBase::RTPQueueBase (uint32 * ssrc = \fCNULL\fP)\fC [protected]\fP"\fBParameters:\fP
+.RS 4
+\fIssrc\fP If not null, the local SSRC identifier for this session. 
+.RE
+.PP
+
+.SS "virtual RTPQueueBase::~RTPQueueBase ()\fC [inline, protected, virtual]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual size_t RTPQueueBase::dispatchBYE (const std::string &)\fC [inline, protected, virtual]\fP"
+.PP
+A plugin point for posting of BYE messages. \fBParameters:\fP
+.RS 4
+\fI-\fP reason to leave the RTP session. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+number of octets sent. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBQueueRTCPManager\fP.
+.SS "\fBPayloadType\fP RTPQueueBase::getCurrentPayloadType () const\fC [inline]\fP"
+.SS "uint32 RTPQueueBase::getCurrentRTPClockRate () const\fC [inline]\fP"
+.PP
+Get the clock rate in RTP clock units (for instance, 8000 units per second for PCMU, or 90000 units per second for MP2T). This value depends on what payload format has been selected using \fBsetPayloadFormat()\fP.
+.PP
+\fBReturns:\fP
+.RS 4
+clock rate in RTP clock units. 
+.RE
+.PP
+
+.SS "timeval RTPQueueBase::getInitialTime () const\fC [inline]\fP"
+.SS "uint32 RTPQueueBase::getLocalSSRC () const\fC [inline]\fP"
+.SS "uint32 RTPQueueBase::getLocalSSRCNetwork () const\fC [inline, protected]\fP"
+.SS "virtual void RTPQueueBase::renewLocalSSRC ()\fC [inline, protected, virtual]\fP"
+.PP
+Reimplemented in \fBRTPDataQueue\fP, and \fBIncomingDataQueue\fP.
+.SS "void RTPQueueBase::setLocalSSRC (uint32 ssrc)\fC [inline, protected]\fP"
+.SS "bool RTPQueueBase::setPayloadFormat (const \fBPayloadFormat\fP & pf)\fC [inline]\fP"
+.PP
+Set the payload format in use, for timing and payload type identification purposes. \fBParameters:\fP
+.RS 4
+\fIpf\fP payload format to use from now on. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+whether the payload format has been successfully set. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

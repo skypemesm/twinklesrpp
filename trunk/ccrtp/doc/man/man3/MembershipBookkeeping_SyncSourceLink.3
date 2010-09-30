@@ -1,0 +1,476 @@
+.TH "MembershipBookkeeping::SyncSourceLink" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MembershipBookkeeping::SyncSourceLink \- 
+.PP
+Synchronization Source internal handler within the incoming packets queue.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <iqueue.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSyncSourceLink\fP (\fBMembershipBookkeeping\fP *m, \fBSyncSource\fP *s, \fBIncomingRTPPktLink\fP *fp=NULL, \fBIncomingRTPPktLink\fP *lp=NULL, \fBSyncSourceLink\fP *ps=NULL, \fBSyncSourceLink\fP *ns=NULL, \fBSyncSourceLink\fP *ncollis=NULL)"
+.br
+.ti -1c
+.RI "\fB~SyncSourceLink\fP ()"
+.br
+.RI "\fINote it deletes the source. \fP"
+.ti -1c
+.RI "\fBMembershipBookkeeping\fP * \fBgetMembership\fP ()"
+.br
+.ti -1c
+.RI "\fBSyncSource\fP * \fBgetSource\fP ()"
+.br
+.RI "\fIGet the synchronization source object this link objet holds information for. \fP"
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBgetFirst\fP ()"
+.br
+.RI "\fIGet first RTP (data) packet in the queue of packets received from this socket. \fP"
+.ti -1c
+.RI "void \fBsetFirst\fP (\fBIncomingRTPPktLink\fP *fp)"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBgetLast\fP ()"
+.br
+.RI "\fIGet last RTP (data) packet in the queue of packets received from this socket. \fP"
+.ti -1c
+.RI "void \fBsetLast\fP (\fBIncomingRTPPktLink\fP *lp)"
+.br
+.ti -1c
+.RI "\fBSyncSourceLink\fP * \fBgetPrev\fP ()"
+.br
+.RI "\fIGet the link object for the previous RTP source. \fP"
+.ti -1c
+.RI "void \fBsetPrev\fP (\fBSyncSourceLink\fP *ps)"
+.br
+.ti -1c
+.RI "\fBSyncSourceLink\fP * \fBgetNext\fP ()"
+.br
+.RI "\fIGet the link object for the next RTP source. \fP"
+.ti -1c
+.RI "void \fBsetNext\fP (\fBSyncSourceLink\fP *ns)"
+.br
+.ti -1c
+.RI "\fBSyncSourceLink\fP * \fBgetNextCollis\fP ()"
+.br
+.RI "\fIGet the link object for the next RTP source in the hash table entry collision list. \fP"
+.ti -1c
+.RI "void \fBsetNextCollis\fP (\fBSyncSourceLink\fP *ns)"
+.br
+.ti -1c
+.RI "ConflictingTransportAddress * \fBgetPrevConflict\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetPrevConflict\fP (InetAddress &addr, tpport_t dataPort, tpport_t controlPort)"
+.br
+.RI "\fIGet conflicting address. \fP"
+.ti -1c
+.RI "unsigned char * \fBgetSenderInfo\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetSenderInfo\fP (unsigned char *si)"
+.br
+.ti -1c
+.RI "unsigned char * \fBgetReceiverInfo\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetReceiverInfo\fP (unsigned char *ri)"
+.br
+.ti -1c
+.RI "timeval \fBgetLastPacketTime\fP () const "
+.br
+.ti -1c
+.RI "timeval \fBgetLastRTCPPacketTime\fP () const "
+.br
+.ti -1c
+.RI "timeval \fBgetLastRTCPSRTime\fP () const "
+.br
+.ti -1c
+.RI "uint32 \fBgetObservedPacketCount\fP () const "
+.br
+.RI "\fIGet the total number of RTP packets received from this source. \fP"
+.ti -1c
+.RI "void \fBincObservedPacketCount\fP ()"
+.br
+.ti -1c
+.RI "uint32 \fBgetObservedOctetCount\fP () const "
+.br
+.RI "\fIGet the total number of payload octets received from this source. \fP"
+.ti -1c
+.RI "void \fBincObservedOctetCount\fP (uint32 n)"
+.br
+.ti -1c
+.RI "uint16 \fBgetMaxSeqNum\fP () const "
+.br
+.RI "\fIGet the highest valid sequence number received. \fP"
+.ti -1c
+.RI "void \fBsetMaxSeqNum\fP (uint16 max)"
+.br
+.RI "\fISet the highest valid sequence number recived. \fP"
+.ti -1c
+.RI "uint32 \fBgetExtendedMaxSeqNum\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetExtendedMaxSeqNum\fP (uint32 seq)"
+.br
+.ti -1c
+.RI "uint32 \fBgetCumulativePacketLost\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetCumulativePacketLost\fP (uint32 pl)"
+.br
+.ti -1c
+.RI "uint8 \fBgetFractionLost\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetFractionLost\fP (uint8 fl)"
+.br
+.ti -1c
+.RI "uint32 \fBgetLastPacketTransitTime\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetLastPacketTransitTime\fP (uint32 time)"
+.br
+.ti -1c
+.RI "float \fBgetJitter\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetJitter\fP (float j)"
+.br
+.ti -1c
+.RI "uint32 \fBgetInitialDataTimestamp\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetInitialDataTimestamp\fP (uint32 ts)"
+.br
+.ti -1c
+.RI "timeval \fBgetInitialDataTime\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetInitialDataTime\fP (timeval it)"
+.br
+.ti -1c
+.RI "bool \fBgetGoodbye\fP ()"
+.br
+.RI "\fIMark this source as having sent a BYE control packet. \fP"
+.ti -1c
+.RI "bool \fBgetHello\fP ()"
+.br
+.RI "\fIMark this source as having sent some packet. \fP"
+.ti -1c
+.RI "uint32 \fBgetBadSeqNum\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetBadSeqNum\fP (uint32 seq)"
+.br
+.ti -1c
+.RI "uint8 \fBgetProbation\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetProbation\fP (uint8 p)"
+.br
+.ti -1c
+.RI "void \fBdecProbation\fP ()"
+.br
+.ti -1c
+.RI "bool \fBisValid\fP () const "
+.br
+.ti -1c
+.RI "uint16 \fBgetBaseSeqNum\fP () const "
+.br
+.ti -1c
+.RI "uint32 \fBgetSeqNumAccum\fP () const "
+.br
+.ti -1c
+.RI "void \fBincSeqNumAccum\fP ()"
+.br
+.ti -1c
+.RI "void \fBinitSequence\fP (uint16 seqnum)"
+.br
+.RI "\fIStart a new sequence of received packets. \fP"
+.ti -1c
+.RI "void \fBrecordInsertion\fP (const \fBIncomingRTPPktLink\fP &pl)"
+.br
+.RI "\fIRecord the insertion of an RTP packet from this source into the scheduled reception queue. \fP"
+.ti -1c
+.RI "void \fBinitStats\fP ()"
+.br
+.ti -1c
+.RI "void \fBcomputeStats\fP ()"
+.br
+.RI "\fICompute cumulative packet lost and fraction of packets lost during the last reporting interval. \fP"
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBMembershipBookkeeping\fP * \fBmembership\fP"
+.br
+.ti -1c
+.RI "\fBSyncSource\fP * \fBsource\fP"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBfirst\fP"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBlast\fP"
+.br
+.ti -1c
+.RI "\fBSyncSourceLink\fP * \fBprev\fP"
+.br
+.ti -1c
+.RI "\fBSyncSourceLink\fP * \fBnext\fP"
+.br
+.ti -1c
+.RI "\fBSyncSourceLink\fP * \fBnextCollis\fP"
+.br
+.ti -1c
+.RI "ConflictingTransportAddress * \fBprevConflict\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBsenderInfo\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBreceiverInfo\fP"
+.br
+.ti -1c
+.RI "timeval \fBlastPacketTime\fP"
+.br
+.ti -1c
+.RI "timeval \fBlastRTCPPacketTime\fP"
+.br
+.ti -1c
+.RI "timeval \fBlastRTCPSRTime\fP"
+.br
+.ti -1c
+.RI "uint32 \fBobsPacketCount\fP"
+.br
+.ti -1c
+.RI "uint32 \fBobsOctetCount\fP"
+.br
+.ti -1c
+.RI "uint16 \fBmaxSeqNum\fP"
+.br
+.ti -1c
+.RI "uint32 \fBextendedMaxSeqNum\fP"
+.br
+.ti -1c
+.RI "uint32 \fBcumulativePacketLost\fP"
+.br
+.ti -1c
+.RI "uint8 \fBfractionLost\fP"
+.br
+.ti -1c
+.RI "uint32 \fBlastPacketTransitTime\fP"
+.br
+.ti -1c
+.RI "float \fBjitter\fP"
+.br
+.ti -1c
+.RI "uint32 \fBinitialDataTimestamp\fP"
+.br
+.ti -1c
+.RI "timeval \fBinitialDataTime\fP"
+.br
+.ti -1c
+.RI "bool \fBflag\fP"
+.br
+.ti -1c
+.RI "uint32 \fBbadSeqNum\fP"
+.br
+.ti -1c
+.RI "uint8 \fBprobation\fP"
+.br
+.ti -1c
+.RI "uint16 \fBbaseSeqNum\fP"
+.br
+.ti -1c
+.RI "uint32 \fBexpectedPrior\fP"
+.br
+.ti -1c
+.RI "uint32 \fBreceivedPrior\fP"
+.br
+.ti -1c
+.RI "uint32 \fBseqNumAccum\fP"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static const uint32 \fBSEQNUMMOD\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Synchronization Source internal handler within the incoming packets queue. 
+
+Incoming packets queue objects hold a hash table and a linked list of synchronization sources. For each of these sources, there is also a linked list of incoming rtp packets, which are linked in an 'all incoming packets' list as well. \fBSyncSourceLink\fP objects hold the necessary data to maintain these data estructures, as well as source specific information and statistics for RTCP,
+.PP
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "MembershipBookkeeping::SyncSourceLink::SyncSourceLink (\fBMembershipBookkeeping\fP * m, \fBSyncSource\fP * s, \fBIncomingRTPPktLink\fP * fp = \fCNULL\fP, \fBIncomingRTPPktLink\fP * lp = \fCNULL\fP, \fBSyncSourceLink\fP * ps = \fCNULL\fP, \fBSyncSourceLink\fP * ns = \fCNULL\fP, \fBSyncSourceLink\fP * ncollis = \fCNULL\fP)\fC [inline]\fP"
+.SS "MembershipBookkeeping::SyncSourceLink::~SyncSourceLink ()"
+.PP
+Note it deletes the source. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void MembershipBookkeeping::SyncSourceLink::computeStats ()"
+.PP
+Compute cumulative packet lost and fraction of packets lost during the last reporting interval. 
+.SS "void MembershipBookkeeping::SyncSourceLink::decProbation ()\fC [inline]\fP"
+.SS "uint32 MembershipBookkeeping::SyncSourceLink::getBadSeqNum () const\fC [inline]\fP"
+.SS "uint16 MembershipBookkeeping::SyncSourceLink::getBaseSeqNum () const\fC [inline]\fP"
+.SS "uint32 MembershipBookkeeping::SyncSourceLink::getCumulativePacketLost () const\fC [inline]\fP"
+.SS "uint32 MembershipBookkeeping::SyncSourceLink::getExtendedMaxSeqNum () const\fC [inline]\fP"
+.SS "\fBIncomingRTPPktLink\fP* MembershipBookkeeping::SyncSourceLink::getFirst ()\fC [inline]\fP"
+.PP
+Get first RTP (data) packet in the queue of packets received from this socket. 
+.SS "uint8 MembershipBookkeeping::SyncSourceLink::getFractionLost () const\fC [inline]\fP"
+.SS "bool MembershipBookkeeping::SyncSourceLink::getGoodbye ()\fC [inline]\fP"
+.PP
+Mark this source as having sent a BYE control packet. \fBReturns:\fP
+.RS 4
+whether some packet from this source had been received before (\fBgetHello()\fP has been called at least once) 
+.RE
+.PP
+
+.SS "bool MembershipBookkeeping::SyncSourceLink::getHello ()\fC [inline]\fP"
+.PP
+Mark this source as having sent some packet. \fBReturns:\fP
+.RS 4
+whether no packet from this source had been received before 
+.RE
+.PP
+
+.SS "timeval MembershipBookkeeping::SyncSourceLink::getInitialDataTime () const\fC [inline]\fP"
+.SS "uint32 MembershipBookkeeping::SyncSourceLink::getInitialDataTimestamp () const\fC [inline]\fP"
+.SS "float MembershipBookkeeping::SyncSourceLink::getJitter () const\fC [inline]\fP"
+.SS "\fBIncomingRTPPktLink\fP* MembershipBookkeeping::SyncSourceLink::getLast ()\fC [inline]\fP"
+.PP
+Get last RTP (data) packet in the queue of packets received from this socket. 
+.SS "timeval MembershipBookkeeping::SyncSourceLink::getLastPacketTime () const\fC [inline]\fP"
+.SS "uint32 MembershipBookkeeping::SyncSourceLink::getLastPacketTransitTime ()\fC [inline]\fP"
+.SS "timeval MembershipBookkeeping::SyncSourceLink::getLastRTCPPacketTime () const\fC [inline]\fP"
+.SS "timeval MembershipBookkeeping::SyncSourceLink::getLastRTCPSRTime () const\fC [inline]\fP"
+.SS "uint16 MembershipBookkeeping::SyncSourceLink::getMaxSeqNum () const\fC [inline]\fP"
+.PP
+Get the highest valid sequence number received. 
+.SS "\fBMembershipBookkeeping\fP* MembershipBookkeeping::SyncSourceLink::getMembership ()\fC [inline]\fP"
+.SS "\fBSyncSourceLink\fP* MembershipBookkeeping::SyncSourceLink::getNext ()\fC [inline]\fP"
+.PP
+Get the link object for the next RTP source. 
+.SS "\fBSyncSourceLink\fP* MembershipBookkeeping::SyncSourceLink::getNextCollis ()\fC [inline]\fP"
+.PP
+Get the link object for the next RTP source in the hash table entry collision list. Note that collision does not refer to SSRC collision, but hash table collision. 
+.SS "uint32 MembershipBookkeeping::SyncSourceLink::getObservedOctetCount () const\fC [inline]\fP"
+.PP
+Get the total number of payload octets received from this source. 
+.SS "uint32 MembershipBookkeeping::SyncSourceLink::getObservedPacketCount () const\fC [inline]\fP"
+.PP
+Get the total number of RTP packets received from this source. 
+.SS "\fBSyncSourceLink\fP* MembershipBookkeeping::SyncSourceLink::getPrev ()\fC [inline]\fP"
+.PP
+Get the link object for the previous RTP source. 
+.SS "ConflictingTransportAddress* MembershipBookkeeping::SyncSourceLink::getPrevConflict () const\fC [inline]\fP"
+.SS "uint8 MembershipBookkeeping::SyncSourceLink::getProbation () const\fC [inline]\fP"
+.SS "unsigned char* MembershipBookkeeping::SyncSourceLink::getReceiverInfo ()\fC [inline]\fP"
+.SS "unsigned char* MembershipBookkeeping::SyncSourceLink::getSenderInfo ()\fC [inline]\fP"
+.SS "uint32 MembershipBookkeeping::SyncSourceLink::getSeqNumAccum () const\fC [inline]\fP"
+.SS "\fBSyncSource\fP* MembershipBookkeeping::SyncSourceLink::getSource ()\fC [inline]\fP"
+.PP
+Get the synchronization source object this link objet holds information for. 
+.SS "void MembershipBookkeeping::SyncSourceLink::incObservedOctetCount (uint32 n)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::incObservedPacketCount ()\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::incSeqNumAccum ()\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::initSequence (uint16 seqnum)\fC [inline]\fP"
+.PP
+Start a new sequence of received packets. 
+.SS "void MembershipBookkeeping::SyncSourceLink::initStats ()"
+.SS "bool MembershipBookkeeping::SyncSourceLink::isValid () const\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::recordInsertion (const \fBIncomingRTPPktLink\fP & pl)"
+.PP
+Record the insertion of an RTP packet from this source into the scheduled reception queue. All received packets should be registered with recordReception(), but only those actually inserted into the queue should be registered via this method.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpl\fP Link structure for packet inserted into the queue. 
+.RE
+.PP
+
+.SS "void MembershipBookkeeping::SyncSourceLink::setBadSeqNum (uint32 seq)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setCumulativePacketLost (uint32 pl)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setExtendedMaxSeqNum (uint32 seq)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setFirst (\fBIncomingRTPPktLink\fP * fp)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setFractionLost (uint8 fl)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setInitialDataTime (timeval it)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setInitialDataTimestamp (uint32 ts)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setJitter (float j)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setLast (\fBIncomingRTPPktLink\fP * lp)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setLastPacketTransitTime (uint32 time)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setMaxSeqNum (uint16 max)\fC [inline]\fP"
+.PP
+Set the highest valid sequence number recived. \fBParameters:\fP
+.RS 4
+\fImax\fP Sequence number. 
+.RE
+.PP
+
+.SS "void MembershipBookkeeping::SyncSourceLink::setNext (\fBSyncSourceLink\fP * ns)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setNextCollis (\fBSyncSourceLink\fP * ns)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setPrev (\fBSyncSourceLink\fP * ps)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setPrevConflict (InetAddress & addr, tpport_t dataPort, tpport_t controlPort)"
+.PP
+Get conflicting address. 
+.SS "void MembershipBookkeeping::SyncSourceLink::setProbation (uint8 p)\fC [inline]\fP"
+.SS "void MembershipBookkeeping::SyncSourceLink::setReceiverInfo (unsigned char * ri)"
+.SS "void MembershipBookkeeping::SyncSourceLink::setSenderInfo (unsigned char * si)"
+.SH "Member Data Documentation"
+.PP 
+.SS "uint32 \fBMembershipBookkeeping::SyncSourceLink::badSeqNum\fP"
+.SS "uint16 \fBMembershipBookkeeping::SyncSourceLink::baseSeqNum\fP"
+.SS "uint32 \fBMembershipBookkeeping::SyncSourceLink::cumulativePacketLost\fP"
+.SS "uint32 \fBMembershipBookkeeping::SyncSourceLink::expectedPrior\fP"
+.SS "uint32 \fBMembershipBookkeeping::SyncSourceLink::extendedMaxSeqNum\fP"
+.SS "\fBIncomingRTPPktLink\fP* \fBMembershipBookkeeping::SyncSourceLink::first\fP"
+.SS "bool \fBMembershipBookkeeping::SyncSourceLink::flag\fP"
+.SS "uint8 \fBMembershipBookkeeping::SyncSourceLink::fractionLost\fP"
+.SS "timeval \fBMembershipBookkeeping::SyncSourceLink::initialDataTime\fP"
+.SS "uint32 \fBMembershipBookkeeping::SyncSourceLink::initialDataTimestamp\fP"
+.SS "float \fBMembershipBookkeeping::SyncSourceLink::jitter\fP"
+.SS "\fBIncomingRTPPktLink\fP * \fBMembershipBookkeeping::SyncSourceLink::last\fP"
+.SS "timeval \fBMembershipBookkeeping::SyncSourceLink::lastPacketTime\fP"
+.SS "uint32 \fBMembershipBookkeeping::SyncSourceLink::lastPacketTransitTime\fP"
+.SS "timeval \fBMembershipBookkeeping::SyncSourceLink::lastRTCPPacketTime\fP"
+.SS "timeval \fBMembershipBookkeeping::SyncSourceLink::lastRTCPSRTime\fP"
+.SS "uint16 \fBMembershipBookkeeping::SyncSourceLink::maxSeqNum\fP"
+.SS "\fBMembershipBookkeeping\fP* \fBMembershipBookkeeping::SyncSourceLink::membership\fP"
+.SS "\fBSyncSourceLink\fP * \fBMembershipBookkeeping::SyncSourceLink::next\fP"
+.SS "\fBSyncSourceLink\fP* \fBMembershipBookkeeping::SyncSourceLink::nextCollis\fP"
+.SS "uint32 \fBMembershipBookkeeping::SyncSourceLink::obsOctetCount\fP"
+.SS "uint32 \fBMembershipBookkeeping::SyncSourceLink::obsPacketCount\fP"
+.SS "\fBSyncSourceLink\fP* \fBMembershipBookkeeping::SyncSourceLink::prev\fP"
+.SS "ConflictingTransportAddress* \fBMembershipBookkeeping::SyncSourceLink::prevConflict\fP"
+.SS "uint8 \fBMembershipBookkeeping::SyncSourceLink::probation\fP"
+.SS "uint32 \fBMembershipBookkeeping::SyncSourceLink::receivedPrior\fP"
+.SS "unsigned char* \fBMembershipBookkeeping::SyncSourceLink::receiverInfo\fP"
+.SS "unsigned char* \fBMembershipBookkeeping::SyncSourceLink::senderInfo\fP"
+.SS "uint32 \fBMembershipBookkeeping::SyncSourceLink::seqNumAccum\fP"
+.SS "const uint32 \fBMembershipBookkeeping::SyncSourceLink::SEQNUMMOD\fP\fC [static]\fP"
+.SS "\fBSyncSource\fP* \fBMembershipBookkeeping::SyncSourceLink::source\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

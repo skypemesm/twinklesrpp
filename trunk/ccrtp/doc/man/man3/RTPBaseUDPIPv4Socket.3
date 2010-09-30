@@ -1,0 +1,114 @@
+.TH "RTPBaseUDPIPv4Socket" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RTPBaseUDPIPv4Socket \- 
+.PP
+A UDP/IPv4 socket class targetted at RTP stacks.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <channel.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRTPBaseUDPIPv4Socket\fP (const InetAddress &ia, tpport_t port)"
+.br
+.RI "\fIConstructor for receiver. \fP"
+.ti -1c
+.RI "\fB~RTPBaseUDPIPv4Socket\fP ()"
+.br
+.ti -1c
+.RI "bool \fBisPendingRecv\fP (\fBmicrotimeout_t\fP timeout)"
+.br
+.ti -1c
+.RI "InetHostAddress \fBgetSender\fP (tpport_t &port) const "
+.br
+.ti -1c
+.RI "size_t \fBrecv\fP (unsigned char *buffer, size_t len)"
+.br
+.ti -1c
+.RI "size_t \fBgetNextPacketSize\fP () const "
+.br
+.RI "\fIGet size of next datagram waiting to be read. \fP"
+.ti -1c
+.RI "Socket::Error \fBsetMulticast\fP (bool enable)"
+.br
+.ti -1c
+.RI "Socket::Error \fBjoin\fP (const InetMcastAddress &ia, uint32 iface)"
+.br
+.ti -1c
+.RI "Socket::Error \fBdrop\fP (const InetMcastAddress &ia)"
+.br
+.ti -1c
+.RI "Socket::Error \fBsetTimeToLive\fP (unsigned char ttl)"
+.br
+.ti -1c
+.RI "\fBRTPBaseUDPIPv4Socket\fP ()"
+.br
+.RI "\fIConstructor for transmitter. \fP"
+.ti -1c
+.RI "void \fBsetPeer\fP (const InetAddress &ia, tpport_t port)"
+.br
+.ti -1c
+.RI "size_t \fBsend\fP (const unsigned char *const buffer, size_t len)"
+.br
+.ti -1c
+.RI "SOCKET \fBgetRecvSocket\fP () const "
+.br
+.ti -1c
+.RI "void \fBendSocket\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A UDP/IPv4 socket class targetted at RTP stacks. 
+
+This class provides a flat interface that includes all the services required by an RTP stack.
+.PP
+It can be used in two ways:
+.PP
+To instantiate the DualSocket template, which will be used to instantiate an RTP stack template (such as \fBTRTPSessionBase\fP).
+.PP
+To directly instantiate an RTP stack template (such as \fBTRTPSessionBase\fP).
+.PP
+This class offers an example of the interface that other classes should provide in order to specialize the ccRTP stack for different underlying protocols.
+.PP
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "RTPBaseUDPIPv4Socket::RTPBaseUDPIPv4Socket (const InetAddress & ia, tpport_t port)\fC [inline]\fP"
+.PP
+Constructor for receiver. 
+.SS "RTPBaseUDPIPv4Socket::~RTPBaseUDPIPv4Socket ()\fC [inline]\fP"
+.SS "RTPBaseUDPIPv4Socket::RTPBaseUDPIPv4Socket ()\fC [inline]\fP"
+.PP
+Constructor for transmitter. 
+.SH "Member Function Documentation"
+.PP 
+.SS "Socket::Error RTPBaseUDPIPv4Socket::drop (const InetMcastAddress & ia)\fC [inline]\fP"
+.SS "void RTPBaseUDPIPv4Socket::endSocket ()\fC [inline]\fP"
+.SS "size_t RTPBaseUDPIPv4Socket::getNextPacketSize () const\fC [inline]\fP"
+.PP
+Get size of next datagram waiting to be read. 
+.SS "SOCKET RTPBaseUDPIPv4Socket::getRecvSocket () const\fC [inline]\fP"
+.SS "InetHostAddress RTPBaseUDPIPv4Socket::getSender (tpport_t & port) const\fC [inline]\fP"
+.SS "bool RTPBaseUDPIPv4Socket::isPendingRecv (\fBmicrotimeout_t\fP timeout)\fC [inline]\fP"
+.SS "Socket::Error RTPBaseUDPIPv4Socket::join (const InetMcastAddress & ia, uint32 iface)\fC [inline]\fP"
+.SS "size_t RTPBaseUDPIPv4Socket::recv (unsigned char * buffer, size_t len)\fC [inline]\fP"
+.SS "size_t RTPBaseUDPIPv4Socket::send (const unsigned char *const  buffer, size_t len)\fC [inline]\fP"
+.SS "Socket::Error RTPBaseUDPIPv4Socket::setMulticast (bool enable)\fC [inline]\fP"
+.SS "void RTPBaseUDPIPv4Socket::setPeer (const InetAddress & ia, tpport_t port)\fC [inline]\fP"
+.SS "Socket::Error RTPBaseUDPIPv4Socket::setTimeToLive (unsigned char ttl)\fC [inline]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.
