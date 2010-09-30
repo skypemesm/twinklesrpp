@@ -1,0 +1,100 @@
+.TH "RTCPReceiverInfo" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RTCPReceiverInfo \- 
+.PP
+Report block information of SR/RR RTCP reports.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <rtcppkt.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRTCPReceiverInfo\fP (void *ri)"
+.br
+.ti -1c
+.RI "\fBRTCPReceiverInfo\fP (\fBRTCPCompoundHandler::ReceiverInfo\fP &si)"
+.br
+.ti -1c
+.RI "\fB~RTCPReceiverInfo\fP ()"
+.br
+.ti -1c
+.RI "uint8 \fBgetFractionLost\fP () const "
+.br
+.RI "\fIGet fraction of lost packets, as a number between 0 and 255. \fP"
+.ti -1c
+.RI "uint32 \fBgetCumulativePacketLost\fP () const "
+.br
+.ti -1c
+.RI "uint32 \fBgetExtendedSeqNum\fP () const "
+.br
+.ti -1c
+.RI "uint32 \fBgetJitter\fP () const "
+.br
+.RI "\fIGet the statistical variance of the RTP data packets interarrival time. \fP"
+.ti -1c
+.RI "uint16 \fBgetLastSRNTPTimestampInt\fP () const "
+.br
+.RI "\fIGet the integer part of the NTP timestamp of the last SR RTCP packet received from the source this receiver report refers to. \fP"
+.ti -1c
+.RI "uint16 \fBgetLastSRNTPTimestampFrac\fP () const "
+.br
+.RI "\fIGet the fractional part of the NTP timestamp of the last SR RTCP packet received from the source this receiver report refers to. \fP"
+.ti -1c
+.RI "uint32 \fBgetDelayLastSR\fP () const "
+.br
+.RI "\fIGet the delay between the last SR packet received and the transmission of this report. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Report block information of SR/RR RTCP reports. 
+
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "RTCPReceiverInfo::RTCPReceiverInfo (void * ri)\fC [inline]\fP"
+.SS "RTCPReceiverInfo::RTCPReceiverInfo (\fBRTCPCompoundHandler::ReceiverInfo\fP & si)\fC [inline]\fP"
+.SS "RTCPReceiverInfo::~RTCPReceiverInfo ()\fC [inline]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "uint32 RTCPReceiverInfo::getCumulativePacketLost () const\fC [inline]\fP"
+.SS "uint32 RTCPReceiverInfo::getDelayLastSR () const\fC [inline]\fP"
+.PP
+Get the delay between the last SR packet received and the transmission of this report. \fBReturns:\fP
+.RS 4
+Delay, in units of 1/65536 seconds 
+.RE
+.PP
+
+.SS "uint32 RTCPReceiverInfo::getExtendedSeqNum () const\fC [inline]\fP"
+.SS "uint8 RTCPReceiverInfo::getFractionLost () const\fC [inline]\fP"
+.PP
+Get fraction of lost packets, as a number between 0 and 255. 
+.SS "uint32 RTCPReceiverInfo::getJitter () const\fC [inline]\fP"
+.PP
+Get the statistical variance of the RTP data packets interarrival time. \fBReturns:\fP
+.RS 4
+Interarrival jitter, in timestamp units. 
+.RE
+.PP
+
+.SS "uint16 RTCPReceiverInfo::getLastSRNTPTimestampFrac () const\fC [inline]\fP"
+.PP
+Get the fractional part of the NTP timestamp of the last SR RTCP packet received from the source this receiver report refers to. 
+.SS "uint16 RTCPReceiverInfo::getLastSRNTPTimestampInt () const\fC [inline]\fP"
+.PP
+Get the integer part of the NTP timestamp of the last SR RTCP packet received from the source this receiver report refers to. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

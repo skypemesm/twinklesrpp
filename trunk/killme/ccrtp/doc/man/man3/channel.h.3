@@ -1,0 +1,60 @@
+.TH "channel.h" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+channel.h \- 
+.PP
+Definition of socket classes for different underlying transport and/or network protocols that can be used to instantiate the \fBTRTPSessionBase\fP template.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ccrtp/base.h>\fP
+.br
+\fC#include <sys/ioctl.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBRTPBaseUDPIPv4Socket\fP"
+.br
+.RI "\fIA UDP/IPv4 socket class targetted at RTP stacks. \fP"
+.ti -1c
+.RI "class \fBDualRTPChannel< BaseSocket >\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBDualRTPChannel\fP< \fBRTPBaseUDPIPv4Socket\fP > \fBDualRTPUDPIPv4Channel\fP"
+.br
+.ti -1c
+.RI "typedef \fBRTPBaseUDPIPv4Socket\fP \fBSingleRTPChannel\fP"
+.br
+.RI "\fIMay be used in applications where using the same socket for both sending and receiving is not a limitation. \fP"
+.ti -1c
+.RI "typedef \fBSingleRTPChannel\fP \fBSymmetricRTPChannel\fP"
+.br
+.RI "\fIActually, RTP with a single channel can be called 'Symmetric RTP'. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBccioctl\fP (SOCKET so, int request, size_t &len)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition of socket classes for different underlying transport and/or network protocols that can be used to instantiate the \fBTRTPSessionBase\fP template. 
+
+
+.SH "Function Documentation"
+.PP 
+.SS "size_t ccioctl (SOCKET so, int request, size_t & len)\fC [inline]\fP"
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

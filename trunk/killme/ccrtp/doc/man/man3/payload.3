@@ -1,0 +1,145 @@
+.TH "Payload types and formats." 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Payload types and formats. \- 
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBPayloadFormat\fP"
+.br
+.RI "\fIBase payload format class. \fP"
+.ti -1c
+.RI "class \fBStaticPayloadFormat\fP"
+.br
+.RI "\fIStatic payload format objects. \fP"
+.ti -1c
+.RI "class \fBDynamicPayloadFormat\fP"
+.br
+.RI "\fIDynamic payload format objects. \fP"
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef uint8 \fBPayloadType\fP"
+.br
+.RI "\fIRTP payload type numeric identifier. \fP"
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBStaticPayloadType\fP { \fBsptPCMU\fP =  0, \fBfirstStaticPayloadType\fP =  sptPCMU, \fBsptG726_32\fP =  2, \fBsptGSM\fP, \fBsptG723\fP, \fBsptDVI4_8000\fP, \fBsptDVI4_16000\fP, \fBsptLPC\fP, \fBsptPCMA\fP, \fBsptG722\fP, \fBsptL16_DUAL\fP, \fBsptL16_MONO\fP, \fBsptQCELP\fP, \fBsptMPA\fP =  14, \fBsptG728\fP, \fBsptDVI4_11025\fP, \fBsptDVI4_22050\fP, \fBsptG729\fP, \fBlastStaticAudioPayloadType\fP =  sptG729, \fBsptCELB\fP =  25, \fBsptJPEG\fP, \fBsptNV\fP =  28, \fBsptH261\fP =  31, \fBsptMPV\fP, \fBsptMP2T\fP, \fBsptH263\fP, \fBlastStaticPayloadType\fP =  sptH263 }"
+.br
+.RI "\fIRTP static payload types (default bindings) defined in the AVP profile. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const \fBPayloadType\fP \fBptINVALID\fP = 128"
+.br
+.RI "\fIPredefined value for invalid or uninitialized payload type variables. \fP"
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "\fBPayloadType\fP"
+.PP
+RTP payload type numeric identifier. At the RTP level a payload format is identified with a 7 bit number. This number is binded to a payload format through non-RTP means (SIP, SAP, application specific rules, etc.) 
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBStaticPayloadType\fP"
+.PP
+RTP static payload types (default bindings) defined in the AVP profile. 
+.PP
+\fBEnumerator: \fP
+.in +1c
+.TP
+\fB\fIsptPCMU \fP\fP
+ITU-T G.711. mu-law audio 8 Khz (RFC 1890). 
+.TP
+\fB\fIfirstStaticPayloadType \fP\fP
+.TP
+\fB\fIsptG726_32 \fP\fP
+ITU-T G.726. ADPCM audio (RFC 1890). 
+.TP
+\fB\fIsptGSM \fP\fP
+GSM audio (RFC 1890). 
+.TP
+\fB\fIsptG723 \fP\fP
+ITU-T G.723. MP-MLQ ACELP audio (RFC 1890). 
+.TP
+\fB\fIsptDVI4_8000 \fP\fP
+Modified IMA ADPCM audio 8Khz (RFC 1890). 
+.TP
+\fB\fIsptDVI4_16000 \fP\fP
+Modified IMA ADPCM audio 16Khz (RFC 1890). 
+.TP
+\fB\fIsptLPC \fP\fP
+LPC audio (RFC 1890). 
+.TP
+\fB\fIsptPCMA \fP\fP
+ITU-T G.711 A-law audio 8 Khz (RFC 1890). 
+.TP
+\fB\fIsptG722 \fP\fP
+Audio (RFCs 1890, 3047). 
+.TP
+\fB\fIsptL16_DUAL \fP\fP
+Linear uncompressed dual audio (RFC 1890). 
+.TP
+\fB\fIsptL16_MONO \fP\fP
+Linear uncompressed mono audio (RFC 1890). 
+.TP
+\fB\fIsptQCELP \fP\fP
+Audio at 8000 hz. 
+.TP
+\fB\fIsptMPA \fP\fP
+MPEG Audio elem. stream (RFCs 1890, 2250). 
+.TP
+\fB\fIsptG728 \fP\fP
+ITU-T G.728. LD-CELP audio. 
+.TP
+\fB\fIsptDVI4_11025 \fP\fP
+DVI audio at 11025 hz (by Joseph Di Pol). 
+.TP
+\fB\fIsptDVI4_22050 \fP\fP
+DVI audio at 22050 hz (by Joseph Di Pol). 
+.TP
+\fB\fIsptG729 \fP\fP
+ITU-T G.729. CS-ACELP audio. 
+.TP
+\fB\fIlastStaticAudioPayloadType \fP\fP
+.TP
+\fB\fIsptCELB \fP\fP
+Sun's propietary video (RFCs 1890, 2029). 
+.TP
+\fB\fIsptJPEG \fP\fP
+JPEG (ISO 10918) video (RFCs 1890, 2435). 
+.TP
+\fB\fIsptNV \fP\fP
+Ron Frederick's nv audio (RFC 1890). 
+.TP
+\fB\fIsptH261 \fP\fP
+ITU-T H.261 video (RFCs 1890, 2032). 
+.TP
+\fB\fIsptMPV \fP\fP
+MPEG Video elem. stream (RFCs 1890, 2250). 
+.TP
+\fB\fIsptMP2T \fP\fP
+MPEG 2 Transport stream (RFCs 1890, 2250). 
+.TP
+\fB\fIsptH263 \fP\fP
+ITU-T H.263 video (RFCs 2190, 2429). 
+.TP
+\fB\fIlastStaticPayloadType \fP\fP
+
+.SH "Variable Documentation"
+.PP 
+.SS "const \fBPayloadType\fP \fBptINVALID\fP = 128"
+.PP
+Predefined value for invalid or uninitialized payload type variables. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

@@ -1,0 +1,171 @@
+.TH "AppDataUnit" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AppDataUnit \- 
+.PP
+Interface (envelope) to data received over RTP packets.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <queuebase.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAppDataUnit\fP (const \fBIncomingRTPPkt\fP &packet, const \fBSyncSource\fP &src)"
+.br
+.ti -1c
+.RI "\fB~AppDataUnit\fP ()"
+.br
+.ti -1c
+.RI "\fBAppDataUnit\fP (const \fBAppDataUnit\fP &src)"
+.br
+.ti -1c
+.RI "\fBAppDataUnit\fP & \fBoperator=\fP (const \fBAppDataUnit\fP &source)"
+.br
+.RI "\fIAssignment operator. \fP"
+.ti -1c
+.RI "\fBPayloadType\fP \fBgetType\fP () const "
+.br
+.ti -1c
+.RI "const uint8 *const \fBgetData\fP () const "
+.br
+.RI "\fIGet data as it is received in RTP packets (i.e. \fP"
+.ti -1c
+.RI "size_t \fBgetSize\fP () const "
+.br
+.ti -1c
+.RI "const \fBSyncSource\fP & \fBgetSource\fP () const "
+.br
+.ti -1c
+.RI "bool \fBisMarked\fP () const "
+.br
+.RI "\fIIs this data unit marked?. \fP"
+.ti -1c
+.RI "uint16 \fBgetSeqNum\fP () const "
+.br
+.RI "\fIGet data unit sequence number. \fP"
+.ti -1c
+.RI "uint8 \fBgetContributorsCount\fP () const "
+.br
+.RI "\fIGet the number of contributing sources in the CSRC list. \fP"
+.ti -1c
+.RI "const uint32 * \fBgetContributorsID\fP () const "
+.br
+.RI "\fIGet the array of 32-bit CSRC identifiers. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface (envelope) to data received over RTP packets. 
+
+A class of objects representing data transmitted over RTP packets. Tipically, this object will apply to received data. Data blocks received via RTP connections as well as its related objects (source, etc), are accessed through the methods of this class.
+.PP
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.PP
+\fBExamples: \fP
+.in +1c
+.PP
+\fBaudiorx.cpp\fP, \fBccrtptest.cpp\fP, \fBrtpduphello.cpp\fP, \fBrtphello.cpp\fP, and \fBrtplisten.cpp\fP.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "AppDataUnit::AppDataUnit (const \fBIncomingRTPPkt\fP & packet, const \fBSyncSource\fP & src)"
+.SS "AppDataUnit::~AppDataUnit ()\fC [inline]\fP"
+.SS "AppDataUnit::AppDataUnit (const \fBAppDataUnit\fP & src)"\fBParameters:\fP
+.RS 4
+\fIsrc\fP the \fBAppDataUnit\fP object being copied 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "uint8 AppDataUnit::getContributorsCount () const\fC [inline]\fP"
+.PP
+Get the number of contributing sources in the CSRC list. 
+.SS "const uint32* AppDataUnit::getContributorsID () const\fC [inline]\fP"
+.PP
+Get the array of 32-bit CSRC identifiers. \fBReturns:\fP
+.RS 4
+NULL if (\fBgetContributorsCount()\fP == 0) 
+.RE
+.PP
+
+.SS "const uint8* const AppDataUnit::getData () const\fC [inline]\fP"
+.PP
+Get data as it is received in RTP packets (i.e. for multi-octet encodings, octets are in network order.
+.PP
+\fBReturns:\fP
+.RS 4
+Raw pointer to data block. 
+.RE
+.PP
+
+.PP
+\fBExamples: \fP
+.in +1c
+\fBaudiorx.cpp\fP, \fBccrtptest.cpp\fP, \fBrtpduphello.cpp\fP, and \fBrtphello.cpp\fP.
+.SS "uint16 AppDataUnit::getSeqNum () const\fC [inline]\fP"
+.PP
+Get data unit sequence number. 
+.SS "size_t AppDataUnit::getSize () const\fC [inline]\fP"\fBReturns:\fP
+.RS 4
+length of data in octets 
+.RE
+.PP
+
+.PP
+\fBExamples: \fP
+.in +1c
+\fBaudiorx.cpp\fP, and \fBrtplisten.cpp\fP.
+.SS "const \fBSyncSource\fP& AppDataUnit::getSource () const\fC [inline]\fP"\fBReturns:\fP
+.RS 4
+Source that sent this data 
+.RE
+.PP
+
+.PP
+\fBExamples: \fP
+.in +1c
+\fBrtplisten.cpp\fP.
+.SS "\fBPayloadType\fP AppDataUnit::getType () const\fC [inline]\fP"\fBReturns:\fP
+.RS 4
+type of this data 
+.RE
+.PP
+
+.PP
+\fBExamples: \fP
+.in +1c
+\fBrtplisten.cpp\fP.
+.SS "bool AppDataUnit::isMarked () const\fC [inline]\fP"
+.PP
+Is this data unit marked?. \fBReturns:\fP
+.RS 4
+true if marked. 
+.RE
+.PP
+
+.SS "\fBAppDataUnit\fP& AppDataUnit::operator= (const \fBAppDataUnit\fP & source)"
+.PP
+Assignment operator. \fBParameters:\fP
+.RS 4
+\fIsource\fP the \fBAppDataUnit\fP object being assigned 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the result of the assignment 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

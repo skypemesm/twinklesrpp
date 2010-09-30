@@ -1,0 +1,92 @@
+.TH "IncomingDataQueue::SyncSourcesIterator" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IncomingDataQueue::SyncSourcesIterator \- 
+.PP
+iterator through the list of synchronizations sources in this session  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <iqueue.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef std::forward_iterator_tag \fBiterator_category\fP"
+.br
+.ti -1c
+.RI "typedef \fBSyncSource\fP \fBvalue_type\fP"
+.br
+.ti -1c
+.RI "typedef ptrdiff_t \fBdifference_type\fP"
+.br
+.ti -1c
+.RI "typedef const \fBSyncSource\fP * \fBpointer\fP"
+.br
+.ti -1c
+.RI "typedef const \fBSyncSource\fP & \fBreference\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSyncSourcesIterator\fP (SyncSourceLink *l=NULL)"
+.br
+.ti -1c
+.RI "\fBSyncSourcesIterator\fP (const \fBSyncSourcesIterator\fP &si)"
+.br
+.ti -1c
+.RI "\fBreference\fP \fBoperator*\fP () const "
+.br
+.ti -1c
+.RI "\fBpointer\fP \fBoperator->\fP () const "
+.br
+.ti -1c
+.RI "\fBSyncSourcesIterator\fP & \fBoperator++\fP ()"
+.br
+.ti -1c
+.RI "\fBSyncSourcesIterator\fP \fBoperator++\fP (int)"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBSyncSourcesIterator\fP &l, const \fBSyncSourcesIterator\fP &r)"
+.br
+.ti -1c
+.RI "bool \fBoperator!=\fP (const \fBSyncSourcesIterator\fP &l, const \fBSyncSourcesIterator\fP &r)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+iterator through the list of synchronizations sources in this session 
+.SH "Member Typedef Documentation"
+.PP 
+.SS "typedef ptrdiff_t \fBIncomingDataQueue::SyncSourcesIterator::difference_type\fP"
+.SS "typedef std::forward_iterator_tag \fBIncomingDataQueue::SyncSourcesIterator::iterator_category\fP"
+.SS "typedef const \fBSyncSource\fP* \fBIncomingDataQueue::SyncSourcesIterator::pointer\fP"
+.SS "typedef const \fBSyncSource\fP& \fBIncomingDataQueue::SyncSourcesIterator::reference\fP"
+.SS "typedef \fBSyncSource\fP \fBIncomingDataQueue::SyncSourcesIterator::value_type\fP"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "IncomingDataQueue::SyncSourcesIterator::SyncSourcesIterator (SyncSourceLink * l = \fCNULL\fP)\fC [inline]\fP"
+.SS "IncomingDataQueue::SyncSourcesIterator::SyncSourcesIterator (const \fBSyncSourcesIterator\fP & si)\fC [inline]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBreference\fP IncomingDataQueue::SyncSourcesIterator::operator* () const\fC [inline]\fP"
+.SS "\fBSyncSourcesIterator\fP IncomingDataQueue::SyncSourcesIterator::operator++ (int)\fC [inline]\fP"
+.SS "\fBSyncSourcesIterator\fP& IncomingDataQueue::SyncSourcesIterator::operator++ ()\fC [inline]\fP"
+.SS "\fBpointer\fP IncomingDataQueue::SyncSourcesIterator::operator-> () const\fC [inline]\fP"
+.SH "Friends And Related Function Documentation"
+.PP 
+.SS "bool operator!= (const \fBSyncSourcesIterator\fP & l, const \fBSyncSourcesIterator\fP & r)\fC [friend]\fP"
+.SS "bool operator== (const \fBSyncSourcesIterator\fP & l, const \fBSyncSourcesIterator\fP & r)\fC [friend]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

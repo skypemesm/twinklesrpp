@@ -1,0 +1,564 @@
+.TH "IncomingDataQueue" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IncomingDataQueue \- 
+.PP
+Queue for incoming RTP data packets in an RTP session.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <iqueue.h>\fP
+.PP
+Inherits \fBIncomingDataQueueBase\fP, and \fBMembershipBookkeeping\fP.
+.PP
+Inherited by \fBRTPDataQueue\fP.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBSyncSourcesIterator\fP"
+.br
+.RI "\fIiterator through the list of synchronizations sources in this session \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSyncSourcesIterator\fP \fBbegin\fP ()"
+.br
+.ti -1c
+.RI "\fBSyncSourcesIterator\fP \fBend\fP ()"
+.br
+.ti -1c
+.RI "const \fBAppDataUnit\fP * \fBgetData\fP (uint32 stamp, const \fBSyncSource\fP *src=NULL)"
+.br
+.RI "\fIRetreive data from a specific timestamped packet if such a packet is currently available in the receive buffer. \fP"
+.ti -1c
+.RI "bool \fBisWaiting\fP (const \fBSyncSource\fP *src=NULL) const "
+.br
+.RI "\fIDetermine if packets are waiting in the reception queue. \fP"
+.ti -1c
+.RI "uint32 \fBgetFirstTimestamp\fP (const \fBSyncSource\fP *src=NULL) const "
+.br
+.RI "\fIGet timestamp of first packet waiting in the queue. \fP"
+.ti -1c
+.RI "void \fBsetMinValidPacketSequence\fP (uint8 packets)"
+.br
+.RI "\fIWhen receiving packets from a new source, it may be convenient to reject a first few packets before we are really sure the source is valid. \fP"
+.ti -1c
+.RI "uint8 \fBgetDefaultMinValidPacketSequence\fP () const "
+.br
+.ti -1c
+.RI "uint8 \fBgetMinValidPacketSequence\fP () const "
+.br
+.RI "\fIGet the minimun number of consecutive packets that must be received from a source before accepting its data packets. \fP"
+.ti -1c
+.RI "void \fBsetMaxPacketMisorder\fP (uint16 packets)"
+.br
+.ti -1c
+.RI "uint16 \fBgetDefaultMaxPacketMisorder\fP () const "
+.br
+.ti -1c
+.RI "uint16 \fBgetMaxPacketMisorder\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetMaxPacketDropout\fP (uint16 packets)"
+.br
+.RI "\fIIt also prevents packets sent after a restart of the source being immediately accepted. \fP"
+.ti -1c
+.RI "uint16 \fBgetDefaultMaxPacketDropout\fP () const "
+.br
+.ti -1c
+.RI "uint16 \fBgetMaxPacketDropout\fP () const "
+.br
+.ti -1c
+.RI "void \fBsetInQueueCryptoContext\fP (\fBCryptoContext\fP *cc)"
+.br
+.RI "\fISet input queue \fBCryptoContext\fP. \fP"
+.ti -1c
+.RI "void \fBremoveInQueueCryptoContext\fP (\fBCryptoContext\fP *cc)"
+.br
+.RI "\fIRemove input queue \fBCryptoContext\fP. \fP"
+.ti -1c
+.RI "\fBCryptoContext\fP * \fBgetInQueueCryptoContext\fP (uint32 ssrc)"
+.br
+.RI "\fIGet an input queue \fBCryptoContext\fP identified by SSRC. \fP"
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static size_t \fBgetDefaultMembersSize\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBIncomingDataQueue\fP (uint32 size)"
+.br
+.ti -1c
+.RI "virtual \fB~IncomingDataQueue\fP ()"
+.br
+.ti -1c
+.RI "bool \fBcheckSSRCInIncomingRTPPkt\fP (\fBSyncSourceLink\fP &sourceLink, bool is_new, InetAddress &na, tpport_t tp)"
+.br
+.RI "\fIApply collision and loop detection and correction algorithm when receiving RTP data packets. \fP"
+.ti -1c
+.RI "void \fBsetSourceExpirationPeriod\fP (uint8 intervals)"
+.br
+.RI "\fISet the number of RTCP intervals that the stack will wait to change the state of a source from stateActive to stateInactive, or to delete the source after being in stateInactive. \fP"
+.ti -1c
+.RI "virtual size_t \fBtakeInDataPacket\fP ()"
+.br
+.RI "\fIThis function is used by the service thread to process the next incoming packet and place it in the receive list. \fP"
+.ti -1c
+.RI "void \fBrenewLocalSSRC\fP ()"
+.br
+.ti -1c
+.RI "\fBIncomingDataQueue::IncomingRTPPktLink\fP * \fBgetWaiting\fP (uint32 timestamp, const \fBSyncSource\fP *src=NULL)"
+.br
+.RI "\fIThis is used to fetch a packet in the receive queue and to expire packets older than the current timestamp. \fP"
+.ti -1c
+.RI "bool \fBrecordReception\fP (\fBSyncSourceLink\fP &srcLink, const \fBIncomingRTPPkt\fP &pkt, const timeval recvtime)"
+.br
+.RI "\fILog reception of a new RTP packet from this source. \fP"
+.ti -1c
+.RI "void \fBrecordExtraction\fP (const \fBIncomingRTPPkt\fP &pkt)"
+.br
+.RI "\fILog extraction of a packet from this source from the scheduled reception queue. \fP"
+.ti -1c
+.RI "void \fBpurgeIncomingQueue\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBonNewSyncSource\fP (const \fBSyncSource\fP &)"
+.br
+.RI "\fIVirtual called when a new synchronization source has joined the session. \fP"
+.ti -1c
+.RI "virtual bool \fBonRTPPacketRecv\fP (\fBIncomingRTPPkt\fP &)"
+.br
+.RI "\fIA virtual function to support parsing of arriving packets to determine if they should be kept in the queue and to dispatch events. \fP"
+.ti -1c
+.RI "virtual void \fBonExpireRecv\fP (\fBIncomingRTPPkt\fP &)"
+.br
+.RI "\fIA hook to filter packets in the receive queue that are being expired. \fP"
+.ti -1c
+.RI "virtual bool \fBonSRTPPacketError\fP (\fBIncomingRTPPkt\fP &pkt, int32 errorCode)"
+.br
+.RI "\fIA hook that gets called if the decoding of an incoming SRTP was erroneous. \fP"
+.ti -1c
+.RI "virtual bool \fBend2EndDelayed\fP (\fBIncomingRTPPktLink\fP &)"
+.br
+.ti -1c
+.RI "bool \fBinsertRecvPacket\fP (\fBIncomingRTPPktLink\fP *packetLink)"
+.br
+.RI "\fIInsert a just received packet in the queue (both general and source specific queues). \fP"
+.ti -1c
+.RI "virtual size_t \fBrecvData\fP (unsigned char *buffer, size_t length, InetHostAddress &host, tpport_t &port)=0"
+.br
+.RI "\fIThis function performs the physical I/O for reading a packet from the source. \fP"
+.ti -1c
+.RI "virtual size_t \fBgetNextDataPacketSize\fP () const =0"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "ThreadLock \fBrecvLock\fP"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBrecvFirst\fP"
+.br
+.ti -1c
+.RI "\fBIncomingRTPPktLink\fP * \fBrecvLast\fP"
+.br
+.ti -1c
+.RI "uint8 \fBminValidPacketSequence\fP"
+.br
+.ti -1c
+.RI "uint16 \fBmaxPacketMisorder\fP"
+.br
+.ti -1c
+.RI "uint16 \fBmaxPacketDropout\fP"
+.br
+.ti -1c
+.RI "uint8 \fBsourceExpirationPeriod\fP"
+.br
+.ti -1c
+.RI "Mutex \fBcryptoMutex\fP"
+.br
+.ti -1c
+.RI "std::list< \fBCryptoContext\fP * > \fBcryptoContexts\fP"
+.br
+.in -1c
+.SS "Static Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "static const uint8 \fBdefaultMinValidPacketSequence\fP"
+.br
+.ti -1c
+.RI "static const uint16 \fBdefaultMaxPacketMisorder\fP"
+.br
+.ti -1c
+.RI "static const uint16 \fBdefaultMaxPacketDropout\fP"
+.br
+.ti -1c
+.RI "static const size_t \fBdefaultMembersSize\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Queue for incoming RTP data packets in an RTP session. 
+
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "IncomingDataQueue::IncomingDataQueue (uint32 size)\fC [protected]\fP"\fBParameters:\fP
+.RS 4
+\fIsize\fP initial size of the membership table. 
+.RE
+.PP
+
+.SS "virtual IncomingDataQueue::~IncomingDataQueue ()\fC [inline, protected, virtual]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBSyncSourcesIterator\fP IncomingDataQueue::begin ()\fC [inline]\fP"
+.SS "bool IncomingDataQueue::checkSSRCInIncomingRTPPkt (\fBSyncSourceLink\fP & sourceLink, bool is_new, InetAddress & na, tpport_t tp)\fC [protected]\fP"
+.PP
+Apply collision and loop detection and correction algorithm when receiving RTP data packets. Follows section 8.2 in draft-ietf-avt-rtp-new.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsourceLink\fP link to the source object. 
+.br
+\fIis_new\fP whether the source has been just recorded. 
+.br
+\fIna\fP data packet network address. 
+.br
+\fItp\fP data packet source transport port.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+whether the packet must not be discarded. 
+.RE
+.PP
+
+.SS "\fBSyncSourcesIterator\fP IncomingDataQueue::end ()\fC [inline]\fP"
+.SS "virtual bool IncomingDataQueue::end2EndDelayed (\fBIncomingRTPPktLink\fP &)\fC [inline, protected, virtual]\fP"
+.SS "const \fBAppDataUnit\fP* IncomingDataQueue::getData (uint32 stamp, const \fBSyncSource\fP * src = \fCNULL\fP)"
+.PP
+Retreive data from a specific timestamped packet if such a packet is currently available in the receive buffer. \fBParameters:\fP
+.RS 4
+\fIstamp\fP Data unit timestamp. 
+.br
+\fIsrc\fP Optional synchronization source selector. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+data retrieved from the reception buffer. 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fInull\fP pointer if no packet with such timestamp is available. 
+.RE
+.PP
+
+.SS "uint16 IncomingDataQueue::getDefaultMaxPacketDropout () const\fC [inline]\fP"
+.SS "uint16 IncomingDataQueue::getDefaultMaxPacketMisorder () const\fC [inline]\fP"
+.SS "static size_t IncomingDataQueue::getDefaultMembersSize ()\fC [inline, static]\fP"
+.SS "uint8 IncomingDataQueue::getDefaultMinValidPacketSequence () const\fC [inline]\fP"
+.SS "uint32 IncomingDataQueue::getFirstTimestamp (const \fBSyncSource\fP * src = \fCNULL\fP) const"
+.PP
+Get timestamp of first packet waiting in the queue. \fBParameters:\fP
+.RS 4
+\fIsrc\fP optional source selector. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+timestamp of first arrival packet. 
+.RE
+.PP
+
+.SS "\fBCryptoContext\fP* IncomingDataQueue::getInQueueCryptoContext (uint32 ssrc)"
+.PP
+Get an input queue \fBCryptoContext\fP identified by SSRC. \fBParameters:\fP
+.RS 4
+\fIssrc\fP Request \fBCryptoContext\fP for this incoming SSRC 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Pointer to \fBCryptoContext\fP of the SSRC of NULL if no context available for this SSRC. 
+.RE
+.PP
+
+.SS "uint16 IncomingDataQueue::getMaxPacketDropout () const\fC [inline]\fP"
+.SS "uint16 IncomingDataQueue::getMaxPacketMisorder () const\fC [inline]\fP"
+.SS "uint8 IncomingDataQueue::getMinValidPacketSequence () const\fC [inline]\fP"
+.PP
+Get the minimun number of consecutive packets that must be received from a source before accepting its data packets. 
+.SS "virtual size_t IncomingDataQueue::getNextDataPacketSize () const\fC [protected, pure virtual]\fP"
+.PP
+Implemented in \fBRTPDuplex\fP.
+.SS "\fBIncomingDataQueue::IncomingRTPPktLink\fP* IncomingDataQueue::getWaiting (uint32 timestamp, const \fBSyncSource\fP * src = \fCNULL\fP)\fC [protected]\fP"
+.PP
+This is used to fetch a packet in the receive queue and to expire packets older than the current timestamp. \fBReturns:\fP
+.RS 4
+packet buffer object for current timestamp if found. 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fItimestamp\fP timestamp requested. 
+.br
+\fIsrc\fP optional source selector 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+if found, the packet is removed from the reception queue 
+.RE
+.PP
+
+.SS "bool IncomingDataQueue::insertRecvPacket (\fBIncomingRTPPktLink\fP * packetLink)\fC [protected]\fP"
+.PP
+Insert a just received packet in the queue (both general and source specific queues). If the packet was already in the queue (same SSRC and sequence number), it is not inserted but deleted.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpacketLink\fP link to a packet just received and generally validated and processed by onRTPPacketRecv.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+whether the packet was successfully inserted. 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fIfalse\fP when the packet is duplicated (there is already a packet from the same source with the same timestamp). 
+.br
+\fItrue\fP when the packet is not duplicated. 
+.RE
+.PP
+
+.SS "bool IncomingDataQueue::isWaiting (const \fBSyncSource\fP * src = \fCNULL\fP) const"
+.PP
+Determine if packets are waiting in the reception queue. \fBParameters:\fP
+.RS 4
+\fIsrc\fP Optional synchronization source selector. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+True if packets are waiting. 
+.RE
+.PP
+
+.SS "virtual void IncomingDataQueue::onExpireRecv (\fBIncomingRTPPkt\fP &)\fC [inline, protected, virtual]\fP"
+.PP
+A hook to filter packets in the receive queue that are being expired. This hook may be used to do some application specific processing on expired packets before they are deleted.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI-\fP packet expired from the recv queue. 
+.RE
+.PP
+
+.SS "virtual void IncomingDataQueue::onNewSyncSource (const \fBSyncSource\fP &)\fC [inline, protected, virtual]\fP"
+.PP
+Virtual called when a new synchronization source has joined the session. \fBParameters:\fP
+.RS 4
+\fI-\fP new synchronization source 
+.RE
+.PP
+
+.SS "virtual bool IncomingDataQueue::onRTPPacketRecv (\fBIncomingRTPPkt\fP &)\fC [inline, protected, virtual]\fP"
+.PP
+A virtual function to support parsing of arriving packets to determine if they should be kept in the queue and to dispatch events. A generic header validity check (as specified in RFC 1889) is performed on every incoming packet. If the generic check completes succesfully, this method is called before the packet is actually inserted into the reception queue.
+.PP
+May be used to perform additional validity checks or to do some application specific processing.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI-\fP packet just received. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true if packet is kept in the incoming packets queue. 
+.RE
+.PP
+
+.SS "virtual bool IncomingDataQueue::onSRTPPacketError (\fBIncomingRTPPkt\fP & pkt, int32 errorCode)\fC [inline, protected, virtual]\fP"
+.PP
+A hook that gets called if the decoding of an incoming SRTP was erroneous. \fBParameters:\fP
+.RS 4
+\fIpkt\fP The SRTP packet with error. 
+.br
+\fIerrorCode\fP The error code: -1 - SRTP authentication failure, -2 - replay check failed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+True: put the packet in incoming queue for further processing by the applications; false: dismiss packet. The default implementation returns false. 
+.RE
+.PP
+
+.SS "void IncomingDataQueue::purgeIncomingQueue ()\fC [protected]\fP"
+.SS "void IncomingDataQueue::recordExtraction (const \fBIncomingRTPPkt\fP & pkt)\fC [protected]\fP"
+.PP
+Log extraction of a packet from this source from the scheduled reception queue. \fBParameters:\fP
+.RS 4
+\fIpkt\fP Packet extracted from the queue. 
+.RE
+.PP
+
+.SS "bool IncomingDataQueue::recordReception (\fBSyncSourceLink\fP & srcLink, const \fBIncomingRTPPkt\fP & pkt, const timeval recvtime)\fC [protected]\fP"
+.PP
+Log reception of a new RTP packet from this source. Usually updates data such as the packet counter, the expected sequence number for the next packet and the time the last packet was received at.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsrcLink\fP Link structure for the synchronization source of this packet. 
+.br
+\fIpkt\fP Packet just created and to be logged. 
+.br
+\fIrecvtime\fP Reception time.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+whether, according to the source state and statistics, the packet is considered valid and must be inserted in the incoming packets queue. 
+.RE
+.PP
+
+.SS "virtual size_t IncomingDataQueue::recvData (unsigned char * buffer, size_t length, InetHostAddress & host, tpport_t & port)\fC [protected, pure virtual]\fP"
+.PP
+This function performs the physical I/O for reading a packet from the source. It is a virtual that is overriden in the derived class.
+.PP
+\fBReturns:\fP
+.RS 4
+number of bytes read. 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbuffer\fP of read packet. 
+.br
+\fIlength\fP of data to read. 
+.br
+\fIhost\fP address of source. 
+.br
+\fIport\fP number of source. 
+.RE
+.PP
+
+.PP
+Implemented in \fBRTPDuplex\fP.
+.SS "void IncomingDataQueue::removeInQueueCryptoContext (\fBCryptoContext\fP * cc)"
+.PP
+Remove input queue \fBCryptoContext\fP. The endQueue method (provided by RTPQueue) also deletes all registered CryptoContexts.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcc\fP Pointer to initialized \fBCryptoContext\fP to remove. If pointer if \fCNULL\fP then delete the whole queue 
+.RE
+.PP
+
+.SS "void IncomingDataQueue::renewLocalSSRC ()\fC [protected, virtual]\fP"
+.PP
+Reimplemented from \fBRTPQueueBase\fP.
+.PP
+Reimplemented in \fBRTPDataQueue\fP.
+.SS "void IncomingDataQueue::setInQueueCryptoContext (\fBCryptoContext\fP * cc)"
+.PP
+Set input queue \fBCryptoContext\fP. The endQueue method (provided by RTPQueue) deletes all registered CryptoContexts.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcc\fP Pointer to initialized \fBCryptoContext\fP. 
+.RE
+.PP
+
+.SS "void IncomingDataQueue::setMaxPacketDropout (uint16 packets)\fC [inline]\fP"
+.PP
+It also prevents packets sent after a restart of the source being immediately accepted. 
+.SS "void IncomingDataQueue::setMaxPacketMisorder (uint16 packets)\fC [inline]\fP"
+.SS "void IncomingDataQueue::setMinValidPacketSequence (uint8 packets)\fC [inline]\fP"
+.PP
+When receiving packets from a new source, it may be convenient to reject a first few packets before we are really sure the source is valid. This method sets how many data packets must be received in sequence before the source is considered valid and the stack starts to accept its packets.
+.PP
+\fBNote:\fP
+.RS 4
+the default (see \fBdefaultMinValidPacketSequence()\fP) value for this parameter is 0, so that no packets are rejected (data packets are accepted from the first one).
+.PP
+this validation is performed after the generic header validation and the additional validation done in \fBonRTPPacketRecv()\fP.
+.PP
+if any valid RTCP packet is received from this source, it will be immediatly considered valid regardless of the number of sequential data packets received.
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpackets\fP number of sequential packet required 
+.RE
+.PP
+
+.SS "void IncomingDataQueue::setSourceExpirationPeriod (uint8 intervals)\fC [inline, protected]\fP"
+.PP
+Set the number of RTCP intervals that the stack will wait to change the state of a source from stateActive to stateInactive, or to delete the source after being in stateInactive. Note that this value should be uniform accross all participants and SHOULD be fixed for a particular profile.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIintervals\fP number of RTCP report intervals
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+If RTCP is not being used, the RTCP interval is assumed to be the default: 5 seconds. 
+.PP
+The default for this value is, as RECOMMENDED, 5. 
+.RE
+.PP
+
+.SS "virtual size_t IncomingDataQueue::takeInDataPacket ()\fC [protected, virtual]\fP"
+.PP
+This function is used by the service thread to process the next incoming packet and place it in the receive list. \fBReturns:\fP
+.RS 4
+number of payload bytes received. <0 if error. 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "std::list<\fBCryptoContext\fP *> \fBIncomingDataQueue::cryptoContexts\fP\fC [protected]\fP"
+.SS "Mutex \fBIncomingDataQueue::cryptoMutex\fP\fC [mutable, protected]\fP"
+.SS "const uint16 \fBIncomingDataQueue::defaultMaxPacketDropout\fP\fC [static, protected]\fP"
+.SS "const uint16 \fBIncomingDataQueue::defaultMaxPacketMisorder\fP\fC [static, protected]\fP"
+.SS "const size_t \fBIncomingDataQueue::defaultMembersSize\fP\fC [static, protected]\fP"
+.SS "const uint8 \fBIncomingDataQueue::defaultMinValidPacketSequence\fP\fC [static, protected]\fP"
+.SS "uint16 \fBIncomingDataQueue::maxPacketDropout\fP\fC [protected]\fP"
+.SS "uint16 \fBIncomingDataQueue::maxPacketMisorder\fP\fC [protected]\fP"
+.SS "uint8 \fBIncomingDataQueue::minValidPacketSequence\fP\fC [protected]\fP"
+.SS "\fBIncomingRTPPktLink\fP* \fBIncomingDataQueue::recvFirst\fP\fC [protected]\fP"
+.SS "\fBIncomingRTPPktLink\fP * \fBIncomingDataQueue::recvLast\fP\fC [protected]\fP"
+.SS "ThreadLock \fBIncomingDataQueue::recvLock\fP\fC [mutable, protected]\fP"
+.SS "uint8 \fBIncomingDataQueue::sourceExpirationPeriod\fP\fC [protected]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.
