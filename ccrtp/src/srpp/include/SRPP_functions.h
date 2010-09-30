@@ -85,9 +85,11 @@ namespace srpp {
 	//USed by the interior functions to send a specific message or receive a message
 	int send_message(SRPPMessage* msg);
 	SRPPMessage receive_message();
+	SRPPMessage processReceivedData(char * buff, int bytes_read);
 
 	// parse the received message ... returns -1 if its a media packet.. and 1 if its a signaling packet (whose corresponding handler is called)
 	int isSignalingMessage (SRPPMessage * message);
+	int isSignalingMessage (char * buff);
 
 	//Check whether the signaling is complete
 	 int isSignalingComplete();
