@@ -1,0 +1,54 @@
+.TH "RTP sessions." 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RTP sessions. \- 
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBTRTPSessionBase< RTPDataChannel, RTCPChannel, ServiceQueue >\fP"
+.br
+.ti -1c
+.RI "class \fBSingleThreadRTPSession< RTPDataChannel, RTCPChannel, ServiceQueue >\fP"
+.br
+.RI "\fIThis template class adds the threading aspect to the \fBRTPSessionBase\fP template in one of the many possible ways. \fP"
+.ti -1c
+.RI "class \fBRTPSessionBase\fP"
+.br
+.RI "\fIGeneric RTP protocol stack for exchange of realtime data. \fP"
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBSingleThreadRTPSession\fP \fBRTPSession\fP"
+.br
+.RI "\fIUses two pairs of sockets for RTP data and RTCP transmission/reception. \fP"
+.ti -1c
+.RI "typedef \fBRTPSession\fP \fBRTPSocket\fP"
+.br
+.RI "\fIAlias for RTPSession. \fP"
+.ti -1c
+.RI "typedef \fBSingleThreadRTPSession\fP< \fBSymmetricRTPChannel\fP, \fBSymmetricRTPChannel\fP > \fBSymmetricRTPSession\fP"
+.br
+.RI "\fIUses one pair of sockets, (1) for RTP data and (2) for RTCP transmission/reception. \fP"
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "\fBRTPSession\fP"
+.PP
+Uses two pairs of sockets for RTP data and RTCP transmission/reception. UDP/IPv4 RTP Session scheduled by one thread of execution. 
+.PP
+\fBExamples: \fP
+.in +1c
+\fBaudiorx.cpp\fP, \fBaudiotx.cpp\fP, \fBccrtptest.cpp\fP, \fBrtphello.cpp\fP, \fBrtplisten.cpp\fP, and \fBrtpsend.cpp\fP.
+.SS "\fBRTPSocket\fP"
+.PP
+Alias for RTPSession. 
+.SS "\fBSymmetricRTPSession\fP"
+.PP
+Uses one pair of sockets, (1) for RTP data and (2) for RTCP transmission/reception. Symmetric UDP/IPv4 RTP session scheduled by one thread of execution. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

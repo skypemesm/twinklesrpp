@@ -1,0 +1,131 @@
+.TH "RTPApplication" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RTPApplication \- 
+.PP
+An RTP application, holding identifying RTCP SDES item values.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <sources.h>\fP
+.PP
+Inherits \fBSDESItemsHolder\fP.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBParticipantLink\fP"
+.br
+.ti -1c
+.RI "class \fBParticipantsIterator\fP"
+.br
+.RI "\fIIterator through the list of participants in this session. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRTPApplication\fP (const std::string &cname)"
+.br
+.RI "\fICreate a new RTP application. \fP"
+.ti -1c
+.RI "\fB~RTPApplication\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetSDESItem\fP (\fBSDESItemType\fP item, const std::string &val)"
+.br
+.ti -1c
+.RI "void \fBsetPRIVPrefix\fP (const std::string &val)"
+.br
+.ti -1c
+.RI "const std::string & \fBgetSDESItem\fP (\fBSDESItemType\fP item) const "
+.br
+.ti -1c
+.RI "const std::string & \fBgetPRIVPrefix\fP () const "
+.br
+.ti -1c
+.RI "\fBParticipantsIterator\fP \fBbegin\fP ()"
+.br
+.ti -1c
+.RI "\fBParticipantsIterator\fP \fBend\fP ()"
+.br
+.ti -1c
+.RI "const \fBParticipant\fP * \fBgetParticipant\fP (const std::string &cname) const "
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "class \fBApplicationHandler\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+An RTP application, holding identifying RTCP SDES item values. 
+
+Represents local participants.
+.PP
+An application in the context of RTP: an entity that has a CNAME (unique identifier in the form of user@host.domain) as well as other RTCP SDES items (such as NAME or TOOL), and may open a number of RTP sessions. Each application is a different source of synchronization (with a potentially diferent SSRC identifier) in each RTP session it participates. All the sources of synchronization from a participant are tied together by means of the CNAME.
+.PP
+The definition of this class allows applications based on ccRTP to implement several 'RTP applications' in the same process. Each object of this class represents a local participant.
+.PP
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.PP
+\fBExamples: \fP
+.in +1c
+.PP
+\fBccrtptest.cpp\fP.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "RTPApplication::RTPApplication (const std::string & cname)"
+.PP
+Create a new RTP application. If the CNAME string provided has zero length, it is guessed from the user and machine name.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcname\fP Local participant canonical name. 
+.RE
+.PP
+
+.SS "RTPApplication::~RTPApplication ()"
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBParticipantsIterator\fP RTPApplication::begin ()\fC [inline]\fP"
+.PP
+\fBExamples: \fP
+.in +1c
+\fBccrtptest.cpp\fP.
+.SS "\fBParticipantsIterator\fP RTPApplication::end ()\fC [inline]\fP"
+.PP
+\fBExamples: \fP
+.in +1c
+\fBccrtptest.cpp\fP.
+.SS "const \fBParticipant\fP* RTPApplication::getParticipant (const std::string & cname) const"
+.SS "const std::string& RTPApplication::getPRIVPrefix () const\fC [inline]\fP"
+.PP
+Reimplemented from \fBSDESItemsHolder\fP.
+.SS "const std::string& RTPApplication::getSDESItem (\fBSDESItemType\fP item) const\fC [inline]\fP"
+.SS "void RTPApplication::setPRIVPrefix (const std::string & val)\fC [inline]\fP"
+.PP
+Reimplemented from \fBSDESItemsHolder\fP.
+.SS "void RTPApplication::setSDESItem (\fBSDESItemType\fP item, const std::string & val)\fC [inline]\fP"
+.PP
+\fBExamples: \fP
+.in +1c
+\fBccrtptest.cpp\fP, \fBrtplisten.cpp\fP, and \fBrtpsend.cpp\fP.
+.SH "Friends And Related Function Documentation"
+.PP 
+.SS "friend class \fBApplicationHandler\fP\fC [friend]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

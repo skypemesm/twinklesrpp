@@ -1,0 +1,53 @@
+.TH "DynamicPayloadFormat" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DynamicPayloadFormat \- 
+.PP
+Dynamic payload format objects.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <formats.h>\fP
+.PP
+Inherits \fBPayloadFormat\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDynamicPayloadFormat\fP (\fBPayloadType\fP type, uint32 rate)"
+.br
+.RI "\fIConstructor. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Dynamic payload format objects. 
+
+Class of payload formats objects for payload types dynamically negotiated. Because these payloads do not have a fix RTP clock rate assigned, it must be specified to the constructor. This class will be used by applications that support dynamic payload negotiation.
+.PP
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "DynamicPayloadFormat::DynamicPayloadFormat (\fBPayloadType\fP type, uint32 rate)"
+.PP
+Constructor. Builds a dynamic payload format from payload numeric identifier and the corresponding RTP clock rate.
+.PP
+\fBParameters:\fP
+.RS 4
+\fItype\fP payload type numeric identifier. 
+.br
+\fIrate\fP RTP clock rate. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

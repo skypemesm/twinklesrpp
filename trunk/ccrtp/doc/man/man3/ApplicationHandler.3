@@ -1,0 +1,57 @@
+.TH "ApplicationHandler" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ApplicationHandler \- 
+.PP
+Application objects modification methods.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <iqueue.h>\fP
+.PP
+Inherited by \fBMembershipBookkeeping\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBaddParticipant\fP (\fBRTPApplication\fP &app, \fBParticipant\fP &part)"
+.br
+.ti -1c
+.RI "void \fBremoveParticipant\fP (\fBRTPApplication\fP &app, RTPApplication::ParticipantLink *pl)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBApplicationHandler\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~ApplicationHandler\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Application objects modification methods. 
+
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ApplicationHandler::ApplicationHandler ()\fC [inline, protected]\fP"
+.SS "virtual ApplicationHandler::~ApplicationHandler ()\fC [inline, protected, virtual]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "void ApplicationHandler::addParticipant (\fBRTPApplication\fP & app, \fBParticipant\fP & part)\fC [inline]\fP"
+.SS "void ApplicationHandler::removeParticipant (\fBRTPApplication\fP & app, RTPApplication::ParticipantLink * pl)\fC [inline]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.
