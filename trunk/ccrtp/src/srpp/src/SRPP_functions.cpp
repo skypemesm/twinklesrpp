@@ -18,7 +18,7 @@ using namespace std;
 int lastSequenceNo = 0;
 int rtpSequenceNo = 0;
 int nonsrpp_message_count = 0;
-int MAX_NONSRPP_MESSAGES = 100; // 100 non-srpp messages can be received before we infer that srpp signaling is not possible
+int max_nonsrpp_messages = 100; // 100 non-srpp messages can be received before we infer that srpp signaling is not possible
 
 
 namespace srpp {
@@ -390,7 +390,6 @@ int send_message(SRPPMessage * message)
 
 SRPPMessage receive_message()
 	{
-		int dont_continue = 0;
 
 		int addr_len = sizeof(struct sockaddr);
 		SRPPMessage srpp_msg = srpp::create_srpp_message("");
@@ -407,30 +406,8 @@ SRPPMessage receive_message()
 		if (bytes_read < 0)
 					cout << "ERROR IN RECEIVING DATA: " << strerror(errno)<< endl;
 
-		// Are we waiting for a HELLO ACK MESSAGE? We need to check that the reply is SRPP
-		// or not. Otherwise, we need to disable SRPP
-		if (signaling_functions.isHelloSent() == 1)
-		{
-			// CHECK IF WE HAVE SRPP EXTENSION IN THE RECEIVED MESSAGE.
-			// IF NOT, WE DISABLE SRPP AND STOP RECEIVING HERE.
-		    SRPPHeader* srpp_header1 = (SRPPHeader *) buff;
-		    SRPPHeader srpp_header = *srpp_header1;
-
-		    if (srpp_header.srpp_signalling != 13 && srpp_header.pt != 69) //not helloack signaling message
-		    {
-		    	// NOT SRPP MESSAGE.
-		    	if (++nonsrpp_message_count > MAX_NONSRPP_MESSAGES)
-		    	{
-		    		// STOP SESSIONS ETC AFTER 100 such messages. ?? CHANGE IF REQD. ??
-		    		dont_continue = 1;
-		    		srpp_enabled = 0;
-		    		stop_session();
-		    	}
-		    }
-
-		}
-
-		if (dont_continue == 0)
+		//verify if we need to look for signaling and enabling srpp still
+		if (verifySignalling(buff) == 0 && srpp_enabled == 0)
 		{
 			srpp_msg.network_to_srpp(buff,bytes_read, srpp_session->encryption_key);
 
@@ -535,5 +512,36 @@ SRPPMessage receive_message()
 		return 0;
  }
 
+//verify if we need to look for signaling and enabling srpp still
+int verifySignalling(char * buff)
+ {
+	 // Are we waiting for a HELLO ACK MESSAGE? We need to check that the reply is SRPP
+	// or not. Otherwise, we need to disable SRPP
+	if (signaling_functions.isHelloSent() == 1)
+	{
+		// CHECK IF WE HAVE SRPP EXTENSION IN THE RECEIVED MESSAGE.
+		// IF NOT, WE DISABLE SRPP AND STOP RECEIVING HERE.
+		SRPPHeader* srpp_header1 = (SRPPHeader *) buff;
+		SRPPHeader srpp_header = *srpp_header1;
+
+		if (srpp_header.srpp_signalling != 13 && srpp_header.pt != 69) //not helloack signaling message
+		{
+			// NOT SRPP MESSAGE.
+			++nonsrpp_message_count;
+			if (nonsrpp_message_count > max_nonsrpp_messages)
+			{
+				// STOP SESSIONS ETC AFTER 100 such messages. ?? CHANGE IF REQD. ??
+				srpp_enabled = 0;
+				return stop_session();
+
+			}
+			else
+				return -1;
+		}
+
+	}
+	else
+		return 0;
+ }
 
 } // end of namespace
