@@ -1,6 +1,0 @@
-twinkle_zrtp_ui.o: twinkle_zrtp_ui.cpp twinkle_zrtp_ui.h \
- ../../src/twinkle_config.h
-
-twinkle_zrtp_ui.h:
-
-../../src/twinkle_config.h:

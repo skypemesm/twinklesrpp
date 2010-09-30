@@ -1,3 +1,0 @@
-rijndael.o: rijndael.cpp ../../src/twinkle_config.h
-
-../../src/twinkle_config.h:
