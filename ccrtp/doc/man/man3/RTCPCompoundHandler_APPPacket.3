@@ -1,0 +1,47 @@
+.TH "RTCPCompoundHandler::APPPacket" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RTCPCompoundHandler::APPPacket \- 
+.PP
+Struct for APP (application specific) RTCP packets.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <rtcppkt.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "uint32 \fBssrc\fP"
+.br
+.RI "\fIssrc identifier of source. \fP"
+.ti -1c
+.RI "char \fBname\fP [4]"
+.br
+.RI "\fIName of the APP packet, interpreted as a sequence of four characters. \fP"
+.ti -1c
+.RI "unsigned char \fBdata\fP [1]"
+.br
+.RI "\fIapplication dependent data. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Struct for APP (application specific) RTCP packets. 
+.SH "Member Data Documentation"
+.PP 
+.SS "unsigned char \fBRTCPCompoundHandler::APPPacket::data\fP[1]"
+.PP
+application dependent data. 
+.SS "char \fBRTCPCompoundHandler::APPPacket::name\fP[4]"
+.PP
+Name of the APP packet, interpreted as a sequence of four characters. 
+.SS "uint32 \fBRTCPCompoundHandler::APPPacket::ssrc\fP"
+.PP
+ssrc identifier of source. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

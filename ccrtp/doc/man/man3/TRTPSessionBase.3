@@ -1,0 +1,340 @@
+.TH "TRTPSessionBase" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TRTPSessionBase \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <rtp.h>\fP
+.PP
+Inherited by \fBSingleThreadRTPSession< RTPDataChannel, RTCPChannel, ServiceQueue >\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTRTPSessionBase\fP (const InetHostAddress &ia, tpport_t dataPort, tpport_t controlPort, uint32 membersSize, \fBRTPApplication\fP &app)"
+.br
+.RI "\fIBuilds a session waiting for packets in a host address. \fP"
+.ti -1c
+.RI "\fBTRTPSessionBase\fP (uint32 ssrc, const InetHostAddress &ia, tpport_t dataPort, tpport_t controlPort, uint32 membersSize, \fBRTPApplication\fP &app)"
+.br
+.RI "\fIBuilds a session with the specified ssrc identifier for the local source. \fP"
+.ti -1c
+.RI "\fBTRTPSessionBase\fP (const InetMcastAddress &ia, tpport_t dataPort, tpport_t controlPort, uint32 membersSize, \fBRTPApplication\fP &app, uint32 iface)"
+.br
+.RI "\fIBuilds a session waiting for packets in a multicast address. \fP"
+.ti -1c
+.RI "\fBTRTPSessionBase\fP (uint32 ssrc, const InetMcastAddress &ia, tpport_t dataPort, tpport_t controlPort, uint32 membersSize, \fBRTPApplication\fP &app, uint32 iface)"
+.br
+.RI "\fIBuilds a session waiting for packets in a multicast address, with the specified ssrc identifier for the local source. \fP"
+.ti -1c
+.RI "virtual size_t \fBdispatchBYE\fP (const std::string &str)"
+.br
+.ti -1c
+.RI "Socket::Error \fBsetMcastTTL\fP (uint8 ttl)"
+.br
+.RI "\fISet the value of the TTL field in the sent packets. \fP"
+.ti -1c
+.RI "virtual \fB~TRTPSessionBase\fP ()"
+.br
+.ti -1c
+.RI "RTPDataChannel * \fBgetDSO\fP (void)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBisPendingData\fP (\fBmicrotimeout_t\fP timeout)"
+.br
+.ti -1c
+.RI "InetHostAddress \fBgetDataSender\fP (tpport_t *port=NULL) const "
+.br
+.ti -1c
+.RI "size_t \fBgetNextDataPacketSize\fP () const "
+.br
+.ti -1c
+.RI "size_t \fBrecvData\fP (unsigned char *buffer, size_t len, InetHostAddress &na, tpport_t &tp)"
+.br
+.RI "\fIReceive data from the data channel/socket. \fP"
+.ti -1c
+.RI "void \fBsetDataPeer\fP (const InetAddress &host, tpport_t port)"
+.br
+.ti -1c
+.RI "size_t \fBsendData\fP (const unsigned char *const buffer, size_t len)"
+.br
+.ti -1c
+.RI "SOCKET \fBgetDataRecvSocket\fP () const "
+.br
+.ti -1c
+.RI "bool \fBisPendingControl\fP (\fBmicrotimeout_t\fP timeout)"
+.br
+.ti -1c
+.RI "InetHostAddress \fBgetControlSender\fP (tpport_t *port=NULL) const "
+.br
+.ti -1c
+.RI "size_t \fBrecvControl\fP (unsigned char *buffer, size_t len, InetHostAddress &na, tpport_t &tp)"
+.br
+.RI "\fIReceive data from the control channel/socket. \fP"
+.ti -1c
+.RI "void \fBsetControlPeer\fP (const InetAddress &host, tpport_t port)"
+.br
+.ti -1c
+.RI "size_t \fBsendControl\fP (const unsigned char *const buffer, size_t len)"
+.br
+.ti -1c
+.RI "SOCKET \fBgetControlRecvSocket\fP () const "
+.br
+.ti -1c
+.RI "Socket::Error \fBjoinGroup\fP (const InetMcastAddress &ia, uint32 iface)"
+.br
+.RI "\fIJoin a multicast group. \fP"
+.ti -1c
+.RI "Socket::Error \fBleaveGroup\fP (const InetMcastAddress &ia)"
+.br
+.RI "\fILeave a multicast group. \fP"
+.ti -1c
+.RI "void \fBendSocket\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "RTPDataChannel * \fBdso\fP"
+.br
+.ti -1c
+.RI "RTCPChannel * \fBcso\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "class \fBRTPSessionBaseHandler\fP"
+.br
+.in -1c
+
+.SS "template<class RTPDataChannel = DualRTPUDPIPv4Channel, class RTCPChannel = DualRTPUDPIPv4Channel, class ServiceQueue = AVPQueue> class TRTPSessionBase< RTPDataChannel, RTCPChannel, ServiceQueue >"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::\fBTRTPSessionBase\fP (const InetHostAddress & ia, tpport_t dataPort, tpport_t controlPort, uint32 membersSize, \fBRTPApplication\fP & app)\fC [inline]\fP"
+.PP
+Builds a session waiting for packets in a host address. \fBParameters:\fP
+.RS 4
+\fIia\fP Network address this socket is to be bound. 
+.br
+\fIdataPort\fP Transport port the data socket is to be bound. 
+.br
+\fIcontrolPort\fP Transport port the control socket is to be bound. 
+.br
+\fImembersSize\fP Initial size of the membership table. 
+.br
+\fIapp\fP Application this session is associated to. 
+.RE
+.PP
+
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::\fBTRTPSessionBase\fP (uint32 ssrc, const InetHostAddress & ia, tpport_t dataPort, tpport_t controlPort, uint32 membersSize, \fBRTPApplication\fP & app)\fC [inline]\fP"
+.PP
+Builds a session with the specified ssrc identifier for the local source. \fBParameters:\fP
+.RS 4
+\fIssrc\fP SSRC identifier for the local source. 
+.br
+\fIia\fP Network address this socket is to be bound. 
+.br
+\fIdataPort\fP Transport port the data socket is to be bound. 
+.br
+\fIcontrolPort\fP Transport port the control socket is to be bound. 
+.br
+\fImembersSize\fP Initial size of the membership table. 
+.br
+\fIapp\fP Application this session is associated to. 
+.RE
+.PP
+
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::\fBTRTPSessionBase\fP (const InetMcastAddress & ia, tpport_t dataPort, tpport_t controlPort, uint32 membersSize, \fBRTPApplication\fP & app, uint32 iface)\fC [inline]\fP"
+.PP
+Builds a session waiting for packets in a multicast address. TODO: ssrc constructor for multicast!
+.PP
+\fBParameters:\fP
+.RS 4
+\fIia\fP Multicast address this socket is to be bound. 
+.br
+\fIdataPort\fP Transport port the data socket is to be bound. 
+.br
+\fIcontrolPort\fP Transport port the control socket is to be bound. 
+.br
+\fImembersSize\fP Initial size of the membership table. 
+.br
+\fIapp\fP Application this session is associated to. 
+.br
+\fIiface\fP Index (from 0 to n) of network interface to join to multicast group. 
+.RE
+.PP
+
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::\fBTRTPSessionBase\fP (uint32 ssrc, const InetMcastAddress & ia, tpport_t dataPort, tpport_t controlPort, uint32 membersSize, \fBRTPApplication\fP & app, uint32 iface)\fC [inline]\fP"
+.PP
+Builds a session waiting for packets in a multicast address, with the specified ssrc identifier for the local source. \fBParameters:\fP
+.RS 4
+\fIssrc\fP SSRC identifier for the local source. 
+.br
+\fIia\fP Multicast address this socket is to be bound. 
+.br
+\fIdataPort\fP Transport port the data socket is to be bound. 
+.br
+\fIcontrolPort\fP Transport port the control socket is to be bound. 
+.br
+\fImembersSize\fP Initial size of the membership table. 
+.br
+\fIapp\fP Application this session is associated to. 
+.br
+\fIiface\fP Index (from 0 to n) of network interface to join to multicast group. 
+.RE
+.PP
+
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> virtual \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::~\fBTRTPSessionBase\fP ()\fC [inline, virtual]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> virtual size_t \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::dispatchBYE (const std::string & str)\fC [inline, virtual]\fP"
+.PP
+Reimplemented in \fBSingleThreadRTPSession< RTPDataChannel, RTCPChannel, ServiceQueue >\fP.
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> void \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::endSocket ()\fC [inline, protected]\fP"
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> SOCKET \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::getControlRecvSocket () const\fC [inline, protected]\fP"
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> InetHostAddress \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::getControlSender (tpport_t * port = \fCNULL\fP) const\fC [inline, protected]\fP"
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> SOCKET \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::getDataRecvSocket () const\fC [inline, protected]\fP"
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> InetHostAddress \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::getDataSender (tpport_t * port = \fCNULL\fP) const\fC [inline, protected]\fP"
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> RTPDataChannel* \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::getDSO (void)\fC [inline]\fP"
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> size_t \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::getNextDataPacketSize () const\fC [inline, protected]\fP"
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> bool \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::isPendingControl (\fBmicrotimeout_t\fP timeout)\fC [inline, protected]\fP"\fBParameters:\fP
+.RS 4
+\fItimeout\fP maximum timeout to wait, in microseconds 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+whether there are packets waiting to be picked 
+.RE
+.PP
+
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> bool \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::isPendingData (\fBmicrotimeout_t\fP timeout)\fC [inline, protected]\fP"\fBParameters:\fP
+.RS 4
+\fItimeout\fP maximum timeout to wait, in microseconds 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBSingleThreadRTPSession< RTPDataChannel, RTCPChannel, ServiceQueue >\fP.
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> Socket::Error \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::joinGroup (const InetMcastAddress & ia, uint32 iface)\fC [inline, protected]\fP"
+.PP
+Join a multicast group. \fBParameters:\fP
+.RS 4
+\fIia\fP address of the multicast group 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code from the socket operation 
+.RE
+.PP
+
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> Socket::Error \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::leaveGroup (const InetMcastAddress & ia)\fC [inline, protected]\fP"
+.PP
+Leave a multicast group. \fBParameters:\fP
+.RS 4
+\fIia\fP address of the multicast group 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code from the socket operation 
+.RE
+.PP
+
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> size_t \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::recvControl (unsigned char * buffer, size_t len, InetHostAddress & na, tpport_t & tp)\fC [inline, protected]\fP"
+.PP
+Receive data from the control channel/socket. \fBParameters:\fP
+.RS 4
+\fIbuffer\fP Buffer where to get data. 
+.br
+\fIlen\fP Maximum number of octets to get. 
+.br
+\fIna\fP Source network address. 
+.br
+\fItp\fP Source transport port. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Number of octets actually read. 
+.RE
+.PP
+
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> size_t \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::recvData (unsigned char * buffer, size_t len, InetHostAddress & na, tpport_t & tp)\fC [inline, protected]\fP"
+.PP
+Receive data from the data channel/socket. \fBParameters:\fP
+.RS 4
+\fIbuffer\fP Memory region to read to. 
+.br
+\fIlen\fP Maximum number of octets to get. 
+.br
+\fIna\fP Source network address. 
+.br
+\fItp\fP Source transport port. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Number of octets actually read. 
+.RE
+.PP
+
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> size_t \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::sendControl (const unsigned char *const  buffer, size_t len)\fC [inline, protected]\fP"\fBReturns:\fP
+.RS 4
+number of octets actually written 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbuffer\fP 
+.br
+\fIlen\fP 
+.RE
+.PP
+
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> size_t \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::sendData (const unsigned char *const  buffer, size_t len)\fC [inline, protected]\fP"\fBParameters:\fP
+.RS 4
+\fIbuffer\fP memory region to write from 
+.br
+\fIlen\fP number of octets to write 
+.RE
+.PP
+
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> void \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::setControlPeer (const InetAddress & host, tpport_t port)\fC [inline, protected]\fP"
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> void \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::setDataPeer (const InetAddress & host, tpport_t port)\fC [inline, protected]\fP"
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> Socket::Error \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::setMcastTTL (uint8 ttl)\fC [inline]\fP"
+.PP
+Set the value of the TTL field in the sent packets. \fBParameters:\fP
+.RS 4
+\fIttl\fP Time To Live 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+error code from the socket operation 
+.RE
+.PP
+
+.SH "Friends And Related Function Documentation"
+.PP 
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> friend class \fBRTPSessionBaseHandler\fP\fC [friend]\fP"
+.SH "Member Data Documentation"
+.PP 
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> RTCPChannel* \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::\fBcso\fP\fC [protected]\fP"
+.SS "template<class RTPDataChannel  = DualRTPUDPIPv4Channel, class RTCPChannel  = DualRTPUDPIPv4Channel, class ServiceQueue  = AVPQueue> RTPDataChannel* \fBTRTPSessionBase\fP< RTPDataChannel, RTCPChannel, ServiceQueue >::\fBdso\fP\fC [protected]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

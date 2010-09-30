@@ -1,0 +1,206 @@
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking target system type... x86_64-unknown-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for -p flag to install... yes
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for style of include used by make... GNU
+checking dependency style of gcc... gcc3
+checking for g++... g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking dependency style of g++... gcc3
+checking how to run the C preprocessor... gcc -E
+checking how to run the C++ preprocessor... g++ -E
+checking for ranlib... ranlib
+checking for flex... flex
+checking lex output file root... lex.yy
+checking lex library... -lfl
+checking whether yytext is a pointer... yes
+checking for bison... bison -y
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking whether byte ordering is bigendian... no
+checking whether strerror_r is declared... yes
+checking for strerror_r... yes
+checking whether strerror_r returns char *... yes
+checking linux/types.h usability... yes
+checking linux/types.h presence... yes
+checking for linux/types.h... yes
+checking for linux/errqueue.h... yes
+checking for ccgnu2-config... /usr/bin/ccgnu2-config
+checking for commoncpp2 version >= 1.6.0... yes
+checking for pkg-config... /usr/bin/pkg-config
+checking for libccrtp1 >= 1.6.0... yes
+checking CCRTP_CFLAGS... -D_GNU_SOURCE  
+checking CCRTP_LIBS... -pthread -lccrtp1 -lccgnu2 -ldl -lrt  
+checking for libxml-2.0... yes
+checking XML2_CFLAGS... -I/usr/include/libxml2  
+checking XML2_LIBS... -lxml2  
+checking for qt-mt >= 3.3.0 qt-mt < 4.0... yes
+checking QT_CFLAGS... -DQT_SHARED -DQT_TABLET_SUPPORT -DQT_NO_DEBUG -DQT_THREAD_SUPPORT -D_REENTRANT -I/usr/include/qt3  
+checking QT_LIBS... -L/usr/X11R6/lib -lqt-mt -laudio -lXt -ljpeg -lpng -lz -lXi -lXrender -lXrandr -lXcursor -lXinerama -lXft -lfreetype -lfontconfig -lXext -lX11 -lm -lSM -lICE -ldl -lpthread  
+checking value of $QTDIR... /usr
+checking for qmake... yes
+checking for strlcat... no
+checking if strlcat needs custom prototype... yes - in libkdefakes
+checking for strlcpy... no
+checking if strlcpy needs custom prototype... yes - in libkdefakes
+checking for main in -lutil... yes
+checking for main in -lcompat... no
+checking for crypt in -lcrypt... yes
+checking for socklen_t... yes
+checking for dnet_ntoa in -ldnet... no
+checking for dnet_ntoa in -ldnet_stub... no
+checking for inet_ntoa... yes
+checking for connect... yes
+checking for remove... yes
+checking for shmat... yes
+checking for sys/types.h... (cached) yes
+checking for stdint.h... (cached) yes
+checking sys/bitypes.h usability... yes
+checking sys/bitypes.h presence... yes
+checking for sys/bitypes.h... yes
+checking for poll in -lpoll... no
+checking Carbon/Carbon.h usability... no
+checking Carbon/Carbon.h presence... no
+checking for Carbon/Carbon.h... no
+checking CoreAudio/CoreAudio.h usability... no
+checking CoreAudio/CoreAudio.h presence... no
+checking for CoreAudio/CoreAudio.h... no
+checking if res_init needs -lresolv... yes
+checking for res_init... yes
+checking if res_init needs custom prototype... no
+checking for killpg in -lucb... no
+checking size of int... 4
+checking size of short... 2
+checking size of long... 8
+checking size of char *... 8
+checking for dlopen in -ldl... yes
+checking for shl_unload in -ldld... no
+checking size of size_t... 8
+checking size of unsigned long... 8
+checking sizeof size_t == sizeof unsigned long... yes
+checking crt_externs.h usability... no
+checking crt_externs.h presence... no
+checking for crt_externs.h... no
+checking for _NSGetEnviron... no
+checking for vsnprintf... yes
+checking for snprintf... yes
+not using lib directory suffix
+checking for X... libraries /usr/lib, headers .
+checking for IceConnectionNumber in -lICE... yes
+checking for libXext... yes
+checking for pthread_create in -lpthread... yes
+checking for extra includes... no
+checking for extra libs... no
+checking for libz... -lz
+checking for libpng... -lpng -lz -lm
+checking for libjpeg6b... no
+checking for libjpeg... -ljpeg
+checking for perl... /usr/bin/perl
+checking for Qt... libraries /usr/lib, headers /usr/share/qt3/include using -mt
+checking for moc... /usr/bin/moc
+checking for uic... /usr/bin/uic
+checking whether uic supports -L ... yes
+checking whether uic supports -nounload ... yes
+checking if Qt needs -ljpeg... no
+checking for lrelease... yes
+configure: creating qtccxxincl.pro (include project file for Qt)
+checking for kde-config... no
+checking for main in -lbind... no
+checking sndfile.h usability... yes
+checking sndfile.h presence... yes
+checking for sndfile.h... yes
+checking for sf_open in -lsndfile... yes
+checking magic.h usability... yes
+checking magic.h presence... yes
+checking for magic.h... yes
+checking for magic_open in -lmagic... yes
+checking for main in -lasound... yes
+checking alsa/asoundlib.h usability... yes
+checking alsa/asoundlib.h presence... yes
+checking for alsa/asoundlib.h... yes
+checking for main in -lspeex... yes
+checking speex/speex.h usability... yes
+checking speex/speex.h presence... yes
+checking for speex/speex.h... yes
+checking for main in -lspeexdsp... yes
+checking speex/speex_preprocess.h usability... yes
+checking speex/speex_preprocess.h presence... yes
+checking for speex/speex_preprocess.h... yes
+checking speex/speex_echo.h usability... yes
+checking speex/speex_echo.h presence... yes
+checking for speex/speex_echo.h... yes
+checking for iLBC_decode in -lilbc... no
+checking for a readline compatible library... -lreadline
+checking readline.h usability... no
+checking readline.h presence... no
+checking for readline.h... no
+checking readline/readline.h usability... yes
+checking readline/readline.h presence... yes
+checking for readline/readline.h... yes
+checking whether readline supports history... yes
+checking history.h usability... no
+checking history.h presence... no
+checking for history.h... no
+checking readline/history.h usability... yes
+checking readline/history.h presence... yes
+checking for readline/history.h... yes
+checking boost/regex.h usability... yes
+checking boost/regex.h presence... yes
+checking for boost/regex.h... yes
+checking for main in -lboost_regex... yes
+checking LRELEASE OPTIONS... nocompress
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating src/audio/Makefile
+config.status: creating src/audio/gsm/Makefile
+config.status: creating src/audits/Makefile
+config.status: creating src/sdp/Makefile
+config.status: creating src/parser/Makefile
+config.status: creating src/sockets/Makefile
+config.status: creating src/stun/Makefile
+config.status: creating src/threads/Makefile
+config.status: creating src/gui/lang/Makefile
+config.status: creating src/mwi/Makefile
+config.status: creating src/im/Makefile
+config.status: creating src/patterns/Makefile
+config.status: creating src/utils/Makefile
+config.status: creating src/presence/Makefile
+config.status: creating src/srpp/Makefile
+config.status: creating twinkle.spec
+config.status: creating src/twinkle_config.h
+config.status: src/twinkle_config.h is unchanged
+config.status: executing depfiles commands
+config.status: executing src/gui/Makefile commands
+
+Configured optional components:
+KDE support: no
+ALSA:        yes
+Speex:       yes
+iLBC:        no
+ZRTP:        no

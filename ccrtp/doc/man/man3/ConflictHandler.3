@@ -1,0 +1,100 @@
+.TH "ConflictHandler" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ConflictHandler \- 
+.PP
+To track addresses of sources conflicting with the local one.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <iqueue.h>\fP
+.PP
+Inherited by \fBMembershipBookkeeping\fP.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBConflictingTransportAddress\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBConflictingTransportAddress\fP * \fBsearchDataConflict\fP (InetAddress na, tpport_t dtp)"
+.br
+.ti -1c
+.RI "\fBConflictingTransportAddress\fP * \fBsearchControlConflict\fP (InetAddress na, tpport_t ctp)"
+.br
+.ti -1c
+.RI "void \fBupdateConflict\fP (\fBConflictingTransportAddress\fP &ca)"
+.br
+.ti -1c
+.RI "void \fBaddConflict\fP (const InetAddress &na, tpport_t dtp, tpport_t ctp)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBConflictHandler\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~ConflictHandler\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBConflictingTransportAddress\fP * \fBfirstConflict\fP"
+.br
+.ti -1c
+.RI "\fBConflictingTransportAddress\fP * \fBlastConflict\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+To track addresses of sources conflicting with the local one. 
+
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ConflictHandler::ConflictHandler ()\fC [inline, protected]\fP"
+.SS "virtual ConflictHandler::~ConflictHandler ()\fC [inline, protected, virtual]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "void ConflictHandler::addConflict (const InetAddress & na, tpport_t dtp, tpport_t ctp)"
+.SS "\fBConflictingTransportAddress\fP* ConflictHandler::searchControlConflict (InetAddress na, tpport_t ctp)"\fBParameters:\fP
+.RS 4
+\fIna\fP Inet network address. 
+.br
+\fIctp\fP Data transport port. 
+.RE
+.PP
+
+.SS "\fBConflictingTransportAddress\fP* ConflictHandler::searchDataConflict (InetAddress na, tpport_t dtp)"\fBParameters:\fP
+.RS 4
+\fIna\fP Inet network address. 
+.br
+\fIdtp\fP Data transport port. 
+.RE
+.PP
+
+.SS "void ConflictHandler::updateConflict (\fBConflictingTransportAddress\fP & ca)\fC [inline]\fP"
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBConflictingTransportAddress\fP* \fBConflictHandler::firstConflict\fP\fC [protected]\fP"
+.SS "\fBConflictingTransportAddress\fP * \fBConflictHandler::lastConflict\fP\fC [protected]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

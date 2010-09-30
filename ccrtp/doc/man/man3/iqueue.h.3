@@ -1,0 +1,73 @@
+.TH "iqueue.h" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+iqueue.h \- 
+.PP
+Generic RTP input queues.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ccrtp/queuebase.h>\fP
+.br
+\fC#include <ccrtp/CryptoContext.h>\fP
+.br
+\fC#include <list>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBMembers\fP"
+.br
+.RI "\fImembers and senders accounting \fP"
+.ti -1c
+.RI "class \fBSyncSourceHandler\fP"
+.br
+.RI "\fI\fBSyncSource\fP objects modification methods. \fP"
+.ti -1c
+.RI "class \fBParticipantHandler\fP"
+.br
+.RI "\fI\fBParticipant\fP objects modification methods. \fP"
+.ti -1c
+.RI "class \fBApplicationHandler\fP"
+.br
+.RI "\fIApplication objects modification methods. \fP"
+.ti -1c
+.RI "class \fBConflictHandler\fP"
+.br
+.RI "\fITo track addresses of sources conflicting with the local one. \fP"
+.ti -1c
+.RI "struct \fBConflictHandler::ConflictingTransportAddress\fP"
+.br
+.ti -1c
+.RI "class \fBMembershipBookkeeping\fP"
+.br
+.RI "\fIControls the group membership in the current session. \fP"
+.ti -1c
+.RI "struct \fBMembershipBookkeeping::IncomingRTPPktLink\fP"
+.br
+.RI "\fIIncoming RTP data packets control structure within the incoming packet queue class. \fP"
+.ti -1c
+.RI "struct \fBMembershipBookkeeping::SyncSourceLink\fP"
+.br
+.RI "\fISynchronization Source internal handler within the incoming packets queue. \fP"
+.ti -1c
+.RI "class \fBIncomingDataQueue\fP"
+.br
+.RI "\fIQueue for incoming RTP data packets in an RTP session. \fP"
+.ti -1c
+.RI "class \fBIncomingDataQueue::SyncSourcesIterator\fP"
+.br
+.RI "\fIiterator through the list of synchronizations sources in this session \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Generic RTP input queues. 
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

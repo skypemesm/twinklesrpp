@@ -1,0 +1,140 @@
+.TH "base.h" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+base.h \- 
+.PP
+Base elements for RTP stacks: constants, types and global functions.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <cc++/config.h>\fP
+.br
+\fC#include <cc++/socket.h>\fP
+.br
+
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCCXX_PACKED\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef uint32 \fBmicrotimeout_t\fP"
+.br
+.RI "\fITime interval expressed in microseconds. \fP"
+.ti -1c
+.RI "typedef uint32 \fBnanotimeout_t\fP"
+.br
+.RI "\fITime interval expressed in nanoseconds. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "__EXPORT timeval \fBmicrotimeout2Timeval\fP (\fBmicrotimeout_t\fP to)"
+.br
+.RI "\fIConvert a time interval, expressed as a microtimeout_t (number of microseconds), into a timeval value. \fP"
+.ti -1c
+.RI "\fBmicrotimeout_t\fP \fBtimeval2microtimeout\fP (const timeval &t)"
+.br
+.RI "\fIConvert a time interval, expressed as a timeval value into a microseconds counter. \fP"
+.ti -1c
+.RI "\fBmicrotimeout_t\fP \fBtimevalDiff2microtimeout\fP (const timeval &t1, const timeval &t2)"
+.br
+.RI "\fIConvert a time interval, expressed as the difference between two timeval values (t1-t2), into a microseconds counter. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const uint8 \fBCCRTP_VERSION\fP = 2"
+.br
+.RI "\fIRTP protocol version supported. \fP"
+.ti -1c
+.RI "const tpport_t \fBDefaultRTPDataPort\fP = 5004"
+.br
+.RI "\fIregistered default RTP data transport port \fP"
+.ti -1c
+.RI "const tpport_t \fBDefaultRTCPPort\fP = 5005"
+.br
+.RI "\fIregistered default RTCP transport port \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Base elements for RTP stacks: constants, types and global functions. 
+
+
+.SH "Define Documentation"
+.PP 
+.SS "#define CCXX_PACKED"
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef uint32 \fBmicrotimeout_t\fP"
+.PP
+Time interval expressed in microseconds. 
+.SS "typedef uint32 \fBnanotimeout_t\fP"
+.PP
+Time interval expressed in nanoseconds. 
+.SH "Function Documentation"
+.PP 
+.SS "__EXPORT timeval microtimeout2Timeval (\fBmicrotimeout_t\fP to)"
+.PP
+Convert a time interval, expressed as a microtimeout_t (number of microseconds), into a timeval value. \fBParameters:\fP
+.RS 4
+\fIto\fP time interval, in microseconds. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the same time interval, as a timeval value. 
+.RE
+.PP
+
+.SS "\fBmicrotimeout_t\fP timeval2microtimeout (const timeval & t)\fC [inline]\fP"
+.PP
+Convert a time interval, expressed as a timeval value into a microseconds counter. \fBParameters:\fP
+.RS 4
+\fIt\fP time, as a timeval. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the same time, as a microseconds counter. 
+.RE
+.PP
+
+.SS "\fBmicrotimeout_t\fP timevalDiff2microtimeout (const timeval & t1, const timeval & t2)\fC [inline]\fP"
+.PP
+Convert a time interval, expressed as the difference between two timeval values (t1-t2), into a microseconds counter. \fBParameters:\fP
+.RS 4
+\fIt1\fP First timeval. 
+.br
+\fIt2\fP Second timeval. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+difference between t1 and t2, in microseconds. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "const uint8 \fBCCRTP_VERSION\fP = 2"
+.PP
+RTP protocol version supported. 
+.SS "const tpport_t \fBDefaultRTCPPort\fP = 5005"
+.PP
+registered default RTCP transport port 
+.SS "const tpport_t \fBDefaultRTPDataPort\fP = 5004"
+.PP
+registered default RTP data transport port 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

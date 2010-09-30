@@ -1,0 +1,178 @@
+.TH "RTCPCompoundHandler" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RTCPCompoundHandler \- 
+.PP
+low level structs and RTCP packet parsing and building methods.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <rtcppkt.h>\fP
+.PP
+Inherited by \fBQueueRTCPManager\fP\fC [protected]\fP.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBAPPPacket\fP"
+.br
+.RI "\fIStruct for APP (application specific) RTCP packets. \fP"
+.ti -1c
+.RI "struct \fBBYEPacket\fP"
+.br
+.RI "\fIStruct for BYE (leaving session) RTCP packets. \fP"
+.ti -1c
+.RI "struct \fBFIRPacket\fP"
+.br
+.RI "\fIStruct for Full Intra-frame Request (FIR) RTCP packet. \fP"
+.ti -1c
+.RI "struct \fBNACKPacket\fP"
+.br
+.RI "\fIStruct for Negative ACKnowledgements (NACK) RTCP packet. \fP"
+.ti -1c
+.RI "struct \fBReceiverInfo\fP"
+.br
+.RI "\fIStruct for the data contained in a receiver info block. \fP"
+.ti -1c
+.RI "struct \fBRecvReport\fP"
+.br
+.RI "\fIraw structure of the source and every receiver report in an SR or RR RTCP packet. \fP"
+.ti -1c
+.RI "struct \fBRRBlock\fP"
+.br
+.RI "\fIStruct for a receiver info block in a SR (sender report) or an RR (receiver report) RTCP packet. \fP"
+.ti -1c
+.RI "struct \fBRTCPFixedHeader\fP"
+.br
+.RI "\fIFixed RTCP packet header. \fP"
+.ti -1c
+.RI "struct \fBRTCPPacket\fP"
+.br
+.RI "\fIStruct representing general RTCP packet headers as they are sent through the network. \fP"
+.ti -1c
+.RI "struct \fBSDESChunk\fP"
+.br
+.RI "\fIStruct for a chunk of items in a SDES RTCP packet. \fP"
+.ti -1c
+.RI "struct \fBSDESItem\fP"
+.br
+.RI "\fIStruct for an item description of a SDES packet. \fP"
+.ti -1c
+.RI "struct \fBSenderInfo\fP"
+.br
+.RI "\fIStruct for the sender info block in a SR (sender report) RTCP packet. \fP"
+.ti -1c
+.RI "struct \fBSendReport\fP"
+.br
+.RI "\fIStruct for SR (sender report) RTCP packets. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsetPathMTU\fP (uint16 mtu)"
+.br
+.ti -1c
+.RI "uint16 \fBgetPathMTU\fP ()"
+.br
+.in -1c
+.SS "Protected Types"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBdefaultPathMTU\fP =  1500 }"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRTCPCompoundHandler\fP (uint16 mtu=defaultPathMTU)"
+.br
+.ti -1c
+.RI "\fB~RTCPCompoundHandler\fP ()"
+.br
+.ti -1c
+.RI "bool \fBcheckCompoundRTCPHeader\fP (size_t len)"
+.br
+.RI "\fIPerform RTCP compound packet header validity check as specified in draft-ietv-avt-rtp-new. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned char * \fBrtcpSendBuffer\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBrtcpRecvBuffer\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "class \fBRTCPSenderInfo\fP"
+.br
+.ti -1c
+.RI "class \fBRTCPReceiverInfo\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+low level structs and RTCP packet parsing and building methods. 
+
+Intended to be used, through inheritance, in RTCP management classes, such as \fBQueueRTCPManager\fP.
+.PP
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "anonymous enum\fC [protected]\fP"
+.PP
+\fBEnumerator: \fP
+.in +1c
+.TP
+\fB\fIdefaultPathMTU \fP\fP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "RTCPCompoundHandler::RTCPCompoundHandler (uint16 mtu = \fCdefaultPathMTU\fP)\fC [protected]\fP"
+.SS "RTCPCompoundHandler::~RTCPCompoundHandler ()\fC [protected]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "bool RTCPCompoundHandler::checkCompoundRTCPHeader (size_t len)\fC [protected]\fP"
+.PP
+Perform RTCP compound packet header validity check as specified in draft-ietv-avt-rtp-new. This method follows appendix A.2. Correct version, payload type, padding bit and length of every RTCP packet in the compound are verified.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlen\fP length of the RTCP compound packet in the reception buffer 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+whether the header is valid. 
+.RE
+.PP
+
+.SS "uint16 RTCPCompoundHandler::getPathMTU ()\fC [inline]\fP"
+.SS "void RTCPCompoundHandler::setPathMTU (uint16 mtu)\fC [inline]\fP"
+.SH "Friends And Related Function Documentation"
+.PP 
+.SS "friend class \fBRTCPReceiverInfo\fP\fC [friend]\fP"
+.SS "friend class \fBRTCPSenderInfo\fP\fC [friend]\fP"
+.SH "Member Data Documentation"
+.PP 
+.SS "unsigned char* \fBRTCPCompoundHandler::rtcpRecvBuffer\fP\fC [protected]\fP"
+.SS "unsigned char* \fBRTCPCompoundHandler::rtcpSendBuffer\fP\fC [protected]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.
