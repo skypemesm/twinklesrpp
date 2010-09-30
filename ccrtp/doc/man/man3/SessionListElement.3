@@ -1,0 +1,53 @@
+.TH "SessionListElement" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SessionListElement \- 
+.PP
+Class for tracking session status.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <pool.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSessionListElement\fP (\fBRTPSessionBase\fP *e)"
+.br
+.ti -1c
+.RI "void \fBclear\fP ()"
+.br
+.ti -1c
+.RI "bool \fBisCleared\fP ()"
+.br
+.ti -1c
+.RI "\fBRTPSessionBase\fP * \fBget\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class for tracking session status. 
+
+Session pools arrange sessions in lists of \fBSessionListElement\fP objects.
+.PP
+\fBAuthor:\fP
+.RS 4
+Jorgen Terner 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SessionListElement::SessionListElement (\fBRTPSessionBase\fP * e)\fC [inline]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "void SessionListElement::clear ()\fC [inline]\fP"
+.SS "\fBRTPSessionBase\fP * SessionListElement::get ()\fC [inline]\fP"
+.SS "bool SessionListElement::isCleared ()\fC [inline]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

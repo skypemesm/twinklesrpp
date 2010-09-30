@@ -1,0 +1,133 @@
+.TH "RTCPCompoundHandler::RTCPPacket" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RTCPCompoundHandler::RTCPPacket \- 
+.PP
+Struct representing general RTCP packet headers as they are sent through the network.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <rtcppkt.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBType\fP { \fBtSR\fP =  200, \fBtRR\fP, \fBtSDES\fP, \fBtBYE\fP, \fBtAPP\fP, \fBtFIR\fP =  192, \fBtNACK\fP =  193, \fBtXR\fP }"
+.br
+.RI "\fI\fBrtp.h\fP cc++/rtp.h \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "uint32 \fBgetLength\fP () const "
+.br
+.RI "\fIGet the packet length specified in its header, in octets and in host order. \fP"
+.ti -1c
+.RI "uint32 \fBgetSSRC\fP () const "
+.br
+.RI "\fIGet the SSRC identifier specified in the packet header, in host order. \fP"
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBRTCPFixedHeader\fP \fBfh\fP"
+.br
+.RI "\fIFixed RTCP header. \fP"
+.ti -1c
+.RI "union {"
+.br
+.ti -1c
+.RI "   \fBSendReport\fP \fBSR\fP"
+.br
+.ti -1c
+.RI "   \fBRecvReport\fP \fBRR\fP"
+.br
+.ti -1c
+.RI "   \fBSDESChunk\fP \fBSDES\fP"
+.br
+.ti -1c
+.RI "   \fBBYEPacket\fP \fBBYE\fP"
+.br
+.ti -1c
+.RI "   \fBAPPPacket\fP \fBAPP\fP"
+.br
+.ti -1c
+.RI "   \fBNACKPacket\fP \fBNACK\fP"
+.br
+.ti -1c
+.RI "   \fBFIRPacket\fP \fBFIR\fP"
+.br
+.ti -1c
+.RI "} \fBinfo\fP"
+.br
+.RI "\fIUnion for SR, RR, SDES, BYE and APP. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Struct representing general RTCP packet headers as they are sent through the network. 
+
+This struct consists of a fixed header, always at the beginning of any RTCP packet, and a union for all the RTCP packet types supported. 
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBRTCPCompoundHandler::RTCPPacket::Type\fP"
+.PP
+\fBrtp.h\fP cc++/rtp.h RTCP packet types. They are registered with IANA. 
+.PP
+\fBEnumerator: \fP
+.in +1c
+.TP
+\fB\fItSR \fP\fP
+Sender Report. 
+.TP
+\fB\fItRR \fP\fP
+Receiver Report. 
+.TP
+\fB\fItSDES \fP\fP
+Source DEScription. 
+.TP
+\fB\fItBYE \fP\fP
+End of participation. 
+.TP
+\fB\fItAPP \fP\fP
+APPlication specific. 
+.TP
+\fB\fItFIR \fP\fP
+Full Intra-frame request. 
+.TP
+\fB\fItNACK \fP\fP
+Negative ACK. 
+.TP
+\fB\fItXR \fP\fP
+Extended Report. 
+.SH "Member Function Documentation"
+.PP 
+.SS "uint32 RTCPCompoundHandler::RTCPPacket::getLength () const\fC [inline]\fP"
+.PP
+Get the packet length specified in its header, in octets and in host order. 
+.SS "uint32 RTCPCompoundHandler::RTCPPacket::getSSRC () const\fC [inline]\fP"
+.PP
+Get the SSRC identifier specified in the packet header, in host order. 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBAPPPacket\fP \fBRTCPCompoundHandler::RTCPPacket::APP\fP"
+.SS "\fBBYEPacket\fP \fBRTCPCompoundHandler::RTCPPacket::BYE\fP"
+.SS "\fBRTCPFixedHeader\fP \fBRTCPCompoundHandler::RTCPPacket::fh\fP"
+.PP
+Fixed RTCP header. 
+.SS "\fBFIRPacket\fP \fBRTCPCompoundHandler::RTCPPacket::FIR\fP"
+.SS "union { ... }         \fBRTCPCompoundHandler::RTCPPacket::info\fP"
+.PP
+Union for SR, RR, SDES, BYE and APP. 
+.SS "\fBNACKPacket\fP \fBRTCPCompoundHandler::RTCPPacket::NACK\fP"
+.SS "\fBRecvReport\fP \fBRTCPCompoundHandler::RTCPPacket::RR\fP"
+.SS "\fBSDESChunk\fP \fBRTCPCompoundHandler::RTCPPacket::SDES\fP"
+.SS "\fBSendReport\fP \fBRTCPCompoundHandler::RTCPPacket::SR\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

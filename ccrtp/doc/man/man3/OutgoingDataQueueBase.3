@@ -1,0 +1,71 @@
+.TH "OutgoingDataQueueBase" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+OutgoingDataQueueBase \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <queuebase.h>\fP
+.PP
+Inherits \fBRTPQueueBase\fP.
+.PP
+Inherited by \fBOutgoingDataQueue\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBgetDefaultMaxSendSegmentSize\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetMaxSendSegmentSize\fP (size_t size)"
+.br
+.RI "\fISet maximum payload segment size before fragmenting sends. \fP"
+.ti -1c
+.RI "size_t \fBgetMaxSendSegmentSize\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBOutgoingDataQueueBase\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~OutgoingDataQueueBase\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBAuthor:\fP
+.RS 4
+Federico Montesino Pouzols <fedemp@altern.org> 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "OutgoingDataQueueBase::OutgoingDataQueueBase ()\fC [protected]\fP"
+.SS "virtual OutgoingDataQueueBase::~OutgoingDataQueueBase ()\fC [inline, protected, virtual]\fP"
+.SH "Member Function Documentation"
+.PP 
+.SS "size_t OutgoingDataQueueBase::getDefaultMaxSendSegmentSize ()\fC [inline]\fP"
+.SS "size_t OutgoingDataQueueBase::getMaxSendSegmentSize ()\fC [inline]\fP"
+.SS "void OutgoingDataQueueBase::setMaxSendSegmentSize (size_t size)\fC [inline]\fP"
+.PP
+Set maximum payload segment size before fragmenting sends. \fBParameters:\fP
+.RS 4
+\fIsize\fP Maximum payload size. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Whether segment size was successfully set. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

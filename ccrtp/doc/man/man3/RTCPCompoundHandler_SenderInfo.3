@@ -1,0 +1,61 @@
+.TH "RTCPCompoundHandler::SenderInfo" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RTCPCompoundHandler::SenderInfo \- 
+.PP
+Struct for the sender info block in a SR (sender report) RTCP packet.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <rtcppkt.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "uint32 \fBNTPMSW\fP"
+.br
+.RI "\fINTP timestamp higher octets. \fP"
+.ti -1c
+.RI "uint32 \fBNTPLSW\fP"
+.br
+.RI "\fINTP timestamp lower octets. \fP"
+.ti -1c
+.RI "uint32 \fBRTPTimestamp\fP"
+.br
+.RI "\fIRTP timestamp. \fP"
+.ti -1c
+.RI "uint32 \fBpacketCount\fP"
+.br
+.RI "\fIcumulative packet counter. \fP"
+.ti -1c
+.RI "uint32 \fBoctetCount\fP"
+.br
+.RI "\fIcumulative octet counter. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Struct for the sender info block in a SR (sender report) RTCP packet. 
+.SH "Member Data Documentation"
+.PP 
+.SS "uint32 \fBRTCPCompoundHandler::SenderInfo::NTPLSW\fP"
+.PP
+NTP timestamp lower octets. 
+.SS "uint32 \fBRTCPCompoundHandler::SenderInfo::NTPMSW\fP"
+.PP
+NTP timestamp higher octets. 
+.SS "uint32 \fBRTCPCompoundHandler::SenderInfo::octetCount\fP"
+.PP
+cumulative octet counter. 
+.SS "uint32 \fBRTCPCompoundHandler::SenderInfo::packetCount\fP"
+.PP
+cumulative packet counter. 
+.SS "uint32 \fBRTCPCompoundHandler::SenderInfo::RTPTimestamp\fP"
+.PP
+RTP timestamp. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

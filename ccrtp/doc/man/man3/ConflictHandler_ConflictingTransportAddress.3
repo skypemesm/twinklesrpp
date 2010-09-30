@@ -1,0 +1,68 @@
+.TH "ConflictHandler::ConflictingTransportAddress" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ConflictHandler::ConflictingTransportAddress \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <iqueue.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBConflictingTransportAddress\fP (InetAddress na, tpport_t dtp, tpport_t ctp)"
+.br
+.ti -1c
+.RI "void \fBsetNext\fP (\fBConflictingTransportAddress\fP *nc)"
+.br
+.ti -1c
+.RI "const InetAddress & \fBgetNetworkAddress\fP () const "
+.br
+.ti -1c
+.RI "tpport_t \fBgetDataTransportPort\fP () const "
+.br
+.ti -1c
+.RI "tpport_t \fBgetControlTransportPort\fP () const "
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "InetAddress \fBnetworkAddress\fP"
+.br
+.ti -1c
+.RI "tpport_t \fBdataTransportPort\fP"
+.br
+.ti -1c
+.RI "tpport_t \fBcontrolTransportPort\fP"
+.br
+.ti -1c
+.RI "\fBConflictingTransportAddress\fP * \fBnext\fP"
+.br
+.ti -1c
+.RI "timeval \fBlastPacketTime\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ConflictHandler::ConflictingTransportAddress::ConflictingTransportAddress (InetAddress na, tpport_t dtp, tpport_t ctp)"
+.SH "Member Function Documentation"
+.PP 
+.SS "tpport_t ConflictHandler::ConflictingTransportAddress::getControlTransportPort () const\fC [inline]\fP"
+.SS "tpport_t ConflictHandler::ConflictingTransportAddress::getDataTransportPort () const\fC [inline]\fP"
+.SS "const InetAddress& ConflictHandler::ConflictingTransportAddress::getNetworkAddress () const\fC [inline]\fP"
+.SS "void ConflictHandler::ConflictingTransportAddress::setNext (\fBConflictingTransportAddress\fP * nc)\fC [inline]\fP"
+.SH "Member Data Documentation"
+.PP 
+.SS "tpport_t \fBConflictHandler::ConflictingTransportAddress::controlTransportPort\fP"
+.SS "tpport_t \fBConflictHandler::ConflictingTransportAddress::dataTransportPort\fP"
+.SS "timeval \fBConflictHandler::ConflictingTransportAddress::lastPacketTime\fP"
+.SS "InetAddress \fBConflictHandler::ConflictingTransportAddress::networkAddress\fP"
+.SS "\fBConflictingTransportAddress\fP* \fBConflictHandler::ConflictingTransportAddress::next\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.

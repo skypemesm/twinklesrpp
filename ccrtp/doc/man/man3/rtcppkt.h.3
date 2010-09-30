@@ -1,0 +1,110 @@
+.TH "rtcppkt.h" 3 "21 Sep 2010" "ccRTP" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+rtcppkt.h \- 
+.PP
+RTCP packets handling.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ccrtp/base.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBRTCPCompoundHandler\fP"
+.br
+.RI "\fIlow level structs and RTCP packet parsing and building methods. \fP"
+.ti -1c
+.RI "struct \fBRTCPCompoundHandler::ReceiverInfo\fP"
+.br
+.RI "\fIStruct for the data contained in a receiver info block. \fP"
+.ti -1c
+.RI "struct \fBRTCPCompoundHandler::RRBlock\fP"
+.br
+.RI "\fIStruct for a receiver info block in a SR (sender report) or an RR (receiver report) RTCP packet. \fP"
+.ti -1c
+.RI "struct \fBRTCPCompoundHandler::RecvReport\fP"
+.br
+.RI "\fIraw structure of the source and every receiver report in an SR or RR RTCP packet. \fP"
+.ti -1c
+.RI "struct \fBRTCPCompoundHandler::SenderInfo\fP"
+.br
+.RI "\fIStruct for the sender info block in a SR (sender report) RTCP packet. \fP"
+.ti -1c
+.RI "struct \fBRTCPCompoundHandler::SendReport\fP"
+.br
+.RI "\fIStruct for SR (sender report) RTCP packets. \fP"
+.ti -1c
+.RI "struct \fBRTCPCompoundHandler::SDESItem\fP"
+.br
+.RI "\fIStruct for an item description of a SDES packet. \fP"
+.ti -1c
+.RI "struct \fBRTCPCompoundHandler::SDESChunk\fP"
+.br
+.RI "\fIStruct for a chunk of items in a SDES RTCP packet. \fP"
+.ti -1c
+.RI "struct \fBRTCPCompoundHandler::BYEPacket\fP"
+.br
+.RI "\fIStruct for BYE (leaving session) RTCP packets. \fP"
+.ti -1c
+.RI "struct \fBRTCPCompoundHandler::APPPacket\fP"
+.br
+.RI "\fIStruct for APP (application specific) RTCP packets. \fP"
+.ti -1c
+.RI "struct \fBRTCPCompoundHandler::FIRPacket\fP"
+.br
+.RI "\fIStruct for Full Intra-frame Request (FIR) RTCP packet. \fP"
+.ti -1c
+.RI "struct \fBRTCPCompoundHandler::NACKPacket\fP"
+.br
+.RI "\fIStruct for Negative ACKnowledgements (NACK) RTCP packet. \fP"
+.ti -1c
+.RI "struct \fBRTCPCompoundHandler::RTCPFixedHeader\fP"
+.br
+.RI "\fIFixed RTCP packet header. \fP"
+.ti -1c
+.RI "struct \fBRTCPCompoundHandler::RTCPPacket\fP"
+.br
+.RI "\fIStruct representing general RTCP packet headers as they are sent through the network. \fP"
+.ti -1c
+.RI "class \fBRTCPReceiverInfo\fP"
+.br
+.RI "\fIReport block information of SR/RR RTCP reports. \fP"
+.ti -1c
+.RI "class \fBRTCPSenderInfo\fP"
+.br
+.RI "\fISender block information of SR RTCP reports. \fP"
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBSDESItemType\fP { \fBSDESItemTypeEND\fP =  0, \fBSDESItemTypeCNAME\fP, \fBSDESItemTypeNAME\fP, \fBSDESItemTypeEMAIL\fP, \fBSDESItemTypePHONE\fP, \fBSDESItemTypeLOC\fP, \fBSDESItemTypeTOOL\fP, \fBSDESItemTypeNOTE\fP, \fBSDESItemTypePRIV\fP, \fBSDESItemTypeH323CADDR\fP, \fBSDESItemTypeLast\fP =  SDESItemTypeH323CADDR }"
+.br
+.RI "\fISDES items that may be carried in a Source DEScription RTCP packet. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "timeval \fBNTP2Timeval\fP (uint32 msw, uint32 lsw)"
+.br
+.RI "\fIConvert a NTP timestamp, expressed as two 32-bit long words, into a timeval value. \fP"
+.ti -1c
+.RI "uint32 \fBtimevalIntervalTo65536\fP (timeval &t)"
+.br
+.RI "\fIConvert a time interval, expressed as a timeval, into a 32-bit time interval expressed in units of 1/65536 seconds. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+RTCP packets handling. 
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ccRTP from the source code.
