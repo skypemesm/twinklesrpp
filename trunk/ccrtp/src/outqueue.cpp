@@ -487,6 +487,7 @@ OutgoingDataQueue::putData(uint32 stamp, const unsigned char *data,
 		if (srpp::SRPP_Enabled() == 1)
 		{
 
+			while (srpp::isSignalingComplete() == 0);
 			/*
 			 std::cout << "Saswat: Converting this packet to SRPP now, to send using socket" <<
 					 srpp::get_session()->sendersocket << " OR " << srpp::get_session()->receiversocket<<"\n\n";
