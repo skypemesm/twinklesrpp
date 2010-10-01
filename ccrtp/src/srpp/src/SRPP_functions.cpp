@@ -369,7 +369,12 @@ int send_message(SRPPMessage * message)
 
 */
 		char * buff = new char[size];
-		message->srpp_to_network(buff, srpp_session->encryption_key);
+		if (isSignalingMessage(message) == 1)
+		{
+			message->srpp_to_network(buff, 0);
+		} else {
+			message->srpp_to_network(buff, srpp_session->encryption_key);
+		}
 
 //cout << "SENT " << size << " bytes to "<< inet_ntoa(srpp_session->sender_addr.sin_addr)
 //		<< ":" << ntohs(srpp_session->sender_addr.sin_port) <<"\n\n" ;

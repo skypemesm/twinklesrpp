@@ -484,13 +484,14 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 //		size_t len = packet->getPayloadSize();
 
 #ifdef HAVE_SRPP
+		cout << "WHYTHEHELL" << srpp::SRPP_Enabled() << endl;
 	if (srpp::SRPP_Enabled() == 1)
 	{
 
 		if (srpp::isSignalingComplete() == 0){
 				SRPPMessage srpp = srpp::processReceivedData((char*)packet, packet->getPayloadSize());
 
-				std::cout << "VARSIO:" << srpp.srpp_header.version << "\n";
+				std::cout << "VARSION:" << srpp.srpp_header.version << "\n";
 				result = NULL;
 				return result;
 		}
