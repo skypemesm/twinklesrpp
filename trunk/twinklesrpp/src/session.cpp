@@ -478,6 +478,12 @@ void t_session::create_sdp_offer(t_sip_message *m, const string &user) {
 		((t_sdp *)m->body)->set_zrtp_support(SDP_AUDIO);
 	}
 
+#ifdef HAVE_SRPP
+	// Set srpp support
+	((t_sdp *)m->body)->set_srpp_support(SDP_AUDIO);
+	}
+#endif
+
 	m->hdr_content_type.set_media(t_media("application", "sdp"));
 
 	sent_offer = true;
