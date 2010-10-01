@@ -379,11 +379,11 @@ int send_message(SRPPMessage * message)
 		if (byytes < 0)
 			cout << "ERROR IN SENDING DATA: " << strerror(errno)<< endl;
 
-
-	/*	cout << "\nWriting " << byytes << " bytes \""
-				//		<< message->encrypted_part.original_payload << "\" to other endpoint at "
+		string str (message->encrypted_part.original_payload.begin(),message->encrypted_part.original_payload.end());
+		cout << "\nWriting " << byytes << " bytes \""
+						<< str << "\" to other endpoint at "
 						<< inet_ntoa(srpp_session->sender_addr.sin_addr) << ":"
-						<< ntohs(srpp_session->sender_addr.sin_port) << endl << endl;*/
+						<< ntohs(srpp_session->sender_addr.sin_port) << endl << endl;
 
 		return byytes;
 	}
@@ -424,7 +424,10 @@ SRPPMessage processReceivedData(char * buff, int bytes_read)
 		//verify if we need to look for signaling and enabling srpp still
 		if (isSignalingMessage(buff) == 1 || (verifySignalling(buff) == 0 && srpp_enabled == 0))
 		{
-			srpp_msg.network_to_srpp(buff,bytes_read, srpp_session->encryption_key);
+			if (isSignalingMessage(buff) == 1)
+				srpp_msg.network_to_srpp(buff,bytes_read, 0);
+			else
+				srpp_msg.network_to_srpp(buff,bytes_read, srpp_session->encryption_key);
 
 
 				//Set the sender_addr's port correctly

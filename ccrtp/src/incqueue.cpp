@@ -488,15 +488,11 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 	{
 
 		if (srpp::isSignalingComplete() == 0){
-			/*if (srpp::verifySignalling((char *)packet) < 0)
-							return NULL;
-			else
-			{
-				cout << "YIPPEE" << endl;*/
 				SRPPMessage srpp = srpp::processReceivedData((char*)packet, packet->getPayloadSize());
 
-				return NULL;
-			//}
+				std::cout << "VARSIO:" << srpp.srpp_header.version << "\n";
+				result = NULL;
+				return result;
 		}
 
 		//Convert SRPP Message to RTP Message
