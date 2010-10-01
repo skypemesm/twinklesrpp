@@ -778,9 +778,18 @@ void t_sdp::set_zrtp_support(t_sdp_media_type media_type) {
 	assert(m != NULL);
 	
 	t_sdp_attr a("zrtp");
+	t_sdp_attr b("srpp");
 	m->attributes.push_back(a);
+	m->attributes.push_back(b);
 }
 
+void t_sdp::set_srpp_support(t_sdp_media_type media_type) {
+	t_sdp_media *m = const_cast<t_sdp_media *>(get_first_media(media_type));
+	assert(m != NULL);
+
+	t_sdp_attr a("srpp");
+	m->attributes.push_back(a);
+}
 const t_sdp_media *t_sdp::get_first_media(t_sdp_media_type media_type) const {
 	for (list<t_sdp_media>::const_iterator i = media.begin();
 	     i != media.end(); i++)
