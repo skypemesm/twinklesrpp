@@ -156,6 +156,7 @@ public:
 		srpp_msg.srpp_header.pt = 69;
 		srpp_msg.srpp_header.srpp_signalling = 12;
 		srpp_msg.srpp_header.x = 1;
+		srpp_msg.srpp_header.version = 3;
 
 		for (int i = 0; i < 100; i++)
 		{
@@ -188,6 +189,7 @@ public:
 		srpp_msg.srpp_header.srpp_signalling = 13;
 		srpp_msg.srpp_header.x = 1;
 
+		srpp_msg.srpp_header.version = 3;
 		cout << "Sending a HELLO ACK message now " <<endl;
 
 		for (int i = 0; i < 100; i++)
