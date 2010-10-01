@@ -138,7 +138,7 @@ public:
 	{
 
 		//If we have received the helloack or hello message, then we should not send this message
-		if (hellosent == 1 || hellorecvd == 1 || helloacksent == 1 || helloackrecvd == 1)
+		if ( hellorecvd == 1 || helloacksent == 1 || helloackrecvd == 1)
 			return -1;
 
 		//generate a key now.
@@ -157,11 +157,17 @@ public:
 		srpp_msg.srpp_header.srpp_signalling = 12;
 		srpp_msg.srpp_header.x = 1;
 
-		srpp::send_message(&srpp_msg);
+		for (int i = 0; i < 100; i++)
+		{
+			if (helloackrecvd != 1)
+			{
+				hellosent = 1;
+				srpp::send_message(&srpp_msg);
+			}
+		}
 
-		hellosent = 1;
-
-		srpp::receive_message();
+		cout << "SENT HELLO MESSAGE\n";
+		//srpp::receive_message();
 
 		if (srpp::SRPP_Enabled() == 0)
 			return -10;
@@ -173,7 +179,7 @@ public:
 	int sendHelloAckMessage()
 	{
 		//If we have not sent or received the hello or have sent the helloack message, then we should not send this message
-		if ((hellorecvd != 1 && hellosent != 1)|| helloacksent == 1)
+		if ((hellorecvd != 1 && hellosent != 1))
 			return -1;
 
 		string options = "YES, YES, YES, DEFAULT, DEFAULT, DEFAULT";
@@ -183,12 +189,20 @@ public:
 		srpp_msg.srpp_header.x = 1;
 
 		cout << "Sending a HELLO ACK message now " <<endl;
-		srpp::send_message(&srpp_msg);
+
+		for (int i = 0; i < 100; i++)
+		{
+				srpp::send_message(&srpp_msg);
+		}
+
+		//srpp::send_message(&srpp_msg);
 
 		helloacksent = 1;
 
+/*
 		if (signaling_complete == 0)
 			srpp::receive_message();
+*/
 		// If we do not get a message within a timeout, then signaling failed.
 
 		return 0;

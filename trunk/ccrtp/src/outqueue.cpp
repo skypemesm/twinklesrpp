@@ -523,7 +523,7 @@ OutgoingDataQueue::putData(uint32 stamp, const unsigned char *data,
 			//packet = (OutgoingRTPPkt*)&srpp_msg;
 
 
-			//cout << "..Sending packet with data " << data << "..." << endl;
+			cout << "..Sending packet with data " << data << "..." << endl;
 			// cout << "Version in SRPP Message:" << srpp_msg.srpp_header.version << endl;
 
 		} else  // DO WHATS DONE FOR NO SRPP
