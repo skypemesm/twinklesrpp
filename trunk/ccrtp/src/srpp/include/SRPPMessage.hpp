@@ -72,7 +72,7 @@ public:
     SRPPMessage()
     	  {
 
-    		  srpp_header.version = 3;
+    		  srpp_header.version = 1;
     		  srpp_header.p = 1;
     		  srpp_header.x = 1;
     		  srpp_header.cc = 10;
