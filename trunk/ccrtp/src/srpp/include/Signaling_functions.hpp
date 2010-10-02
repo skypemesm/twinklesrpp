@@ -138,7 +138,7 @@ public:
 	{
 
 		//If we have received the helloack or hello message, then we should not send this message
-		if ( hellorecvd == 1 || helloacksent == 1 || helloackrecvd == 1)
+		if ( hellosent == 1 || hellorecvd == 1 || helloacksent == 1 || helloackrecvd == 1)
 			return -1;
 
 		//generate a key now.
@@ -157,7 +157,7 @@ public:
 		srpp_msg.srpp_header.srpp_signalling = 12;
 		srpp_msg.srpp_header.x = 1;
 
-		for (int i = 0; i < 100; i++)
+		//for (int i = 0; i < 100; i++)
 		{
 			if (helloackrecvd != 1)
 			{
@@ -179,7 +179,7 @@ public:
 	int sendHelloAckMessage()
 	{
 		//If we have not sent or received the hello or have sent the helloack message, then we should not send this message
-		if ((hellorecvd != 1 && hellosent != 1))
+		if ((hellorecvd != 1 && hellosent != 1) || helloacksent == 1)
 			return -1;
 
 		string options = "YES, YES, YES, DEFAULT, DEFAULT, DEFAULT";
@@ -190,7 +190,7 @@ public:
 
 		cout << "Sending a HELLO ACK message now " <<endl;
 
-		for (int i = 0; i < 100; i++)
+		//for (int i = 0; i < 100; i++)
 		{
 				srpp::send_message(&srpp_msg);
 		}
