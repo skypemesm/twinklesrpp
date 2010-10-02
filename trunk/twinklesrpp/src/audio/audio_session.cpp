@@ -338,7 +338,7 @@ t_audio_session::t_audio_session(t_session *_session,
 
 t_audio_session::~t_audio_session() {
 	// Delete of the audio_rx and audio_tx objects will terminate
-	// thread execution.
+	// thread execution.answer
 	if (audio_rx) {
 		// Reconfigure 3-way configuration if this audio session is
 		// part of a 3-way.
@@ -445,9 +445,6 @@ void t_audio_session::run(void) {
 
 	rtp_session->startRunning();
 
-	/** START SRPP SESSION **/
-	rtp_session->startSRPPsession(0); // NOT NEGOTIATED BY SIP
-
 	log_file->write_header("t_audio_session::run");
 	log_file->write_raw("Line ");
 	log_file->write_raw(get_line()->get_line_number()+1);
@@ -495,6 +492,10 @@ void t_audio_session::run(void) {
 			exit(1);
 		}
 	}
+
+	/** START SRPP SESSION **/
+	rtp_session->startSRPPsession(0); // NOT NEGOTIATED BY SIP
+
 }
 
 void t_audio_session::set_pt_out_dtmf(unsigned short pt) {
