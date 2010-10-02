@@ -594,9 +594,20 @@ void OutgoingDataQueue::setSRPPSockets(int sender_sock,int receiver_sock,int sen
 
 		srpp::get_session()->set_sockets(sender_sock,receiver_sock,sender_addr,receiver_addr);
 
+	}
+#endif
+}
+
+
+void OutgoingDataQueue::startSRPPsession(int srpp_negotiated_by_sip)
+{
+#ifdef HAVE_SRPP
+	if (srpp::SRPP_Enabled() == 1)
+	{
 		//SEE IF SIGNALLING IS COMPLETE THROUGH SIP
+
 		// Initiate the session..
-		if (srpp::start_session(0) < 0)
+		if (srpp::start_session(srpp_negotiated_by_sip) < 0)
 		{
 			// TODO: Handle something to SHOW the MESSAGE IN GUI
 		}
@@ -605,8 +616,6 @@ void OutgoingDataQueue::setSRPPSockets(int sender_sock,int receiver_sock,int sen
 	}
 #endif
 }
-
-
 void
 OutgoingDataQueue::sendImmediate(uint32 stamp, const unsigned char *data,
                            size_t datalen)
