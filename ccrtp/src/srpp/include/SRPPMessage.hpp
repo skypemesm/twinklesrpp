@@ -24,14 +24,16 @@ using namespace std;
 typedef struct SRPPHeader {
 
 #if __BYTE_ORDER == __BIG_ENDIAN
-	  uint16_t		version:2;	* protocol version
-	  uint16_t		p:1;		* padding flag
-	  uint16_t		x:1;		* header extension flag
-	  uint16_t		cc:4;		* CSRC count
-	  uint16_t		m:1;		* marker bit
-	  uint16_t		pt:7;		* payload type
+	  uint16_t		version:2;	/* protocol version */
+	  uint16_t		p:1;		/* padding flag */
+	  uint16_t		x:1;		/* header extension flag */
+	  uint16_t		cc:4;		/* CSRC count */
+	  uint16_t		m:1;		/* marker bit */
+	  uint16_t		pt:7;		/* payload type */
+	  uint16_t		seq;		/** srpp sequence number        */
 
 #else
+	  uint16_t		seq;		/** srpp sequence number        */
 	  uint16_t		cc:4;		/** CSRC count             */
 	  uint16_t		x:1;		/** padding flag           */
 	  uint16_t		p:1;		/** header extension flag  */
@@ -42,11 +44,12 @@ typedef struct SRPPHeader {
 
 #endif
 
-	  uint16_t		seq;		/** srpp sequence number        */
 	  uint32_t		ts;			/** srpp timestamp              */
 	  uint32_t		ssrc;		/** synchronization source */
 
-	  uint32_t		csrc[10];		/** contributing sources  */
+	  uint32_t		csrc[15];		/** contributing sources  */
+
+	  uint32_t		extension_header;   /** SET THE EXTENSION HEADER **/
 	  uint32_t		srpp_signalling;		/** rtp extension flag for srpp */
 
 } SRPPHeader ;
@@ -55,6 +58,7 @@ typedef struct SRPPEncrypted {
 	vector<char> 		original_payload;  					 /** original rtp/srtp payload **/
     vector<char> 		srpp_padding;       				 /** padding (can maximum be full packet)**/
 	uint32_t			pad_count;    					 /** srpp pad count **/
+
 	uint16_t			original_padding_bit:1;			 /** original packet's padding bit  **/
 	uint16_t			dummy_flag:15;					 /** Dummy flag for srpp packet **/
 	uint16_t 			original_seq_number;			 /** Original packet's seq. number **/
@@ -81,6 +85,7 @@ public:
     		  srpp_header.m = 0;
     		  srpp_header.pt = 121;
     		  srpp_header.seq = ++lastSequenceNo;
+    		  srpp_header.extension_header = 1;
 
     		  timeval a;
     		  gettimeofday(&a, NULL);

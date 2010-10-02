@@ -16,7 +16,7 @@
 using namespace std;
 
 int lastSequenceNo = 0;
-uint32_t srppssrc = rand()%(2^32);
+uint32_t srppssrc = srpp::srpp_rand(2^17,2^32);
 int rtpSequenceNo = 0;
 int nonsrpp_message_count = 0;
 int max_nonsrpp_messages = 1000; // 1000 non-srpp messages can be received before we infer that srpp signaling is not possible
@@ -135,7 +135,7 @@ int srpp_enabled = 1;
 		srpp_msg.srpp_header.ts = rtp_msg->rtp_header.ts;
 		srpp_msg.srpp_header.ssrc = rtp_msg->rtp_header.ssrc;
 
-		for (int i = 0; i<10; i++)
+		for (int i = 0; i<rtp_msg->rtp_header.cc; i++)
 			srpp_msg.srpp_header.csrc[i] = rtp_msg->rtp_header.csrc[i];
 
 		srpp_msg.srpp_header.srpp_signalling = 0;
@@ -199,7 +199,7 @@ int srpp_enabled = 1;
 		rtp_msg.rtp_header.ts = srpp_msg->srpp_header.ts ;
 		rtp_msg.rtp_header.ssrc= srpp_msg->srpp_header.ssrc;
 
-		for (int i = 0; i<10; i++)
+		for (int i = 0; i<srpp_msg->srpp_header.cc; i++)
 			rtp_msg.rtp_header.csrc[i]= srpp_msg->srpp_header.csrc[i];
 
 
@@ -387,7 +387,7 @@ int send_message(SRPPMessage * message)
 
 		string str (message->encrypted_part.original_payload.begin(),message->encrypted_part.original_payload.end());
 		cout << "\nWriting " << byytes << " bytes \""
-						<< str << "\" to other endpoint at "
+						//<< str << "\" to other endpoint at "
 						<< inet_ntoa(srpp_session->sender_addr.sin_addr) << ":"
 						<< ntohs(srpp_session->sender_addr.sin_port) << endl << endl;
 
@@ -437,7 +437,7 @@ SRPPMessage processReceivedData(char * buff, int bytes_read)
 
 
 				//Set the sender_addr's port correctly
-				srpp_session->sender_addr.sin_port = htons(ntohs(srpp_session->sender_addr.sin_port) + 2);
+				//srpp_session->sender_addr.sin_port = htons(ntohs(srpp_session->sender_addr.sin_port) + 2);
 
 
 			// If this is a signaling message, point to the signaling handler
