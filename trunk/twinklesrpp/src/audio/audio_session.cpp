@@ -445,6 +445,9 @@ void t_audio_session::run(void) {
 
 	rtp_session->startRunning();
 
+	/** START SRPP SESSION **/
+	rtp_session->startSRPPsession(0); // NOT NEGOTIATED BY SIP
+
 	log_file->write_header("t_audio_session::run");
 	log_file->write_raw("Line ");
 	log_file->write_raw(get_line()->get_line_number()+1);

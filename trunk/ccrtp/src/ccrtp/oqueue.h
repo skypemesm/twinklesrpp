@@ -314,6 +314,10 @@ public:
 			int sender_port, int receiver_port,
 			std::string sender_ip="",std::string receiver_ip="");
 
+	/**
+	 * Start the SRPP Session
+	 */
+	void startSRPPsession(int srpp_negotiated_by_sip);
 
 	/**
          * This is used to create a data packet and send it immediately.
