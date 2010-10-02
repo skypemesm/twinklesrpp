@@ -760,12 +760,14 @@ public:
 	operator!=(const IncomingRTPPkt &p) const
 	{ return !( *this == p ); }
 
-private:
 	/**
 	 * Copy constructor from objects of its same kind, declared
 	 * private to avoid its use.
 	 **/
 	IncomingRTPPkt(const IncomingRTPPkt &ip);
+
+
+private:
 
 	/**
 	 * Assignment operator from objects of its same kind, declared

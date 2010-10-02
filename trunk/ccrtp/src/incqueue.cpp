@@ -474,30 +474,31 @@ IncomingDataQueue::insertRecvPacket(IncomingRTPPktLink* packetLink)
 const AppDataUnit*
 IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 {
-	IncomingRTPPktLink* pl;
+
 //	unsigned count = 0;
 	AppDataUnit* result;
 
-	if ( NULL != (pl = getWaiting(stamp,src)) )
-	{
-		IncomingRTPPkt* packet = pl->getPacket();
-//		size_t len = packet->getPayloadSize();
-
 #ifdef HAVE_SRPP
-		cout << "WHYTHEHELL" << srpp::SRPP_Enabled() << endl;
+
+	IncomingRTPPkt* packet_this;
+
+	cout << "WHYTHEHELL" << srpp::SRPP_Enabled() << endl;
 	if (srpp::SRPP_Enabled() == 1)
 	{
 
-		if (srpp::isSignalingComplete() == 0){
+		SRPPMessage srpp_msg = srpp::receive_message();
+
+		/*if (srpp::isSignalingComplete() == 0){
 				SRPPMessage srpp = srpp::processReceivedData((char*)packet, packet->getPayloadSize());
 
 				std::cout << "VARSION:" << srpp.srpp_header.version << "\n";
 				result = NULL;
 				return result;
-		}
+		}*/
 
 		//Convert SRPP Message to RTP Message
 		std::cout << "Saswat:: Will convert SRPP Message to RTP Message here\n";
+/*
 		SRPPMessage* srpp_msg = (SRPPMessage *)packet;
 
 		//verify if we need to look for signaling and enabling srpp still
@@ -506,9 +507,10 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 
 		int packet_size = packet->getPayloadSize();
 		srpp_msg->network_to_srpp((char *)packet, packet_size, srpp::get_session()->encryption_key);
+*/
 
 		// Convert to RTP message
-		RTPMessage rtp_msg = srpp::srpp_to_rtp(srpp_msg);
+		RTPMessage rtp_msg = srpp::srpp_to_rtp(&srpp_msg);
 
 		if (!string(rtp_msg.payload).empty())
 		{
@@ -517,7 +519,7 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 			CryptoContext* pcc = getInQueueCryptoContext(getLocalSSRC());
 			uint8* padlen = (uint8*)&rtp_msg.payload;
 			unsigned char * data = (unsigned char*)(padlen+1);
-			int datalen = srpp_msg->encrypted_part.original_payload.size() - 1;
+			int datalen = srpp_msg.encrypted_part.original_payload.size() - 1;
 
 			if ( rtp_msg.rtp_header.cc )
 		         packet1 = new OutgoingRTPPkt(&(rtp_msg.rtp_header.csrc[0]),
@@ -536,8 +538,9 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 				packet1->setMarker(false);
 			}
 
-			packet = (IncomingRTPPkt*)packet1;
-
+			packet_this = (IncomingRTPPkt*)packet1;
+			result = new AppDataUnit(*packet_this,*src);
+			return result;
 		}
 		else //NO packet
 		{
@@ -548,6 +551,13 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 
 #endif
 
+	IncomingRTPPktLink* pl;
+
+	if ( NULL != (pl = getWaiting(stamp,src)) )
+	{
+		IncomingRTPPkt* packet = pl->getPacket();
+//		size_t len = packet->getPayloadSize();
+
 		SyncSource &src = *(pl->getSourceLink()->getSource());
 		result = new AppDataUnit(*packet,src);
 
@@ -555,7 +565,7 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 		delete pl;
 //		count += len;
 	} else {
-			result = NULL;
+		result = NULL;
 	}
 
 
