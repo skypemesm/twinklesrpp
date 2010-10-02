@@ -13,6 +13,7 @@
 #include <string>
 #include <stdint.h>
 #include <vector>
+#include <sys/time.h>
 
 #ifndef MAXPAYLOADSIZE
 	#define MAXPAYLOADSIZE     16384           // 16384 bytes
@@ -61,6 +62,7 @@ typedef struct SRPPEncrypted {
 } SRPPEncrypted ;
 
 extern int lastSequenceNo;
+extern uint32_t srppssrc;
 
 class SRPPMessage {
 
@@ -77,10 +79,13 @@ public:
     		  srpp_header.x = 1;
     		  srpp_header.cc = 10;
     		  srpp_header.m = 0;
-    		  srpp_header.pt = 0;
+    		  srpp_header.pt = 121;
     		  srpp_header.seq = ++lastSequenceNo;
-    		  srpp_header.ts = 0;
-    		  srpp_header.ssrc = 0;
+
+    		  timeval a;
+    		  gettimeofday(&a, NULL);
+    		  srpp_header.ts = 1000*a.tv_sec + a.tv_usec;
+    		  srpp_header.ssrc = srppssrc;
 
     		  encrypted_part.pad_count = 0;
     		  encrypted_part.original_padding_bit = 0;

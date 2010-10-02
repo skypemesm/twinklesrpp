@@ -157,13 +157,15 @@ public:
 		srpp_msg.srpp_header.srpp_signalling = 12;
 		srpp_msg.srpp_header.x = 1;
 
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 500; i++)
 		{
 			if (helloackrecvd != 1)
 			{
 				hellosent = 1;
 				srpp::send_message(&srpp_msg);
 			}
+			else
+				return 0;
 		}
 
 		cout << "SENT HELLO MESSAGE\n";
@@ -190,9 +192,12 @@ public:
 
 		cout << "Sending a HELLO ACK message now " <<endl;
 
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 500; i++)
 		{
+			if (helloackrecvd != 1)
 				srpp::send_message(&srpp_msg);
+			else
+				return 0;
 		}
 
 		//srpp::send_message(&srpp_msg);
