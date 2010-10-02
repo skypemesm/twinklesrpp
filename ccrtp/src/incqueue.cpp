@@ -490,9 +490,9 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 		//Block for other signaling messages.
 		while (srpp::isSignalingComplete() != 1)
 		{
+			srpp_msg = srpp::receive_message();
 			string str (srpp_msg.encrypted_part.original_payload.begin(),srpp_msg.encrypted_part.original_payload.end());
 			cout << "Payload received right now (SIGNALING): " << str << endl;
-			srpp_msg = srpp::receive_message();
 
 			result = NULL;
 			return result;

@@ -16,6 +16,7 @@
 using namespace std;
 
 int lastSequenceNo = 0;
+uint32_t srppssrc = rand()%(2^32);
 int rtpSequenceNo = 0;
 int nonsrpp_message_count = 0;
 int max_nonsrpp_messages = 1000; // 1000 non-srpp messages can be received before we infer that srpp signaling is not possible
