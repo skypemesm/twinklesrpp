@@ -153,7 +153,7 @@ public:
 		// PSP YES/NO, CBP YES/NO, EBP YES/NO, VITP YES/NO, PSP_ALGO, CBP_ALGO, EBP_ALGO
 
 		SRPPMessage srpp_msg = srpp::create_srpp_message(options);
-		srpp_msg.srpp_header.pt = 69;
+		srpp_msg.srpp_header.pt = 124;
 		srpp_msg.srpp_header.srpp_signalling = 12;
 		srpp_msg.srpp_header.x = 1;
 
@@ -184,7 +184,7 @@ public:
 
 		string options = "YES, YES, YES, DEFAULT, DEFAULT, DEFAULT";
 		SRPPMessage srpp_msg = srpp::create_srpp_message(options);
-		srpp_msg.srpp_header.pt = 69;
+		srpp_msg.srpp_header.pt = 124;
 		srpp_msg.srpp_header.srpp_signalling = 13;
 		srpp_msg.srpp_header.x = 1;
 
@@ -211,7 +211,7 @@ public:
 	int sendByeMessage()
 		{
 			SRPPMessage srpp_msg = srpp::create_srpp_message("");
-			srpp_msg.srpp_header.pt = 69;
+			srpp_msg.srpp_header.pt = 124;
 			srpp_msg.srpp_header.srpp_signalling = 22;
 			srpp_msg.srpp_header.x = 1;
 
@@ -231,7 +231,7 @@ public:
 
 
 			SRPPMessage srpp_msg = srpp::create_srpp_message("");
-			srpp_msg.srpp_header.pt = 69;
+			srpp_msg.srpp_header.pt = 124;
 			srpp_msg.srpp_header.srpp_signalling = 23;
 			srpp_msg.srpp_header.x = 1;
 

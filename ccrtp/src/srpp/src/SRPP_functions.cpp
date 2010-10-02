@@ -505,9 +505,9 @@ SRPPMessage processReceivedData(char * buff, int bytes_read)
  int isSignalingMessage (SRPPMessage * message)
  {
 
-	 if (message->srpp_header.srpp_signalling == 0 and message->srpp_header.pt != 69) //NOT A SIGNALING MESSAGE
+	 if (message->srpp_header.srpp_signalling == 0 and message->srpp_header.pt != 124) //NOT A SIGNALING MESSAGE
 		 return -1;
-	 else if(message->srpp_header.srpp_signalling !=0 and message->srpp_header.pt == 69)
+	 else if(message->srpp_header.srpp_signalling !=0 and message->srpp_header.pt == 124)
 		 return 1;
 
 	 return 0;
@@ -519,9 +519,9 @@ SRPPMessage processReceivedData(char * buff, int bytes_read)
 	  SRPPHeader* srpp_header1 = (SRPPHeader *) buff;
 	  	SRPPHeader srpp_header = *srpp_header1;
 
-	  if (srpp_header.srpp_signalling == 0 and srpp_header.pt != 69) //NOT A SIGNALING MESSAGE
+	  if (srpp_header.srpp_signalling == 0 and srpp_header.pt != 124) //NOT A SIGNALING MESSAGE
  		 return -1;
- 	 else if(srpp_header.srpp_signalling !=0 and srpp_header.pt == 69){
+ 	 else if(srpp_header.srpp_signalling !=0 and srpp_header.pt == 124){
  		cout << "YEAH SIGNALIG" << endl;
  		 return 1;
  	 }
@@ -560,7 +560,7 @@ int verifySignalling(char * buff)
 		SRPPHeader srpp_header = *srpp_header1;
 
 
-		if (srpp_header.srpp_signalling != 13 && srpp_header.pt != 69) //not helloack signaling message
+		if (srpp_header.srpp_signalling != 13 && srpp_header.pt != 124) //not helloack signaling message
 		{
 			// NOT SRPP MESSAGE.
 			++nonsrpp_message_count;
