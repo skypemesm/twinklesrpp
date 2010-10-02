@@ -9,9 +9,6 @@
 #ifndef RTP_MESSAGE_HPP
 #define RTP_MESSAGE_HPP
 
-
-#include "SRPPMessage.hpp"
-
 extern int rtpSequenceNo;
 
 struct RTP_Header{
@@ -25,7 +22,7 @@ struct RTP_Header{
 	  uint16_t		seq;		/** sequence number        */
 	  uint32_t		ts;			/** timestamp              */
 	  uint32_t		ssrc;		/** synchronization source */
-	  uint32_t		csrc[10];		/** contributing sources  */
+	  uint32_t		csrc[15];		/** contributing sources  */
 
 
 };
@@ -42,7 +39,7 @@ public:
     		  rtp_header.version = 2;
     		  rtp_header.p = 1;
     		  rtp_header.x = 0;
-    		  rtp_header.cc = 0;
+    		  rtp_header.cc = 15;
     		  rtp_header.m = 0;
     		  rtp_header.pt = 0;
     		  rtp_header.seq = ++rtpSequenceNo;

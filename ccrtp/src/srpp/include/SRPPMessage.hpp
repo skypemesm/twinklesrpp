@@ -24,16 +24,15 @@ using namespace std;
 typedef struct SRPPHeader {
 
 #if __BYTE_ORDER == __BIG_ENDIAN
+
 	  uint16_t		version:2;	/* protocol version */
 	  uint16_t		p:1;		/* padding flag */
 	  uint16_t		x:1;		/* header extension flag */
 	  uint16_t		cc:4;		/* CSRC count */
 	  uint16_t		m:1;		/* marker bit */
 	  uint16_t		pt:7;		/* payload type */
-	  uint16_t		seq;		/** srpp sequence number        */
 
 #else
-	  uint16_t		seq;		/** srpp sequence number        */
 	  uint16_t		cc:4;		/** CSRC count             */
 	  uint16_t		x:1;		/** padding flag           */
 	  uint16_t		p:1;		/** header extension flag  */
@@ -41,8 +40,9 @@ typedef struct SRPPHeader {
 	  uint16_t		pt:7;		/** payload type           */
 	  uint16_t		m:1;		/** marker bit             */
 
-
 #endif
+
+	  uint16_t		seq;		/** srpp sequence number        */
 
 	  uint32_t		ts;			/** srpp timestamp              */
 	  uint32_t		ssrc;		/** synchronization source */
@@ -81,7 +81,7 @@ public:
     		  srpp_header.version = 2;
     		  srpp_header.p = 1;
     		  srpp_header.x = 1;
-    		  srpp_header.cc = 10;
+    		  srpp_header.cc = 15;
     		  srpp_header.m = 0;
     		  srpp_header.pt = 121;
     		  srpp_header.seq = ++lastSequenceNo;
