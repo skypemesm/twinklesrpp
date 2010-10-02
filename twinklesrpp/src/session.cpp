@@ -25,6 +25,7 @@
 #include "util.h"
 #include "userintf.h"
 #include "audits/memman.h"
+#include <ccrtp/config.h>
 
 extern string user_host;
 extern string local_hostname;
@@ -481,7 +482,7 @@ void t_session::create_sdp_offer(t_sip_message *m, const string &user) {
 #ifdef HAVE_SRPP
 	// Set srpp support
 	((t_sdp *)m->body)->set_srpp_support(SDP_AUDIO);
-	}
+
 #endif
 
 	m->hdr_content_type.set_media(t_media("application", "sdp"));
@@ -600,6 +601,12 @@ void t_session::create_sdp_answer(t_sip_message *m, const string &user) {
 	if (user_config->get_zrtp_enabled() && user_config->get_zrtp_sdp()) {
 		((t_sdp *)m->body)->set_zrtp_support(SDP_AUDIO);
 	}
+
+#ifdef HAVE_SRPP
+	// Set srpp support
+	((t_sdp *)m->body)->set_srpp_support(SDP_AUDIO);
+
+#endif
 }
 
 void t_session::start_rtp(void) {
