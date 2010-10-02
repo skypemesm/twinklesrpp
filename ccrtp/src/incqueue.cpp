@@ -482,72 +482,96 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 
 	IncomingRTPPkt* packet_this;
 
-	cout << "WHYTHEHELL" << srpp::SRPP_Enabled() << endl;
 	if (srpp::SRPP_Enabled() == 1)
 	{
 
-		SRPPMessage srpp_msg = srpp::receive_message();
+		SRPPMessage srpp_msg;
 
-		/*if (srpp::isSignalingComplete() == 0){
-				SRPPMessage srpp = srpp::processReceivedData((char*)packet, packet->getPayloadSize());
-
-				std::cout << "VARSION:" << srpp.srpp_header.version << "\n";
-				result = NULL;
-				return result;
-		}*/
-
-		//Convert SRPP Message to RTP Message
-		std::cout << "Saswat:: Will convert SRPP Message to RTP Message here\n";
-/*
-		SRPPMessage* srpp_msg = (SRPPMessage *)packet;
-
-		//verify if we need to look for signaling and enabling srpp still
-	    if (srpp::verifySignalling((char *)packet) < 0)
-	    	return NULL;
-
-		int packet_size = packet->getPayloadSize();
-		srpp_msg->network_to_srpp((char *)packet, packet_size, srpp::get_session()->encryption_key);
-*/
-
-		// Convert to RTP message
-		RTPMessage rtp_msg = srpp::srpp_to_rtp(&srpp_msg);
-
-		if (!string(rtp_msg.payload).empty())
+		//Block for other signaling messages.
+		while (srpp::isSignalingComplete() != 1)
 		{
-			//Convert this RTPMessage to IncomingRTTPPkt format
-			OutgoingRTPPkt* packet1;
-			CryptoContext* pcc = getInQueueCryptoContext(getLocalSSRC());
-			uint8* padlen = (uint8*)&rtp_msg.payload;
-			unsigned char * data = (unsigned char*)(padlen+1);
-			int datalen = srpp_msg.encrypted_part.original_payload.size() - 1;
+			string str (srpp_msg.encrypted_part.original_payload.begin(),srpp_msg.encrypted_part.original_payload.end());
+			cout << "Payload received right now (SIGNALING): " << str << endl;
+			srpp_msg = srpp::receive_message();
 
-			if ( rtp_msg.rtp_header.cc )
-		         packet1 = new OutgoingRTPPkt(&(rtp_msg.rtp_header.csrc[0]),
-		        		 (uint16)rtp_msg.rtp_header.cc,data,(size_t)datalen,(uint8)*padlen, pcc);
-			else
-		         packet1 = new OutgoingRTPPkt(data,datalen,(uint8)*padlen, pcc);
-
-			packet1->setPayloadType(rtp_msg.rtp_header.pt);
-			packet1->setSeqNum(rtp_msg.rtp_header.seq);
-			packet1->setTimestamp(rtp_msg.rtp_header.ts);
-
-			packet1->setSSRCNetwork(rtp_msg.rtp_header.ssrc);
-			if ( rtp_msg.rtp_header.m == 1 ) {
-				packet1->setMarker(true);
-			} else {
-				packet1->setMarker(false);
-			}
-
-			packet_this = (IncomingRTPPkt*)packet1;
-			result = new AppDataUnit(*packet_this,*src);
-			return result;
-		}
-		else //NO packet
-		{
 			result = NULL;
 			return result;
+
 		}
-	 }
+
+		if (srpp::isMediaSessionComplete() != 1)
+		{
+			srpp_msg = srpp::receive_message();
+			/*if (srpp::isSignalingComplete() == 0){
+					SRPPMessage srpp = srpp::processReceivedData((char*)packet, packet->getPayloadSize());
+
+					std::cout << "VARSION:" << srpp.srpp_header.version << "\n";
+					result = NULL;
+					return result;
+			}*/
+
+			if (srpp::isSignalingMessage(&srpp_msg) == 1)
+			{
+				std::cout << "Saswat:: REceived BYE probably\n";
+				result = NULL;
+				return result;
+			}
+			else
+			{
+				//Convert SRPP Message to RTP Message
+				std::cout << "Saswat:: Will convert SRPP Message to RTP Message here\n";
+		/*
+				SRPPMessage* srpp_msg = (SRPPMessage *)packet;
+
+				//verify if we need to look for signaling and enabling srpp still
+				if (srpp::verifySignalling((char *)packet) < 0)
+					return NULL;
+
+				int packet_size = packet->getPayloadSize();
+				srpp_msg->network_to_srpp((char *)packet, packet_size, srpp::get_session()->encryption_key);
+		*/
+
+				// Convert to RTP message
+				RTPMessage rtp_msg = srpp::srpp_to_rtp(&srpp_msg);
+
+				if (!string(rtp_msg.payload).empty())
+				{
+					//Convert this RTPMessage to IncomingRTTPPkt format
+					OutgoingRTPPkt* packet1;
+					CryptoContext* pcc = getInQueueCryptoContext(getLocalSSRC());
+					uint8* padlen = (uint8*)&rtp_msg.payload;
+					unsigned char * data = (unsigned char*)(padlen+1);
+					int datalen = srpp_msg.encrypted_part.original_payload.size() - 1;
+
+					if ( rtp_msg.rtp_header.cc )
+						 packet1 = new OutgoingRTPPkt(&(rtp_msg.rtp_header.csrc[0]),
+								 (uint16)rtp_msg.rtp_header.cc,data,(size_t)datalen,(uint8)*padlen, pcc);
+					else
+						 packet1 = new OutgoingRTPPkt(data,datalen,(uint8)*padlen, pcc);
+
+					packet1->setPayloadType(rtp_msg.rtp_header.pt);
+					packet1->setSeqNum(rtp_msg.rtp_header.seq);
+					packet1->setTimestamp(rtp_msg.rtp_header.ts);
+
+					packet1->setSSRCNetwork(rtp_msg.rtp_header.ssrc);
+					if ( rtp_msg.rtp_header.m == 1 ) {
+						packet1->setMarker(true);
+					} else {
+						packet1->setMarker(false);
+					}
+
+					packet_this = (IncomingRTPPkt*)packet1;
+					result = new AppDataUnit(*packet_this,*src);
+					return result;
+				}
+				else //NO packet
+				{
+					result = NULL;
+					return result;
+				}
+			} // end of checking if this is not a signalling message of BYE or BYEACK.
+		} //end of checking if media session still on.
+	 } // End of checking that we are still using SRPP.
 
 #endif
 
