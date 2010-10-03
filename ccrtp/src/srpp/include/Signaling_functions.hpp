@@ -95,10 +95,11 @@ public:
 
 			if ( helloacksent == 0 )
 			{
+				int i = sendHelloAckMessage();
 				signaling_complete = 1;
 				hellosent = 0;
 				helloackrecvd = 0;
-				return sendHelloAckMessage();
+				return i;
 			}
 			else
 			{
