@@ -523,7 +523,7 @@ SRPPMessage processReceivedData(char * buff, int bytes_read)
 	  if (srpp_header.srpp_signalling == 0 and srpp_header.pt != 124) //NOT A SIGNALING MESSAGE
  		 return -1;
  	 else if(srpp_header.srpp_signalling !=0 and srpp_header.pt == 124){
- 		cout << "YEAH SIGNALIG" << endl;
+
  		 return 1;
  	 }
 
