@@ -448,6 +448,9 @@ namespace ost {
 
 		#ifdef HAVE_SRPP
 			//------------------------------------------Added SRPP workings here -------------------------------------------------//
+
+			if (srpp::SRPP_Enabled() == 1 || srpp::SRPP_Enabled() == 3)
+			{
 				//Initialize SRPP
 				srpp::init_SRPP();
 
@@ -455,7 +458,7 @@ namespace ost {
 				CryptoProfile * crypto = new CryptoProfile("Simple XOR");
 
 				SRPPSession * newsession = srpp::create_session(dst_host, dst_port,*crypto);
-
+			}
 
 			//------------------------------------------------------------------ -------------------------------------------------//
 
@@ -479,6 +482,8 @@ namespace ost {
 		{
 		#ifdef HAVE_SRPP
 			//------------------------------------------Added SRPP workings here -------------------------------------------------//
+			if (srpp::SRPP_Enabled() == 1 || srpp::SRPP_Enabled() == 3)
+			{
 				//Initialize SRPP
 				srpp::init_SRPP();
 
@@ -486,6 +491,7 @@ namespace ost {
 				CryptoProfile * crypto = new CryptoProfile("Simple XOR");
 
 				SRPPSession * newsession = srpp::create_session(dst_host, dst_port,*crypto);
+			}
 
 			//------------------------------------------------------------------ -------------------------------------------------//
 		#endif
