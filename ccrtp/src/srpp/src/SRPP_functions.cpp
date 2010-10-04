@@ -613,6 +613,9 @@ int verifySignalling(char * buff)
 	// Pseudo-Random number between min and max
 	int srpp_rand(int min,int max){
 
+		if (max == 0)
+			return 0;
+
 		timeval a;
 		gettimeofday(&a, NULL);
 		srand(1000000*a.tv_sec + a.tv_usec);      // SEED ON MICROSECONDS
