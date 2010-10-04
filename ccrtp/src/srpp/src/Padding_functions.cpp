@@ -16,7 +16,7 @@
 using namespace std;
 
 SRPPMessage PaddingFunctions::dummy_cache[100];
-
+extern int maxpacketsize;
 
 /**
  * Default constructor .. initializes the dummy cache
@@ -30,7 +30,7 @@ PaddingFunctions::PaddingFunctions()
 	for(int i = 0; i < MAXDUMMYCACHESIZE; i++)
 	{
 		SRPPMessage* thisdummy = new SRPPMessage();
-		thisdummysize = srpp::srpp_rand(1, MAXPAYLOADSIZE);
+		thisdummysize = srpp::srpp_rand(1, maxpacketsize);
 
 		for (int j = 0; j < thisdummysize; j++)
 			thisdummy->encrypted_part.original_payload.push_back( srpp::srpp_rand(1,255) ^ srpp::srpp_rand(0,65536)); // characters xored with some random number
@@ -183,7 +183,7 @@ int PaddingFunctions::add_to_dummy_cache(SRPPMessage srpp_msg)
 
 	int thisdummysize, j=0;
 
-	thisdummysize = srpp::srpp_rand(1, MAXPAYLOADSIZE);
+	thisdummysize = srpp::srpp_rand(1, maxpacketsize);
 
 	for (; j < (int)srpp_msg.encrypted_part.original_payload.size(); j++)
 			srpp_msg.encrypted_part.original_payload.at(j) ^= srpp::srpp_rand(0,65536); // original data xored with some random number

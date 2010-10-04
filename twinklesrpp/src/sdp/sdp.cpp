@@ -27,6 +27,7 @@
 #include "parser/hdr_warning.h"
 #include "parser/parameter.h"
 #include "audits/memman.h"
+#include <srpp/include/SRPP_functions.h>
 
 using namespace std;
 
@@ -736,6 +737,30 @@ bool t_sdp::get_zrtp_support(t_sdp_media_type media_type) const {
 	if (!a) return false;
 	return true;
 }
+bool t_sdp::get_srpp_support(t_sdp_media_type media_type) const {
+	t_sdp_media *m = const_cast<t_sdp_media *>(get_first_media(media_type));
+	assert(m != NULL);
+
+	const t_sdp_attr *a = m->get_attribute("srpp");
+	if (!a) return false;
+
+	return true;
+}
+
+string t_sdp::get_srpp_param(t_sdp_media_type media_type){
+
+	t_sdp_media *m = const_cast<t_sdp_media *>(get_first_media(media_type));
+	assert(m != NULL);
+
+	if (!get_srpp_support(media_type))
+		return "";
+
+	const t_sdp_attr* attr = m->get_attribute("srppmap");
+	if (!attr)
+		return "";
+	else
+		return attr->value;
+}
 
 void t_sdp::set_ptime(t_sdp_media_type media_type, unsigned short ptime) {
 	t_sdp_media *m = const_cast<t_sdp_media *>(get_first_media(media_type));
@@ -778,9 +803,7 @@ void t_sdp::set_zrtp_support(t_sdp_media_type media_type) {
 	assert(m != NULL);
 	
 	t_sdp_attr a("zrtp");
-	t_sdp_attr b("srpp");
 	m->attributes.push_back(a);
-	m->attributes.push_back(b);
 }
 
 void t_sdp::set_srpp_support(t_sdp_media_type media_type) {
@@ -789,6 +812,20 @@ void t_sdp::set_srpp_support(t_sdp_media_type media_type) {
 
 	t_sdp_attr a("srpp");
 	m->attributes.push_back(a);
+
+	char buf[15];
+	int srpp_key = srpp::srpp_rand(1,65535);
+
+	int srpp_mps = srpp::getMaxPayloadSize();
+	snprintf(buf,15,"%d,%d",srpp_key, srpp_mps);
+	string options = "srppmap ";
+	options.append(buf);
+
+	options.append(",YES,YES,YES,YES,DEFAULT,DEFAULT,DEFAULT,DEFAULT");
+
+	t_sdp_attr b(options);
+	m->attributes.push_back(b);
+
 }
 const t_sdp_media *t_sdp::get_first_media(t_sdp_media_type media_type) const {
 	for (list<t_sdp_media>::const_iterator i = media.begin();

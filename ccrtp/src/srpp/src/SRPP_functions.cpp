@@ -8,6 +8,7 @@
 #include "../include/srpp_timer.h"
 #include "../include/SRPPSession.hpp"
 #include "../include/Signaling_functions.hpp"
+
 #include <errno.h>
 #include <cstring>
 #include <sys/time.h>
@@ -16,10 +17,13 @@
 using namespace std;
 
 int lastSequenceNo = 0;
+int maxpacketsize = MAXPAYLOADSIZE;
 uint32_t srppssrc = srpp::srpp_rand(2^17,2^32);
 int rtpSequenceNo = 0;
 int nonsrpp_message_count = 0;
+int sending_packet_now = 0;
 int max_nonsrpp_messages = 1000; // 1000 non-srpp messages can be received before we infer that srpp signaling is not possible
+int packet_to_send;
 
 
 namespace srpp {
@@ -28,7 +32,8 @@ namespace srpp {
 SRPPSession * srpp_session;
 PaddingFunctions padding_functions;
 SignalingFunctions signaling_functions;
-int srpp_enabled = 1;
+int srpp_enabled = 3;
+int signaling_by_srpp = 1;
 
 
 	//initialize stuff
@@ -56,10 +61,9 @@ int srpp_enabled = 1;
 	}
 
 	//start the srpp session
-	int start_session(int signalling_done){
+	int start_session(){
 
-	 if (signalling_done == 0)
-	 {
+	 //SIGNALING NOT YET DONE.. IN-BAND SIGNALING TO COMMENCE NOW
 		//So here we signal first..
 		if (signaling() < 0)
 		{
@@ -67,17 +71,42 @@ int srpp_enabled = 1;
 			//show message in the GUI, and exit
 			return -1;
 		}
-	 }
 
-	 //If we are able to set the get the proper srpp parameters from the other endpoint
-	 //and set it in our session, then we start the session.
+	//If we are able to set the get the proper srpp parameters from the other endpoint
+	//and set it in our session, then we start the session.
 
 	 //then we start the srpp session
 	 srpp_session->start_session();
+	 srpp_enabled = 1;
 
 	 return 0;
 
 	}
+
+	int start_session(sdp_srpp sdp)
+	{
+
+
+		// DONE THROUGH SIP
+		signaling_by_srpp = 0;
+
+		if (sdp.isactive() == 0)
+		{
+			srpp_enabled = 0;
+			return stop_session();
+		}
+
+		setKey(sdp.getKey());
+		srpp_session->maxpacketsize = sdp.getMaxPacketSize();
+		maxpacketsize = sdp.getMaxPacketSize();
+		signaling_functions.setSignalingComplete(1);
+
+		//then we start the srpp session
+
+		 srpp_enabled = 1;
+		return srpp_session->start_session();
+	}
+
 
 	//stOP the srpp session
 	int stop_session(){
@@ -92,9 +121,12 @@ int srpp_enabled = 1;
 			return -10;
 		}
 
-		//We send BYE message
-		signaling_functions.sendByeMessage();
-		receive_message();
+		if (signaling_by_srpp == 1)
+		{
+			//We send BYE message
+			signaling_functions.sendByeMessage();
+			receive_message();
+		}
 
 		if(isMediaSessionComplete() == 1)
 		{
@@ -110,17 +142,16 @@ int srpp_enabled = 1;
 	//Signaling start
 	int signaling()
 	{
-		return signaling_functions.signaling();
+		if (signaling_by_srpp == 1)
+			return signaling_functions.signaling();
+		else
+			return 0;
 
 	}
 
 
 	// convert a RTP packet to SRPP packet
 	SRPPMessage rtp_to_srpp(RTPMessage * rtp_msg){
-
-/*		cout << "in funccc : seq_num" << rtp_msg->rtp_header.seq << endl;
-		cout << "in funccc : payload" << rtp_msg->payload << endl;*/
-
 
 		//Create a SRPPMessage with the data from RTP packet
 		SRPPMessage srpp_msg = create_srpp_message(rtp_msg->payload);
@@ -150,12 +181,6 @@ int srpp_enabled = 1;
 		encrypt_srpp(&srpp_msg);
 
 		//Return
-
-	/*	cout << "THIS SRPP MSG HAS VALUE:" << srpp_msg.encrypted_part.original_payload << endl;
-		cout << "THIS SRPP MSG HAS Pad count:" << srpp_msg.encrypted_part.pad_count << endl;
-		cout << "THIS SRPP MSG HAS Padding bytes:" << srpp_msg.encrypted_part.srpp_padding << endl;
-*/
-
 		return srpp_msg;
 
 	}
@@ -180,14 +205,6 @@ int srpp_enabled = 1;
 		    string data (srpp_msg->encrypted_part.original_payload.begin(),srpp_msg->encrypted_part.original_payload.end());
 			rtp_msg = create_rtp_message(data);
 		}
-/*
-
-		cout << "in funccc : seq_num" << rtp_msg->rtp_header.seq << endl;
-		cout << "in funccc : payload" << rtp_msg->payload << endl;
-*/
-
-
-
 
 		rtp_msg.rtp_header.version = srpp_msg->srpp_header.version;
 		rtp_msg.rtp_header.p = srpp_msg->encrypted_part.original_padding_bit;
@@ -201,9 +218,6 @@ int srpp_enabled = 1;
 
 		for (int i = 0; i<srpp_msg->srpp_header.cc; i++)
 			rtp_msg.rtp_header.csrc[i]= srpp_msg->srpp_header.csrc[i];
-
-
-		//cout << "THIS RTP MSG HAS VALUE:" << rtp_msg.payload << endl;
 
 
 		return rtp_msg;
@@ -283,23 +297,7 @@ int srpp_enabled = 1;
 	SRPPMessage encrypt_srpp(SRPPMessage * original_pkt)
 	{
 		//TODO::: USE CRYPTO
-
 		original_pkt->encrypt(srpp_session->encryption_key);
-		//SRPPEncrypted * to_encrypt = &(original_pkt->encrypted_part);
-
-		//Encrypt the "encrypted_part" of the SRPP Packet.
-	//		cout << "DATA:" << to_encrypt->original_payload << endl;
-
-		//encrypt each unsigned int part with the key from the session
-		/*unsigned int * orig = reinterpret_cast<unsigned int *>(to_encrypt);
-		int i = 0;
-		for (i = 0;i<= (sizeof(*to_encrypt)/sizeof(unsigned int));i++)
-		{
-			(*(orig+i)) ^= srpp_session->encryption_key;
-		}*/
-
-//		cout << "ENCRYPTED DATA:" << to_encrypt->original_payload << endl;
-
 		return *original_pkt;
 
 	}
@@ -308,55 +306,14 @@ int srpp_enabled = 1;
 	SRPPMessage decrypt_srpp(SRPPMessage * encrypted_pkt)
 	{
 		//TODO::: USE CRYPTO
-
-
 		encrypted_pkt->decrypt(srpp_session->encryption_key);
-
-		//SRPPEncrypted * to_decrypt = &(encrypted_pkt->encrypted_part);
-
-		//Encrypt the "encrypted_part" of the SRPP Packet.
-		//		cout << "DATA:" << to_decrypt->original_payload << endl;
-
-		//encrypt each unsigned int part with the key from the session
-/*
-		unsigned int * orig = reinterpret_cast<unsigned int *>(to_decrypt);
-		int i = 0;
-		for (i = 0;i<= (sizeof(*to_decrypt)/sizeof(unsigned int));i++)
-		{
-			(*(orig+i)) ^= srpp_session->encryption_key;
-		}
-
-*/
-		//cout << "DECRYPTED DATA:" << to_decrypt->original_payload << endl;
-
-
 		return *encrypted_pkt;
 	}
-
-	//Get the padding functions object used here
-	PaddingFunctions* get_padding_functions(){
-		return &(padding_functions);
-	}
-
-	// Get the current session object
-	SRPPSession * get_session(){
-		return srpp_session;
-	}
-
-// Pseudo-Random number between min and max
-	int srpp_rand(int min,int max){
-
-		timeval a;
-		gettimeofday(&a, NULL);
-		srand(1000*a.tv_sec + a.tv_usec);      // SEED ON MICROSECONDS
-
-			return ((rand() % max) + min);
-
-		}
 
 
 int send_message(SRPPMessage * message)
 	{
+		packet_to_send = 1;
 
 		if (message->encrypted_part.original_payload.size() == 0)
 			return 0;
@@ -427,6 +384,13 @@ SRPPMessage processReceivedData(char * buff, int bytes_read)
 
 		SRPPMessage srpp_msg = srpp::create_srpp_message("");
 
+		if (signaling_by_srpp == 0 && signaling_functions.isSignalingComplete() == 1)
+		{
+			//signaling done entirely through sip
+			srpp_msg.network_to_srpp(buff,bytes_read, srpp_session->encryption_key);
+			return srpp_msg;
+		}
+
 		//verify if we need to look for signaling and enabling srpp still
 		if (isSignalingMessage(buff) == 1 || (verifySignalling(buff) == 0 && srpp_enabled == 0))
 		{
@@ -455,12 +419,35 @@ SRPPMessage processReceivedData(char * buff, int bytes_read)
 						setKey(atoi(thiskey.c_str()));
 
 						cout << "KEY RECVD: " << thiskey << endl;
+
+						thiskey = options.substr(
+						                 options.find_first_of(',')+1,
+						                 options.substr(options.find_first_of(',')+1,options.length()).find_first_of(',') );
+
+						//set maxpacketsize to min(maxpacketsize, received maxpayloadsize)
+						if (srpp_session->maxpacketsize > atoi(thiskey.c_str())) {
+							srpp_session->maxpacketsize = atoi(thiskey.c_str()) ;
+							maxpacketsize = srpp_session->maxpacketsize;
+						}
+
+						cout << "MAXPAYLOADSIZE RECEIVED: " << thiskey << endl;
 						signaling_functions.receivedHelloMessage();
 
 					}
 					else if (srpp_msg.srpp_header.srpp_signalling == 13)
 					{
 						cout << "Received HELLO ACK message " << endl;
+
+						//extract maxpayloadsize from the payload
+						string options (srpp_msg.encrypted_part.original_payload.begin(),srpp_msg.encrypted_part.original_payload.end());
+						string thiskey = options.substr(0,options.find_first_of(','));
+
+						//set maxpacketsize to min(maxpacketsize, received maxpayloadsize)
+						if (srpp_session->maxpacketsize > atoi(thiskey.c_str()))
+						{
+								srpp_session->maxpacketsize = atoi(thiskey.c_str()) ;
+								maxpacketsize = srpp_session->maxpacketsize;
+						}
 
 						if (signaling_functions.receivedHelloAckMessage() < 0)
 							cout << "ERROR IN PROCESSING HELLOACK" << endl;
@@ -580,5 +567,51 @@ int verifySignalling(char * buff)
 	else
 		return 0;
  }
+
+
+	//Get the padding functions object used here
+	PaddingFunctions* get_padding_functions(){
+		return &(padding_functions);
+	}
+
+	// Get the current session object
+	SRPPSession * get_session(){
+		return srpp_session;
+	}
+
+	// Pseudo-Random number between min and max
+	int srpp_rand(int min,int max){
+
+		timeval a;
+		gettimeofday(&a, NULL);
+		srand(1000000*a.tv_sec + a.tv_usec);      // SEED ON MICROSECONDS
+
+			return ((rand() % max) + min);
+
+		}
+
+	int resetPacketTimer()
+	{
+		return srpp_session->srpp_timer->reset_packet();
+	}
+	int resetSilenceTimer()
+	{
+		return srpp_session->srpp_timer->reset_silence();
+
+	}
+
+	 //Get the encryption in the session
+	  int getKey()
+	  {
+		 if(srpp_session)
+		  return srpp_session->encryption_key;
+		 else
+			 return -1;
+	  }
+
+	  //Get the maximum payload size in the session
+	  int getMaxPayloadSize(){
+		  return MAXPAYLOADSIZE;
+	  }
 
 } // end of namespace

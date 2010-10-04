@@ -271,7 +271,8 @@ public:
 	unsigned short get_ptime(t_sdp_media_type media_type) const;
 	
 	bool get_zrtp_support(t_sdp_media_type media_type) const;
-	
+	bool get_srpp_support(t_sdp_media_type media_type) const;
+
 	void set_ptime(t_sdp_media_type media_type, unsigned short ptime);
 	void set_direction(t_sdp_media_type media_type, t_sdp_media_direction direction);
 	void set_fmtp(t_sdp_media_type media_type, unsigned short codec, const string &fmtp);
@@ -279,6 +280,7 @@ public:
 			const string &param, int value);
 	void set_zrtp_support(t_sdp_media_type media_type);
 	void set_srpp_support(t_sdp_media_type media_type);
+	string get_srpp_param(t_sdp_media_type media_type);
 
 	// Returns a pointer to the first media stream in the list of media
 	// streams having a non-zero port value for the give media type.

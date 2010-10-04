@@ -11,6 +11,7 @@
 #include "rtp.hpp"
 #include "CryptoProfile.hpp"
 #include "Padding_functions.h"
+#include "sdp_srpp.hpp"
 
 
 
@@ -36,7 +37,8 @@ namespace srpp {
 	SRPPSession* create_session(string address, int port, CryptoProfile crypto);
 
 	//starts the srpp session
-	int start_session(int signalling_done);
+	int start_session();
+	int start_session(sdp_srpp sdp);
 
 	//stops the srpp session
 	int stop_session();
@@ -99,10 +101,17 @@ namespace srpp {
 
 	  //Set the encryption in the session
 	  int setKey(int key);
+	  //Get the encryption in the session
+	  int getKey();
+	  //Get the maximum payload size in the session
+	  int getMaxPayloadSize();
 
  	  //verify if we need to look for signaling and enabling srpp still
 	  int verifySignalling(char * buff);
 
+	  //reset timers
+	  int resetPacketTimer();
+	  int resetSilenceTimer();
 }
 
 

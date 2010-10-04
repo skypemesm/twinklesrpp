@@ -27,9 +27,15 @@
 #include "audits/memman.h"
 #include <ccrtp/config.h>
 
+#ifdef HAVE_SRPP
+	#include <srpp/include/sdp_srpp.hpp>
+	sdp_srpp sdpsrpp;
+#endif
+
 extern string user_host;
 extern string local_hostname;
 extern t_phone *phone;
+
 
 ///////////
 // PRIVATE
@@ -341,6 +347,22 @@ bool t_session::process_sdp_offer(t_sdp *sdp, int &warn_code,
 		}
 	}
 
+#ifdef HAVE_SRPP
+	// PROCESS SRPP
+	if (sdp->get_srpp_support(SDP_AUDIO))
+	{
+		std::cout << "Saswat:: SIP says SRPP Supported\n";
+		std::cout << "Saswat::"<< sdp->get_srpp_param(SDP_AUDIO)<< endl;
+		sdpsrpp.process_sdp_srpp(0);
+		sdpsrpp.activate_srpp();
+	}
+	else
+	{
+		std::cout << "Saswat:: SIP says SRPP Not Supported\n";
+		sdpsrpp.deactivate_srpp();
+	}
+#endif
+
 	return true;
 }
 
@@ -410,6 +432,21 @@ bool t_session::process_sdp_answer(t_sdp *sdp, int &warn_code,
 			ilbc_mode = static_cast<unsigned short>(recvd_mode);
 		}
 	}
+
+#ifdef HAVE_SRPP
+	// PROCESS SRPP
+	if (sdp->get_srpp_support(SDP_AUDIO))
+	{
+		std::cout << "Saswat:: SIP says SRPP Supported\n";
+		std::cout << "Saswat::"<< sdp->get_srpp_param(SDP_AUDIO)<< endl;
+		sdpsrpp.process_sdp_srpp(1);
+		sdpsrpp.activate_srpp();
+	}
+	else {
+		std::cout << "Saswat:: SIP says SRPP Not Supported\n";
+		sdpsrpp.deactivate_srpp();
+	}
+#endif
 
 	return true;
 }

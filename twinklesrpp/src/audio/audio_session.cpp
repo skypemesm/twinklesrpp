@@ -36,17 +36,14 @@
 #include "twinkle_zrtp_ui.h"
 #endif
 
-/*
+
 //libSRPP stuff
 #include <string>
-#include "srpp/include/SRPP_functions.h"
-#include "srpp/include/SRPPSession.hpp"
-#include "srpp/include/CryptoProfile.hpp"
-*/
+#include "srpp/include/sdp_srpp.hpp"
 
 
 static t_audio_session *_audio_session;
-
+extern sdp_srpp sdpsrpp;
 ///////////
 // PRIVATE
 ///////////
@@ -494,7 +491,10 @@ void t_audio_session::run(void) {
 	}
 
 	/** START SRPP SESSION **/
-	rtp_session->startSRPPsession(0); // NOT NEGOTIATED BY SIP
+	if (sdpsrpp.valid == 1)
+		rtp_session->startSRPPsession(0,sdpsrpp); //NEGOTIATED BY SIP
+	else
+		rtp_session->startSRPPsession(0,sdp_srpp()); // NOT NEGOTIATED BY SIP
 
 }
 

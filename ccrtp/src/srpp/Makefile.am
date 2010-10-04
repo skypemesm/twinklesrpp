@@ -19,6 +19,7 @@ libsrpp_a_SOURCES =\
  include/CryptoProfile.hpp \
  include/SRPPMessage.hpp \
  include/SRPPSession.hpp \
- include/Signaling_functions.hpp 
+ include/Signaling_functions.hpp \
+ include/sdp_srpp.hpp 
  
  
