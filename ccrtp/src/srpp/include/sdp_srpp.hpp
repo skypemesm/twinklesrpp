@@ -74,11 +74,13 @@ public:
 	 * THIS PROCESSES SDP for SRPP
 	 * @param int offer_or_answer: 0 if this is a SDP offer and 1 if SDP answer
 	 */
-	int process_sdp_srpp(int offer_or_answer)
+	int process_sdp_srpp(int offer_or_answer,string thisoptions)
 	{
+		options = thisoptions;
+
 		//extract key from the payload
 		string thiskey = options.substr(0,options.find_first_of(','));
-		int key = atoi(thiskey.c_str());
+		key = atoi(thiskey.c_str());
 
 
 		cout << "KEY RECVD: " << thiskey << endl;
@@ -87,9 +89,7 @@ public:
 						 options.find_first_of(',')+1,
 						 options.substr(options.find_first_of(',')+1,options.length()).find_first_of(',') );
 
-		int maxpacketlength = atoi(thiskey.c_str());
-
-		//set maxpacketsize to min(maxpacketsize, received maxpayloadsize)
+			//set maxpacketsize to min(maxpacketsize, received maxpayloadsize)
 		if (maxpacketlength > atoi(thiskey.c_str())) {
 
 			maxpacketlength = atoi(thiskey.c_str()) ;
@@ -109,8 +109,14 @@ public:
 		{
 		}
 
-		valid = 1;
-
+		if ( key < 0 || maxpacketlength < 0)
+		{
+			valid = 0;
+		}
+		else
+		{
+			valid = 1;
+		}
 		return 0;
 	}
 
