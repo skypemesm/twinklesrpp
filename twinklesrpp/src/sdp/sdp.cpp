@@ -818,7 +818,7 @@ void t_sdp::set_srpp_support(t_sdp_media_type media_type) {
 
 	int srpp_mps = srpp::getMaxPayloadSize();
 	snprintf(buf,15,"%d,%d",srpp_key, srpp_mps);
-	string options = "srppmap ";
+	string options = "srppmap:";
 	options.append(buf);
 
 	options.append(",YES,YES,YES,YES,DEFAULT,DEFAULT,DEFAULT,DEFAULT");

@@ -27,7 +27,7 @@ public:
 	 */
 	string get_sdp_srpp()
 	{
-		string thissdp = "a=srpp\na=SRPPMAP ";
+		string thissdp = "a=srpp\na=srppmap:";
 		thissdp.append(options);
 
 		return thissdp;
