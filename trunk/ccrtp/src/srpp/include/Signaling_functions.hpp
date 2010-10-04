@@ -144,11 +144,13 @@ public:
 
 		//generate a key now.
 		int key = srpp::srpp_rand(0,65535);
-		char buf[6];
-		sprintf(buf,"%d",key);
+		int psize = srpp::get_session()->maxpacketsize;
+
+		char buf[15];
+		snprintf(buf,15,"%d,%d",key, psize);
 		string options = buf;
 
-		options.append(", YES, YES, YES,YES, DEFAULT, DEFAULT, DEFAULT");
+		options.append(", YES, YES, YES, YES, DEFAULT, DEFAULT, DEFAULT");
 		srpp::setKey(key);
 
 		// PSP YES/NO, CBP YES/NO, EBP YES/NO, VITP YES/NO, PSP_ALGO, CBP_ALGO, EBP_ALGO
@@ -185,7 +187,14 @@ public:
 		if ((hellorecvd != 1 && hellosent != 1) || helloacksent == 1)
 			return -1;
 
-		string options = "YES, YES, YES, DEFAULT, DEFAULT, DEFAULT";
+		// Add maxpacketsize
+		char buf[6];
+		int psize = srpp::get_session()->maxpacketsize;
+		snprintf(buf,6,"%d", psize);
+		string options = buf;
+
+		options.append("YES, YES, YES, DEFAULT, DEFAULT, DEFAULT");
+
 		SRPPMessage srpp_msg = srpp::create_srpp_message(options);
 		srpp_msg.srpp_header.pt = 124;
 		srpp_msg.srpp_header.srpp_signalling = 13;
@@ -250,5 +259,9 @@ public:
 
 
 
-
+	int setSignalingComplete(int a)
+	{
+		if (a <= 1)
+			signaling_complete = a;
+	}
 };

@@ -38,6 +38,8 @@ public:
 	CryptoProfile crypto_profile;
 	int sendersocket,receiversocket;
 	struct sockaddr_in sender_addr , receiver_addr;
+	int maxpacketsize;
+	bool is_srtp;
 
 	SRPPTimer * srpp_timer;
 
@@ -75,6 +77,8 @@ public:
 
 		srpp_timer = new SRPPTimer(PACKET_INTERVAL_, SILENCE_INTERVAL_);
 		crypto_profile = thisCryptoProfile;
+		maxpacketsize = MAXPAYLOADSIZE;
+		is_srtp = 0;
 	}
 
 	//Destructors
@@ -147,6 +151,12 @@ public:
 	CryptoProfile getCryptoProfile()
 	{
 		return crypto_profile;
+	}
+
+
+	int getMaxpacketsize()
+	{
+		return maxpacketsize;
 	}
 
 };

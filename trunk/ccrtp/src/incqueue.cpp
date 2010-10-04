@@ -572,6 +572,11 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 			} // end of checking if this is not a signalling message of BYE or BYEACK.
 		} //end of checking if media session still on.
 	 } // End of checking that we are still using SRPP.
+	else if (srpp::SRPP_Enabled() == 3)
+	{
+		result = NULL;
+		return result;
+	}
 
 #endif
 

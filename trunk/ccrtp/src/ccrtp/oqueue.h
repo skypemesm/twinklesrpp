@@ -44,6 +44,7 @@
 #ifdef HAVE_SRPP
 	//libSRPP stuff
 	#include "srpp/include/SRPP_functions.h"
+	#include "srpp/include/sdp_srpp.hpp"
 #endif
 
 #ifndef	CCXX_RTP_OQUEUE_H_
@@ -317,7 +318,8 @@ public:
 	/**
 	 * Start the SRPP Session
 	 */
-	void startSRPPsession(int srpp_negotiated_by_sip);
+	void startSRPPsession(int srpp_negotiated_by_sip,sdp_srpp sdpp);
+
 
 	/**
          * This is used to create a data packet and send it immediately.
