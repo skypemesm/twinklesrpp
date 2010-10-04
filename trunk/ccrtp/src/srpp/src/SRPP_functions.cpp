@@ -19,7 +19,7 @@ using namespace std;
 int lastSequenceNo = 0;
 int maxpacketsize = MAXPAYLOADSIZE;
 uint32_t srppssrc = srpp::srpp_rand(2^17,2^32);
-int rtpSequenceNo = 0;
+int rtpSequenceNo = 0, srtpSequenceNo = 0;
 int nonsrpp_message_count = 0;
 int sending_packet_now = 0;
 int max_nonsrpp_messages = 1000; // 1000 non-srpp messages can be received before we infer that srpp signaling is not possible
@@ -225,25 +225,60 @@ int signaling_by_srpp = 1;
 }
 
 	// Convert a SRTP packet to SRPP packet
-	SRPPMessage srtp_to_srpp(RTPMessage * srtp_msg){
+	SRPPMessage srtp_to_srpp(SRTPMessage * srtp_msg){
 
-		//Create a SRPPMessage
+		char * data = (char *) srtp_msg;
+		string str(data);
+
+		//Create a SRPPMessage with the data from SRTP packet
+		SRPPMessage srpp_msg = create_srpp_message(str);
+
+		srpp_msg.srpp_header.version = srtp_msg->srtp_header.version;
+		srpp_msg.srpp_header.cc = srtp_msg->srtp_header.cc;
+		srpp_msg.srpp_header.x = srtp_msg->srtp_header.x;
+		srpp_msg.srpp_header.m = srtp_msg->srtp_header.m;
+		srpp_msg.srpp_header.pt = srtp_msg->srtp_header.pt;
+		srpp_msg.srpp_header.ts = srtp_msg->srtp_header.ts;
+		srpp_msg.srpp_header.ssrc = srtp_msg->srtp_header.ssrc;
+
+		for (int i = 0; i<srtp_msg->srtp_header.cc; i++)
+			srpp_msg.srpp_header.csrc[i] = srtp_msg->srtp_header.csrc[i];
+
+		srpp_msg.srpp_header.srpp_signalling = 0;
+
+		srpp_msg.encrypted_part.dummy_flag = 0;
 
 		//Pad the SRPPMessage
+		padding_functions.pad(&srpp_msg);
+		srpp_msg.encrypted_part.pad_count = srpp_msg.encrypted_part.srpp_padding.size();
 
 		//Encrypt the message
+		encrypt_srpp(&srpp_msg);
 
 		//Return
+		return srpp_msg;
 
 	}
 
 	//Convert a SRPP packet back to SRTP
-	RTPMessage srpp_to_srtp(SRPPMessage * srpp_msg){
-		// Unpad the SRPPMessage
+	SRTPMessage srpp_to_srtp(SRPPMessage * srpp_msg){
 
-		// Create a SRTPMessage
+		//Decrypt the SRPP Message
+		decrypt_srpp(srpp_msg);
 
-		// Return
+
+		//Unpad the SRPP Message
+		SRTPMessage *srtp_msg;
+		if (padding_functions.unpad(srpp_msg) > 0 )
+		{
+			//Create a SRTPMessage with the data from SRPP packet
+			/*string data (srpp_msg->encrypted_part.original_payload.begin(),srpp_msg->encrypted_part.original_payload.end());
+			srtp_msg = create_rtp_message(data);*/
+		}
+
+
+		return *srtp_msg;
+
 
 
 	}
@@ -626,5 +661,9 @@ int verifySignalling(char * buff)
 		return 0;
 	  }
 
+	  int setSignalingComplete()
+	  {
+		  return signaling_functions.setSignalingComplete(1);
+	  }
 
 } // end of namespace

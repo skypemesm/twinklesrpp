@@ -20,6 +20,7 @@ libsrpp_a_SOURCES =\
  include/SRPPMessage.hpp \
  include/SRPPSession.hpp \
  include/Signaling_functions.hpp \
- include/sdp_srpp.hpp 
+ include/sdp_srpp.hpp \
+ include/srtp.hpp 
  
  
