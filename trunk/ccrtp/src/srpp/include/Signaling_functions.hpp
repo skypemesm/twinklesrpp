@@ -263,5 +263,6 @@ public:
 	{
 		if (a <= 1)
 			signaling_complete = a;
+		return 0;
 	}
 };

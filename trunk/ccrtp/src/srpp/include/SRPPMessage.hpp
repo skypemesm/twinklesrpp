@@ -127,7 +127,7 @@ public:
 	    srpp_header1->ssrc = htonl(srpp_header.ssrc);
 
 	    for (int i = 0; i< srpp_header.cc; i++)
-	    	srpp_header1->csrc[i] = htonl(srpp_header.ssrc[i]);
+	    	srpp_header1->csrc[i] = htonl(srpp_header.csrc[i]);
 
 	    srpp_header1->defined_by_profile = htons(srpp_header.defined_by_profile);
 	    srpp_header1->extension_header = htons(srpp_header.extension_header);
@@ -191,7 +191,7 @@ public:
 	    srpp_header.ssrc = ntohl(srpp_header1->ssrc);
 
 	    for (int i = 0; i< srpp_header.cc; i++)
-	    	srpp_header.csrc[i] = ntohl(srpp_header1->ssrc[i]);
+	    	srpp_header.csrc[i] = ntohl(srpp_header1->csrc[i]);
 
 	    srpp_header.defined_by_profile = ntohs(srpp_header1->defined_by_profile);
 	    srpp_header.extension_header = ntohs(srpp_header1->extension_header);
