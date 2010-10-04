@@ -814,8 +814,10 @@ void t_sdp::set_srpp_support(t_sdp_media_type media_type, int thiskey) {
 	m->attributes.push_back(a);
 
 	char buf[15];
+	int srpp_key;
+
 	if (thiskey == -1)
-		int srpp_key = srpp::srpp_rand(1,65535);
+		srpp_key = srpp::srpp_rand(1,65535);
 	else
 		srpp_key = thiskey;
 
