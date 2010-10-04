@@ -395,29 +395,31 @@ audio_tx.o: audio_tx.cpp /usr/include/assert.h /usr/include/features.h \
  /usr/local/include/ccrtp/crypto/AesSrtp.h \
  /usr/local/include/ccrtp/sources.h /usr/local/include/ccrtp/rtcppkt.h \
  /usr/local/include/ccrtp/oqueue.h \
- /usr/local/include/ccrtp/srpp/include/SRPP_functions.h \
- /usr/local/include/ccrtp/srpp/include/SRPPMessage.hpp \
- /usr/local/include/ccrtp/srpp/include/rtp.hpp \
- /usr/local/include/ccrtp/srpp/include/CryptoProfile.hpp \
- /usr/local/include/ccrtp/srpp/include/Padding_functions.h \
- /usr/local/include/ccrtp/srpp/include/Padding_Algorithms.h \
+ /usr/local/include/srpp/include/SRPP_functions.h \
+ /usr/local/include/srpp/include/SRPPMessage.hpp \
+ /usr/local/include/srpp/include/rtp.hpp \
+ /usr/local/include/srpp/include/CryptoProfile.hpp \
+ /usr/local/include/srpp/include/Padding_functions.h \
+ /usr/local/include/srpp/include/Padding_Algorithms.h \
+ /usr/local/include/srpp/include/sdp_srpp.hpp \
+ /usr/local/include/srpp/include/sdp_srpp.hpp \
  /usr/local/include/ccrtp/channel.h /usr/include/sys/ioctl.h \
  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
  /usr/include/asm-generic/ioctls.h /usr/include/linux/ioctl.h \
  /usr/include/asm/ioctl.h /usr/include/asm-generic/ioctl.h \
  /usr/include/bits/ioctl-types.h /usr/include/sys/ttydefaults.h \
- /usr/local/include/ccrtp/srpp/include/SRPPSession.hpp \
+ /usr/local/include/srpp/include/SRPPSession.hpp \
  /usr/include/c++/4.4/csignal \
- /usr/local/include/ccrtp/srpp/include/srpp_timer.h \
- /usr/local/include/ccrtp/srpp/include/CryptoProfile.hpp \
- rtp_telephone_event.h ../../src/log.h ../../src/threads/sema.h \
- ../../src/threads/thread.h ../../src/phone.h ../../src/auth.h \
- ../../src/parser/credentials.h ../../src/parser/request.h \
- ../../src/parser/response.h ../../src/parser/sip_message.h \
- ../../src/call_history.h ../../src/parser/response.h \
- ../../src/utils/record_file.h ../../src/translator.h ../../src/util.h \
- ../../src/utils/record_file.hpp ../../src/dialog.h \
- /usr/include/c++/4.4/set /usr/include/c++/4.4/bits/stl_set.h \
+ /usr/local/include/srpp/include/srpp_timer.h \
+ /usr/local/include/srpp/include/CryptoProfile.hpp rtp_telephone_event.h \
+ ../../src/log.h ../../src/threads/sema.h ../../src/threads/thread.h \
+ ../../src/phone.h ../../src/auth.h ../../src/parser/credentials.h \
+ ../../src/parser/request.h ../../src/parser/response.h \
+ ../../src/parser/sip_message.h ../../src/call_history.h \
+ ../../src/parser/response.h ../../src/utils/record_file.h \
+ ../../src/translator.h ../../src/util.h ../../src/utils/record_file.hpp \
+ ../../src/dialog.h /usr/include/c++/4.4/set \
+ /usr/include/c++/4.4/bits/stl_set.h \
  /usr/include/c++/4.4/bits/stl_multiset.h ../../src/abstract_dialog.h \
  ../../src/client_request.h ../../src/redirect.h ../../src/user.h \
  ../../src/parser/hdr_contact.h ../../src/transaction_layer.h \
@@ -1565,17 +1567,21 @@ twinkle_rtp_session.h:
 
 /usr/local/include/ccrtp/oqueue.h:
 
-/usr/local/include/ccrtp/srpp/include/SRPP_functions.h:
+/usr/local/include/srpp/include/SRPP_functions.h:
 
-/usr/local/include/ccrtp/srpp/include/SRPPMessage.hpp:
+/usr/local/include/srpp/include/SRPPMessage.hpp:
 
-/usr/local/include/ccrtp/srpp/include/rtp.hpp:
+/usr/local/include/srpp/include/rtp.hpp:
 
-/usr/local/include/ccrtp/srpp/include/CryptoProfile.hpp:
+/usr/local/include/srpp/include/CryptoProfile.hpp:
 
-/usr/local/include/ccrtp/srpp/include/Padding_functions.h:
+/usr/local/include/srpp/include/Padding_functions.h:
 
-/usr/local/include/ccrtp/srpp/include/Padding_Algorithms.h:
+/usr/local/include/srpp/include/Padding_Algorithms.h:
+
+/usr/local/include/srpp/include/sdp_srpp.hpp:
+
+/usr/local/include/srpp/include/sdp_srpp.hpp:
 
 /usr/local/include/ccrtp/channel.h:
 
@@ -1597,13 +1603,13 @@ twinkle_rtp_session.h:
 
 /usr/include/sys/ttydefaults.h:
 
-/usr/local/include/ccrtp/srpp/include/SRPPSession.hpp:
+/usr/local/include/srpp/include/SRPPSession.hpp:
 
 /usr/include/c++/4.4/csignal:
 
-/usr/local/include/ccrtp/srpp/include/srpp_timer.h:
+/usr/local/include/srpp/include/srpp_timer.h:
 
-/usr/local/include/ccrtp/srpp/include/CryptoProfile.hpp:
+/usr/local/include/srpp/include/CryptoProfile.hpp:
 
 rtp_telephone_event.h:
 

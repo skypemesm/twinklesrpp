@@ -135,7 +135,14 @@ sdp.o: sdp.cpp /usr/include/c++/4.4/algorithm \
  /usr/include/c++/4.4/bits/stl_vector.h \
  /usr/include/c++/4.4/bits/stl_bvector.h \
  /usr/include/c++/4.4/bits/vector.tcc ../../src/parser/hdr_warning.h \
- ../../src/parser/parameter.h ../../src/audits/memman.h
+ ../../src/parser/parameter.h ../../src/audits/memman.h \
+ /usr/local/include/srpp/include/SRPP_functions.h \
+ /usr/local/include/srpp/include/SRPPMessage.hpp \
+ /usr/include/c++/4.4/cstdio /usr/local/include/srpp/include/rtp.hpp \
+ /usr/local/include/srpp/include/CryptoProfile.hpp \
+ /usr/local/include/srpp/include/Padding_functions.h \
+ /usr/local/include/srpp/include/Padding_Algorithms.h \
+ /usr/local/include/srpp/include/sdp_srpp.hpp /usr/include/c++/4.4/ctime
 
 /usr/include/c++/4.4/algorithm:
 
@@ -580,3 +587,21 @@ sdp.h:
 ../../src/parser/parameter.h:
 
 ../../src/audits/memman.h:
+
+/usr/local/include/srpp/include/SRPP_functions.h:
+
+/usr/local/include/srpp/include/SRPPMessage.hpp:
+
+/usr/include/c++/4.4/cstdio:
+
+/usr/local/include/srpp/include/rtp.hpp:
+
+/usr/local/include/srpp/include/CryptoProfile.hpp:
+
+/usr/local/include/srpp/include/Padding_functions.h:
+
+/usr/local/include/srpp/include/Padding_Algorithms.h:
+
+/usr/local/include/srpp/include/sdp_srpp.hpp:
+
+/usr/include/c++/4.4/ctime:
