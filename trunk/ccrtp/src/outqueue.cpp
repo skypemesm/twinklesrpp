@@ -593,7 +593,7 @@ void OutgoingDataQueue::setSRPPSockets(int sender_sock,int receiver_sock,int sen
 		//set the sockets etc in the session
 
 		srpp::get_session()->set_sockets(sender_sock,receiver_sock,sender_addr,receiver_addr);
-
+		std::cout << "Saswat: I set the sockets\n";
 	}
 #endif
 }
@@ -602,6 +602,7 @@ void OutgoingDataQueue::setSRPPSockets(int sender_sock,int receiver_sock,int sen
 void OutgoingDataQueue::startSRPPsession(int srpp_negotiated_by_sip,sdp_srpp sdpp)
 {
 #ifdef HAVE_SRPP
+	std::cout << "Saswat: beforeStat" << srpp::SRPP_Enabled() << endl;
 	if (srpp::SRPP_Enabled() == 1)
 	{
 		//SEE IF SIGNALLING IS COMPLETE THROUGH SIP

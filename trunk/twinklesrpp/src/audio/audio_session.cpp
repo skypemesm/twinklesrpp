@@ -328,9 +328,6 @@ t_audio_session::t_audio_session(t_session *_session,
 				rtp_session->getDSO()->getRecvSocket(),
 				_dst_port, _recv_port,_dst_host,_recv_host);
 
-	cout << "Saswat: SET sockets to " << rtp_session->getDSO()->getRecvSocket() <<endl;
-
-
 }
 
 t_audio_session::~t_audio_session() {

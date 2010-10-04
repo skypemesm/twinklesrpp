@@ -112,6 +112,9 @@ namespace srpp {
 	  //reset timers
 	  int resetPacketTimer();
 	  int resetSilenceTimer();
+
+	  int disable_srpp();
+	  int enable_srpp();
 }
 
 

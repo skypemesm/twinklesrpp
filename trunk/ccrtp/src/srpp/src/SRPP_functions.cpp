@@ -614,4 +614,17 @@ int verifySignalling(char * buff)
 		  return MAXPAYLOADSIZE;
 	  }
 
+	  int disable_srpp()
+	  {
+		srpp_enabled = 0;
+		return 0;
+	  }
+
+	  int enable_srpp()
+	  {
+		srpp_enabled = 1;
+		return 0;
+	  }
+
+
 } // end of namespace

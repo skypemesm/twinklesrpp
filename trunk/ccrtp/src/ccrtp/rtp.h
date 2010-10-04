@@ -448,8 +448,8 @@ namespace ost {
 
 		#ifdef HAVE_SRPP
 			//------------------------------------------Added SRPP workings here -------------------------------------------------//
-
-			if (srpp::SRPP_Enabled() == 1 || srpp::SRPP_Enabled() == 3)
+			cout << "BHA";
+			if (srpp::SRPP_Enabled() == 1 )
 			{
 				//Initialize SRPP
 				srpp::init_SRPP();
@@ -482,7 +482,8 @@ namespace ost {
 		{
 		#ifdef HAVE_SRPP
 			//------------------------------------------Added SRPP workings here -------------------------------------------------//
-			if (srpp::SRPP_Enabled() == 1 || srpp::SRPP_Enabled() == 3)
+			cout << "BHA";
+			if (srpp::SRPP_Enabled() == 1 )
 			{
 				//Initialize SRPP
 				srpp::init_SRPP();
