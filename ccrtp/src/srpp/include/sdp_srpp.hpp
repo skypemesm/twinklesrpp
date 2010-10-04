@@ -37,18 +37,26 @@ public:
 	int deactivate_srpp()
 	{
 		srpp_active = 0;
+		return 0;
 	}
 
 	/** activate srpp **/
 	int activate_srpp()
 	{
 		srpp_active = 1;
+		return 0;
 	}
 
 	int is_active()
 	{
 		return srpp_active;
 	}
+
+	int is_valid()
+	{
+		return valid;
+	}
+
 	/**
 	 * GETTER Methods to APPLY the options received so that SRPP can now start
 	 */
@@ -102,6 +110,8 @@ public:
 		}
 
 		valid = 1;
+
+		return 0;
 	}
 
 

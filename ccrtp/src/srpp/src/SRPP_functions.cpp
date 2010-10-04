@@ -90,7 +90,7 @@ int signaling_by_srpp = 1;
 		// DONE THROUGH SIP
 		signaling_by_srpp = 0;
 
-		if (sdp.isactive() == 0)
+		if (sdp.is_active() == 0)
 		{
 			srpp_enabled = 0;
 			return stop_session();
