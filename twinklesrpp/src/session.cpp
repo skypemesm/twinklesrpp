@@ -29,6 +29,7 @@
 
 #ifdef HAVE_SRPP
 	#include <srpp/include/sdp_srpp.hpp>
+	#include <srpp/include/SRPP_functions.h>
 	sdp_srpp sdpsrpp;
 #endif
 
@@ -355,11 +356,15 @@ bool t_session::process_sdp_offer(t_sdp *sdp, int &warn_code,
 		std::cout << "Saswat::"<< sdp->get_srpp_param(SDP_AUDIO)<< endl;
 		sdpsrpp.process_sdp_srpp(0);
 		sdpsrpp.activate_srpp();
+		srpp::enable_srpp();
+
 	}
 	else
 	{
 		std::cout << "Saswat:: SIP says SRPP Not Supported\n";
 		sdpsrpp.deactivate_srpp();
+		srpp::disable_srpp();
+
 	}
 #endif
 
