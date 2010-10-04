@@ -396,7 +396,7 @@ t_audio_rx::t_audio_rx(t_audio_session *_audio_session,
 	}
 #endif
 
-	cout << "Saswat: sockets are " << rtp_session->getDSO()->getRecvSocket() <<endl;
+
 }
 
 t_audio_rx::~t_audio_rx() {

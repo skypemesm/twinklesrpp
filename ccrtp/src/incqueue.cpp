@@ -482,6 +482,7 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 
 	IncomingRTPPkt* packet_this;
 
+	cout << "before receive:" << srpp::SRPP_Enabled() << "::" <<  srpp::isSignalingComplete() << endl;
 	if (srpp::SRPP_Enabled() == 1)
 	{
 
@@ -582,11 +583,13 @@ IncomingDataQueue::getData(uint32 stamp, const SyncSource* src)
 
 	IncomingRTPPktLink* pl;
 
+	cout << "HOON MAIN\n" ;
 	if ( NULL != (pl = getWaiting(stamp,src)) )
 	{
 		IncomingRTPPkt* packet = pl->getPacket();
 //		size_t len = packet->getPayloadSize();
 
+		cout << "YEA PACKET WITH SIZE " << packet->getPayloadSize()<<"\n";
 		SyncSource &src = *(pl->getSourceLink()->getSource());
 		result = new AppDataUnit(*packet,src);
 

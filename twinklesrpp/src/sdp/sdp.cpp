@@ -806,7 +806,7 @@ void t_sdp::set_zrtp_support(t_sdp_media_type media_type) {
 	m->attributes.push_back(a);
 }
 
-void t_sdp::set_srpp_support(t_sdp_media_type media_type) {
+void t_sdp::set_srpp_support(t_sdp_media_type media_type, int thiskey) {
 	t_sdp_media *m = const_cast<t_sdp_media *>(get_first_media(media_type));
 	assert(m != NULL);
 
@@ -814,7 +814,10 @@ void t_sdp::set_srpp_support(t_sdp_media_type media_type) {
 	m->attributes.push_back(a);
 
 	char buf[15];
-	int srpp_key = srpp::srpp_rand(1,65535);
+	if (thiskey == -1)
+		int srpp_key = srpp::srpp_rand(1,65535);
+	else
+		srpp_key = thiskey;
 
 	int srpp_mps = srpp::getMaxPayloadSize();
 	snprintf(buf,15,"%d,%d",srpp_key, srpp_mps);
