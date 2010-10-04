@@ -11567,7 +11567,7 @@ configure.in:22: the top level])
 m4trace:configure.in:26: -2- _m4_warn([obsolete], [The macro `AC_HELP_STRING' is obsolete.
 You should run autoupdate.], [../../lib/autoconf/general.m4:209: AC_HELP_STRING is expanded from...
 configure.in:26: the top level])
-m4trace:configure.in:29: -1- AM_INIT_AUTOMAKE([twinklenow], ["1.4.2"])
+m4trace:configure.in:29: -1- AM_INIT_AUTOMAKE([twinklesrpp], ["1.4.2"])
 m4trace:configure.in:29: -1- m4_pattern_allow([^AM_[A-Z]+FLAGS$])
 m4trace:configure.in:29: -1- AM_SET_CURRENT_AUTOMAKE_VERSION
 m4trace:configure.in:29: -1- AM_AUTOMAKE_VERSION([1.11.1])

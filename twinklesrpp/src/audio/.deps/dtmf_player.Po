@@ -391,21 +391,23 @@ dtmf_player.o: dtmf_player.cpp /usr/include/c++/4.4/cassert \
  /usr/local/include/ccrtp/crypto/AesSrtp.h \
  /usr/local/include/ccrtp/sources.h /usr/local/include/ccrtp/rtcppkt.h \
  /usr/local/include/ccrtp/oqueue.h \
- /usr/local/include/ccrtp/srpp/include/SRPP_functions.h \
- /usr/local/include/ccrtp/srpp/include/SRPPMessage.hpp \
- /usr/local/include/ccrtp/srpp/include/rtp.hpp \
- /usr/local/include/ccrtp/srpp/include/CryptoProfile.hpp \
- /usr/local/include/ccrtp/srpp/include/Padding_functions.h \
- /usr/local/include/ccrtp/srpp/include/Padding_Algorithms.h \
+ /usr/local/include/srpp/include/SRPP_functions.h \
+ /usr/local/include/srpp/include/SRPPMessage.hpp \
+ /usr/local/include/srpp/include/rtp.hpp \
+ /usr/local/include/srpp/include/CryptoProfile.hpp \
+ /usr/local/include/srpp/include/Padding_functions.h \
+ /usr/local/include/srpp/include/Padding_Algorithms.h \
+ /usr/local/include/srpp/include/sdp_srpp.hpp \
+ /usr/local/include/srpp/include/sdp_srpp.hpp \
  /usr/local/include/ccrtp/channel.h /usr/include/sys/ioctl.h \
  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
  /usr/include/asm-generic/ioctls.h /usr/include/linux/ioctl.h \
  /usr/include/asm/ioctl.h /usr/include/asm-generic/ioctl.h \
  /usr/include/bits/ioctl-types.h /usr/include/sys/ttydefaults.h \
- /usr/local/include/ccrtp/srpp/include/SRPPSession.hpp \
+ /usr/local/include/srpp/include/SRPPSession.hpp \
  /usr/include/c++/4.4/csignal \
- /usr/local/include/ccrtp/srpp/include/srpp_timer.h \
- /usr/local/include/ccrtp/srpp/include/CryptoProfile.hpp \
+ /usr/local/include/srpp/include/srpp_timer.h \
+ /usr/local/include/srpp/include/CryptoProfile.hpp \
  /usr/include/speex/speex_preprocess.h ../../src/line.h \
  ../../src/call_history.h ../../src/parser/request.h \
  ../../src/parser/response.h ../../src/parser/sip_message.h \
@@ -1556,17 +1558,21 @@ twinkle_rtp_session.h:
 
 /usr/local/include/ccrtp/oqueue.h:
 
-/usr/local/include/ccrtp/srpp/include/SRPP_functions.h:
+/usr/local/include/srpp/include/SRPP_functions.h:
 
-/usr/local/include/ccrtp/srpp/include/SRPPMessage.hpp:
+/usr/local/include/srpp/include/SRPPMessage.hpp:
 
-/usr/local/include/ccrtp/srpp/include/rtp.hpp:
+/usr/local/include/srpp/include/rtp.hpp:
 
-/usr/local/include/ccrtp/srpp/include/CryptoProfile.hpp:
+/usr/local/include/srpp/include/CryptoProfile.hpp:
 
-/usr/local/include/ccrtp/srpp/include/Padding_functions.h:
+/usr/local/include/srpp/include/Padding_functions.h:
 
-/usr/local/include/ccrtp/srpp/include/Padding_Algorithms.h:
+/usr/local/include/srpp/include/Padding_Algorithms.h:
+
+/usr/local/include/srpp/include/sdp_srpp.hpp:
+
+/usr/local/include/srpp/include/sdp_srpp.hpp:
 
 /usr/local/include/ccrtp/channel.h:
 
@@ -1588,13 +1594,13 @@ twinkle_rtp_session.h:
 
 /usr/include/sys/ttydefaults.h:
 
-/usr/local/include/ccrtp/srpp/include/SRPPSession.hpp:
+/usr/local/include/srpp/include/SRPPSession.hpp:
 
 /usr/include/c++/4.4/csignal:
 
-/usr/local/include/ccrtp/srpp/include/srpp_timer.h:
+/usr/local/include/srpp/include/srpp_timer.h:
 
-/usr/local/include/ccrtp/srpp/include/CryptoProfile.hpp:
+/usr/local/include/srpp/include/CryptoProfile.hpp:
 
 /usr/include/speex/speex_preprocess.h:
 

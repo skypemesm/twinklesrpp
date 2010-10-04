@@ -16,10 +16,10 @@
 
 
 
-pkgdatadir = $(datadir)/twinklenow
-pkgincludedir = $(includedir)/twinklenow
-pkglibdir = $(libdir)/twinklenow
-pkglibexecdir = $(libexecdir)/twinklenow
+pkgdatadir = $(datadir)/twinklesrpp
+pkgincludedir = $(includedir)/twinklesrpp
+pkglibdir = $(libdir)/twinklesrpp
+pkglibexecdir = $(libexecdir)/twinklesrpp
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
@@ -216,7 +216,7 @@ MEINPROC =
 MKDIR_P = /bin/mkdir -p
 MOC = /usr/bin/moc
 OBJEXT = o
-PACKAGE = twinklenow
+PACKAGE = twinklesrpp
 PACKAGE_BUGREPORT = 
 PACKAGE_NAME = 
 PACKAGE_STRING = 

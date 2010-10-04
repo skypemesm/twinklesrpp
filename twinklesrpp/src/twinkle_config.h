@@ -153,7 +153,7 @@
 #define KDELIBSUFF ""
 
 /* Name of package */
-#define PACKAGE "twinklenow"
+#define PACKAGE "twinklesrpp"
 
 /* Define to the address where bug reports for this package should be sent. */
 #define PACKAGE_BUGREPORT ""

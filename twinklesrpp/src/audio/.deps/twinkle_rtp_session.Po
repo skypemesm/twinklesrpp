@@ -111,29 +111,30 @@ twinkle_rtp_session.o: twinkle_rtp_session.cpp /usr/include/unistd.h \
  /usr/local/include/ccrtp/sources.h /usr/local/include/ccrtp/rtcppkt.h \
  /usr/include/c++/4.4/list /usr/include/c++/4.4/bits/stl_list.h \
  /usr/include/c++/4.4/bits/list.tcc /usr/local/include/ccrtp/oqueue.h \
- /usr/local/include/ccrtp/srpp/include/SRPP_functions.h \
- /usr/local/include/ccrtp/srpp/include/SRPPMessage.hpp \
+ /usr/local/include/srpp/include/SRPP_functions.h \
+ /usr/local/include/srpp/include/SRPPMessage.hpp \
  /usr/include/c++/4.4/vector /usr/include/c++/4.4/bits/stl_construct.h \
  /usr/include/c++/4.4/bits/stl_uninitialized.h \
  /usr/include/c++/4.4/bits/stl_vector.h \
  /usr/include/c++/4.4/bits/stl_bvector.h \
  /usr/include/c++/4.4/bits/vector.tcc \
- /usr/local/include/ccrtp/srpp/include/rtp.hpp \
- /usr/local/include/ccrtp/srpp/include/CryptoProfile.hpp \
- /usr/local/include/ccrtp/srpp/include/Padding_functions.h \
- /usr/local/include/ccrtp/srpp/include/Padding_Algorithms.h \
+ /usr/local/include/srpp/include/rtp.hpp \
+ /usr/local/include/srpp/include/CryptoProfile.hpp \
+ /usr/local/include/srpp/include/Padding_functions.h \
+ /usr/local/include/srpp/include/Padding_Algorithms.h \
+ /usr/local/include/srpp/include/sdp_srpp.hpp \
  /usr/include/c++/4.4/cstdlib /usr/include/stdlib.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
- /usr/include/bits/stdlib.h /usr/local/include/ccrtp/channel.h \
- /usr/include/sys/ioctl.h /usr/include/bits/ioctls.h \
- /usr/include/asm/ioctls.h /usr/include/asm-generic/ioctls.h \
- /usr/include/linux/ioctl.h /usr/include/asm/ioctl.h \
- /usr/include/asm-generic/ioctl.h /usr/include/bits/ioctl-types.h \
- /usr/include/sys/ttydefaults.h \
- /usr/local/include/ccrtp/srpp/include/SRPPSession.hpp \
+ /usr/include/bits/stdlib.h /usr/local/include/srpp/include/sdp_srpp.hpp \
+ /usr/local/include/ccrtp/channel.h /usr/include/sys/ioctl.h \
+ /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+ /usr/include/asm-generic/ioctls.h /usr/include/linux/ioctl.h \
+ /usr/include/asm/ioctl.h /usr/include/asm-generic/ioctl.h \
+ /usr/include/bits/ioctl-types.h /usr/include/sys/ttydefaults.h \
+ /usr/local/include/srpp/include/SRPPSession.hpp \
  /usr/include/c++/4.4/csignal \
- /usr/local/include/ccrtp/srpp/include/srpp_timer.h \
- /usr/local/include/ccrtp/srpp/include/CryptoProfile.hpp ../../src/log.h \
+ /usr/local/include/srpp/include/srpp_timer.h \
+ /usr/local/include/srpp/include/CryptoProfile.hpp ../../src/log.h \
  ../../src/threads/mutex.h /usr/include/errno.h /usr/include/bits/errno.h \
  /usr/include/linux/errno.h /usr/include/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
@@ -578,9 +579,9 @@ twinkle_rtp_session.h:
 
 /usr/local/include/ccrtp/oqueue.h:
 
-/usr/local/include/ccrtp/srpp/include/SRPP_functions.h:
+/usr/local/include/srpp/include/SRPP_functions.h:
 
-/usr/local/include/ccrtp/srpp/include/SRPPMessage.hpp:
+/usr/local/include/srpp/include/SRPPMessage.hpp:
 
 /usr/include/c++/4.4/vector:
 
@@ -594,13 +595,15 @@ twinkle_rtp_session.h:
 
 /usr/include/c++/4.4/bits/vector.tcc:
 
-/usr/local/include/ccrtp/srpp/include/rtp.hpp:
+/usr/local/include/srpp/include/rtp.hpp:
 
-/usr/local/include/ccrtp/srpp/include/CryptoProfile.hpp:
+/usr/local/include/srpp/include/CryptoProfile.hpp:
 
-/usr/local/include/ccrtp/srpp/include/Padding_functions.h:
+/usr/local/include/srpp/include/Padding_functions.h:
 
-/usr/local/include/ccrtp/srpp/include/Padding_Algorithms.h:
+/usr/local/include/srpp/include/Padding_Algorithms.h:
+
+/usr/local/include/srpp/include/sdp_srpp.hpp:
 
 /usr/include/c++/4.4/cstdlib:
 
@@ -611,6 +614,8 @@ twinkle_rtp_session.h:
 /usr/include/bits/waitstatus.h:
 
 /usr/include/bits/stdlib.h:
+
+/usr/local/include/srpp/include/sdp_srpp.hpp:
 
 /usr/local/include/ccrtp/channel.h:
 
@@ -632,13 +637,13 @@ twinkle_rtp_session.h:
 
 /usr/include/sys/ttydefaults.h:
 
-/usr/local/include/ccrtp/srpp/include/SRPPSession.hpp:
+/usr/local/include/srpp/include/SRPPSession.hpp:
 
 /usr/include/c++/4.4/csignal:
 
-/usr/local/include/ccrtp/srpp/include/srpp_timer.h:
+/usr/local/include/srpp/include/srpp_timer.h:
 
-/usr/local/include/ccrtp/srpp/include/CryptoProfile.hpp:
+/usr/local/include/srpp/include/CryptoProfile.hpp:
 
 ../../src/log.h:
 

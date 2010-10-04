@@ -1,24 +1,23 @@
-/* A Bison parser, made by GNU Bison 2.3.  */
+
+/* A Bison parser, made by GNU Bison 2.4.1.  */
 
 /* Skeleton implementation for Bison's Yacc-like parsers in C
-
-   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+   
+      Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
    Free Software Foundation, Inc.
-
-   This program is free software; you can redistribute it and/or modify
+   
+   This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2, or (at your option)
-   any later version.
-
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+   
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-
+   
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor,
-   Boston, MA 02110-1301, USA.  */
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -29,7 +28,7 @@
    special exception, which will cause the skeleton and the resulting
    Bison output files to be licensed under the GNU General Public
    License without this special exception.
-
+   
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
@@ -47,7 +46,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "2.3"
+#define YYBISON_VERSION "2.4.1"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -55,9 +54,59 @@
 /* Pure parsers.  */
 #define YYPURE 0
 
+/* Push parsers.  */
+#define YYPUSH 0
+
+/* Pull parsers.  */
+#define YYPULL 1
+
 /* Using locations.  */
 #define YYLSP_NEEDED 0
 
+
+
+/* Copy the first part of user declarations.  */
+
+/* Line 189 of yacc.c  */
+#line 19 "parser.yxx"
+
+#include <cstdio>
+#include <cstdlib>
+#include <string>
+#include "media_type.h"
+#include "parameter.h"
+#include "parse_ctrl.h"
+#include "request.h"
+#include "response.h"
+#include "util.h"
+#include "audits/memman.h"
+
+using namespace std;
+
+extern int yylex(void);
+void yyerror(const char *s);
+
+
+/* Line 189 of yacc.c  */
+#line 92 "parser.cxx"
+
+/* Enabling traces.  */
+#ifndef YYDEBUG
+# define YYDEBUG 0
+#endif
+
+/* Enabling verbose error messages.  */
+#ifdef YYERROR_VERBOSE
+# undef YYERROR_VERBOSE
+# define YYERROR_VERBOSE 1
+#else
+# define YYERROR_VERBOSE 0
+#endif
+
+/* Enabling the token table.  */
+#ifndef YYTOKEN_TABLE
+# define YYTOKEN_TABLE 0
+#endif
 
 
 /* Tokens.  */
@@ -239,48 +288,13 @@
 
 
 
-/* Copy the first part of user declarations.  */
-#line 19 "parser.yxx"
-
-#include <cstdio>
-#include <cstdlib>
-#include <string>
-#include "media_type.h"
-#include "parameter.h"
-#include "parse_ctrl.h"
-#include "request.h"
-#include "response.h"
-#include "util.h"
-#include "audits/memman.h"
-
-using namespace std;
-
-extern int yylex(void);
-void yyerror(const char *s);
-
-
-/* Enabling traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 0
-#endif
-
-/* Enabling verbose error messages.  */
-#ifdef YYERROR_VERBOSE
-# undef YYERROR_VERBOSE
-# define YYERROR_VERBOSE 1
-#else
-# define YYERROR_VERBOSE 0
-#endif
-
-/* Enabling the token table.  */
-#ifndef YYTOKEN_TABLE
-# define YYTOKEN_TABLE 0
-#endif
-
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 49 "parser.yxx"
 {
+
+/* Line 214 of yacc.c  */
+#line 49 "parser.yxx"
+
 	int			yyt_int;
 	ulong			yyt_ulong;
 	float			yyt_float;
@@ -304,22 +318,23 @@ typedef union YYSTYPE
 	t_credentials		*yyt_credentials;
 	t_digest_challenge	*yyt_dig_chlg;
 	t_challenge		*yyt_challenge;
-}
-/* Line 193 of yacc.c.  */
-#line 310 "parser.cxx"
-	YYSTYPE;
+
+
+
+/* Line 214 of yacc.c  */
+#line 326 "parser.cxx"
+} YYSTYPE;
+# define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
-# define YYSTYPE_IS_TRIVIAL 1
 #endif
-
 
 
 /* Copy the second part of user declarations.  */
 
 
-/* Line 216 of yacc.c.  */
-#line 323 "parser.cxx"
+/* Line 264 of yacc.c  */
+#line 338 "parser.cxx"
 
 #ifdef short
 # undef short
@@ -394,14 +409,14 @@ typedef short int yytype_int16;
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static int
-YYID (int i)
+YYID (int yyi)
 #else
 static int
-YYID (i)
-    int i;
+YYID (yyi)
+    int yyi;
 #endif
 {
-  return i;
+  return yyi;
 }
 #endif
 
@@ -482,9 +497,9 @@ void free (void *); /* INFRINGES ON USER NAME SPACE */
 /* A type that is properly aligned for any stack member.  */
 union yyalloc
 {
-  yytype_int16 yyss;
-  YYSTYPE yyvs;
-  };
+  yytype_int16 yyss_alloc;
+  YYSTYPE yyvs_alloc;
+};
 
 /* The size of the maximum gap between one aligned stack and the next.  */
 # define YYSTACK_GAP_MAXIMUM (sizeof (union yyalloc) - 1)
@@ -518,12 +533,12 @@ union yyalloc
    elements in the stack, and YYPTR gives the new location of the
    stack.  Advance YYPTR to a properly aligned location for the next
    stack.  */
-# define YYSTACK_RELOCATE(Stack)					\
+# define YYSTACK_RELOCATE(Stack_alloc, Stack)				\
     do									\
       {									\
 	YYSIZE_T yynewbytes;						\
-	YYCOPY (&yyptr->Stack, Stack, yysize);				\
-	Stack = &yyptr->Stack;						\
+	YYCOPY (&yyptr->Stack_alloc, Stack, yysize);			\
+	Stack = &yyptr->Stack_alloc;					\
 	yynewbytes = yystacksize * sizeof (*Stack) + YYSTACK_GAP_MAXIMUM; \
 	yyptr += yynewbytes / sizeof (*yyptr);				\
       }									\
@@ -861,9 +876,9 @@ static const char *const yytname[] =
   "T_HDR_VIA", "T_HDR_WARNING", "T_HDR_WWW_AUTHENTICATE", "T_HDR_UNKNOWN",
   "T_CRLF", "T_ERROR", "T_NULL", "'/'", "':'", "','", "';'", "'='", "'<'",
   "'>'", "'@'", "'('", "')'", "'.'", "'['", "']'", "$accept",
-  "sip_message", "@1", "sip_message2", "request", "request_line", "@2",
-  "@3", "sip_version", "@4", "response", "status_line", "@5", "@6", "@7",
-  "headers", "header", "hd_accept", "hd_accept_encoding",
+  "sip_message", "$@1", "sip_message2", "request", "request_line", "$@2",
+  "$@3", "sip_version", "$@4", "response", "status_line", "$@5", "$@6",
+  "$@7", "headers", "header", "hd_accept", "hd_accept_encoding",
   "hd_accept_language", "hd_alert_info", "hd_allow", "hd_allow_events",
   "hd_authentication_info", "hd_authorization", "hd_call_id",
   "hd_call_info", "hd_contact", "hd_content_disp", "hd_content_encoding",
@@ -879,38 +894,40 @@ static const char *const yytname[] =
   "hd_sip_etag", "hd_sip_if_match", "hd_subject", "hd_subscription_state",
   "hd_supported", "hd_timestamp", "hd_to", "hd_unsupported",
   "hd_user_agent", "hd_via", "hd_warning", "hd_www_authenticate",
-  "hdr_accept", "media_range", "parameters", "parameter", "@8", "@9",
+  "hdr_accept", "media_range", "parameters", "parameter", "$@8", "$@9",
   "parameter_val", "hdr_accept_encoding", "content_coding", "q_factor",
-  "hdr_accept_language", "@10", "@11", "language", "@12", "hdr_alert_info",
-  "alert_param", "@13", "@14", "hdr_allow", "hdr_call_id", "@15", "@16",
-  "call_id", "hdr_call_info", "info_param", "@17", "@18", "hdr_contact",
-  "@19", "@20", "contacts", "contact_param", "contact_addr", "@21", "@22",
-  "@23", "@24", "@25", "display_name", "hdr_content_disp",
-  "hdr_content_encoding", "hdr_content_language", "@26", "@27",
-  "hdr_content_length", "@28", "@29", "hdr_content_type", "hdr_cseq",
-  "@30", "@31", "hdr_date", "@32", "@33", "hdr_error_info", "error_param",
-  "@34", "@35", "hdr_expires", "@36", "@37", "hdr_from", "@38",
-  "from_addr", "@39", "@40", "@41", "hdr_in_reply_to", "@42", "@43", "@44",
-  "@45", "hdr_max_forwards", "@46", "@47", "hdr_min_expires", "@48", "@49",
-  "hdr_mime_version", "hdr_organization", "@50", "@51",
-  "hdr_p_asserted_identity", "@52", "hdr_p_preferred_identity", "@53",
+  "hdr_accept_language", "$@10", "$@11", "language", "$@12",
+  "hdr_alert_info", "alert_param", "$@13", "$@14", "hdr_allow",
+  "hdr_call_id", "$@15", "$@16", "call_id", "hdr_call_info", "info_param",
+  "$@17", "$@18", "hdr_contact", "$@19", "$@20", "contacts",
+  "contact_param", "contact_addr", "$@21", "$@22", "$@23", "$@24", "$@25",
+  "display_name", "hdr_content_disp", "hdr_content_encoding",
+  "hdr_content_language", "$@26", "$@27", "hdr_content_length", "$@28",
+  "$@29", "hdr_content_type", "hdr_cseq", "$@30", "$@31", "hdr_date",
+  "$@32", "$@33", "hdr_error_info", "error_param", "$@34", "$@35",
+  "hdr_expires", "$@36", "$@37", "hdr_from", "$@38", "from_addr", "$@39",
+  "$@40", "$@41", "hdr_in_reply_to", "$@42", "$@43", "$@44", "$@45",
+  "hdr_max_forwards", "$@46", "$@47", "hdr_min_expires", "$@48", "$@49",
+  "hdr_mime_version", "hdr_organization", "$@50", "$@51",
+  "hdr_p_asserted_identity", "$@52", "hdr_p_preferred_identity", "$@53",
   "hdr_priority", "hdr_privacy", "hdr_proxy_require", "hdr_record_route",
-  "rec_route", "@54", "@55", "hdr_service_route", "hdr_replaces", "@56",
-  "@57", "hdr_reply_to", "@58", "hdr_require", "hdr_retry_after", "@59",
-  "@60", "comment", "@61", "@62", "hdr_route", "hdr_server", "server",
-  "hdr_subject", "@63", "@64", "hdr_supported", "hdr_timestamp", "@65",
-  "hdr_timestamp1", "timestamp", "delay", "hdr_to", "@66",
+  "rec_route", "$@54", "$@55", "hdr_service_route", "hdr_replaces", "$@56",
+  "$@57", "hdr_reply_to", "$@58", "hdr_require", "hdr_retry_after", "$@59",
+  "$@60", "comment", "$@61", "$@62", "hdr_route", "hdr_server", "server",
+  "hdr_subject", "$@63", "$@64", "hdr_supported", "hdr_timestamp", "$@65",
+  "hdr_timestamp1", "timestamp", "delay", "hdr_to", "$@66",
   "hdr_unsupported", "hdr_user_agent", "hdr_via", "via_parm",
-  "sent_protocol", "host", "@67", "@68", "@69", "@70", "ipv6reference",
-  "@71", "@72", "hdr_warning", "warning", "@73", "@74", "hdr_unknown",
-  "@75", "@76", "ainfo", "hdr_authentication_info", "digest_response",
-  "auth_params", "credentials", "@77", "@78", "hdr_authorization", "@79",
-  "digest_challenge", "challenge", "@80", "@81", "hdr_proxy_authenticate",
-  "@82", "hdr_proxy_authorization", "@83", "hdr_www_authenticate", "@84",
-  "hdr_rseq", "@85", "@86", "hdr_rack", "@87", "@88", "hdr_event",
-  "hdr_allow_events", "hdr_subscription_state", "hdr_refer_to", "@89",
-  "hdr_referred_by", "@90", "hdr_refer_sub", "hdr_sip_etag",
-  "hdr_sip_if_match", "hdr_request_disposition", 0
+  "sent_protocol", "host", "$@67", "$@68", "$@69", "$@70", "ipv6reference",
+  "$@71", "$@72", "hdr_warning", "warning", "$@73", "$@74", "hdr_unknown",
+  "$@75", "$@76", "ainfo", "hdr_authentication_info", "digest_response",
+  "auth_params", "credentials", "$@77", "$@78", "hdr_authorization",
+  "$@79", "digest_challenge", "challenge", "$@80", "$@81",
+  "hdr_proxy_authenticate", "$@82", "hdr_proxy_authorization", "$@83",
+  "hdr_www_authenticate", "$@84", "hdr_rseq", "$@85", "$@86", "hdr_rack",
+  "$@87", "$@88", "hdr_event", "hdr_allow_events",
+  "hdr_subscription_state", "hdr_refer_to", "$@89", "hdr_referred_by",
+  "$@90", "hdr_refer_sub", "hdr_sip_etag", "hdr_sip_if_match",
+  "hdr_request_disposition", 0
 };
 #endif
 
@@ -1695,17 +1712,20 @@ yy_symbol_print (yyoutput, yytype, yyvaluep)
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yy_stack_print (yytype_int16 *bottom, yytype_int16 *top)
+yy_stack_print (yytype_int16 *yybottom, yytype_int16 *yytop)
 #else
 static void
-yy_stack_print (bottom, top)
-    yytype_int16 *bottom;
-    yytype_int16 *top;
+yy_stack_print (yybottom, yytop)
+    yytype_int16 *yybottom;
+    yytype_int16 *yytop;
 #endif
 {
   YYFPRINTF (stderr, "Stack now");
-  for (; bottom <= top; ++bottom)
-    YYFPRINTF (stderr, " %d", *bottom);
+  for (; yybottom <= yytop; yybottom++)
+    {
+      int yybot = *yybottom;
+      YYFPRINTF (stderr, " %d", yybot);
+    }
   YYFPRINTF (stderr, "\n");
 }
 
@@ -1739,11 +1759,11 @@ yy_reduce_print (yyvsp, yyrule)
   /* The symbols being reduced.  */
   for (yyi = 0; yyi < yynrhs; yyi++)
     {
-      fprintf (stderr, "   $%d = ", yyi + 1);
+      YYFPRINTF (stderr, "   $%d = ", yyi + 1);
       yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],
 		       &(yyvsp[(yyi + 1) - (yynrhs)])
 		       		       );
-      fprintf (stderr, "\n");
+      YYFPRINTF (stderr, "\n");
     }
 }
 
@@ -2019,229 +2039,399 @@ yydestruct (yymsg, yytype, yyvaluep)
   switch (yytype)
     {
       case 4: /* "T_TOKEN" */
+
+/* Line 1000 of yacc.c  */
 #line 164 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2025 "parser.cxx"
+
+/* Line 1000 of yacc.c  */
+#line 2049 "parser.cxx"
 	break;
       case 5: /* "T_QSTRING" */
+
+/* Line 1000 of yacc.c  */
 #line 165 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2030 "parser.cxx"
+
+/* Line 1000 of yacc.c  */
+#line 2058 "parser.cxx"
 	break;
       case 6: /* "T_COMMENT" */
+
+/* Line 1000 of yacc.c  */
 #line 166 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2035 "parser.cxx"
+
+/* Line 1000 of yacc.c  */
+#line 2067 "parser.cxx"
 	break;
       case 7: /* "T_LINE" */
+
+/* Line 1000 of yacc.c  */
 #line 167 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2040 "parser.cxx"
+
+/* Line 1000 of yacc.c  */
+#line 2076 "parser.cxx"
 	break;
       case 8: /* "T_URI" */
+
+/* Line 1000 of yacc.c  */
 #line 168 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2045 "parser.cxx"
-	break;
-      case 10: /* "T_DISPLAY" */
-#line 169 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2050 "parser.cxx"
-	break;
-      case 11: /* "T_LANG" */
-#line 170 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2055 "parser.cxx"
-	break;
-      case 12: /* "T_WORD" */
-#line 171 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2060 "parser.cxx"
-	break;
-      case 17: /* "T_METHOD" */
-#line 172 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2065 "parser.cxx"
-	break;
-      case 19: /* "T_AUTH_OTHER" */
-#line 173 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2070 "parser.cxx"
-	break;
-      case 20: /* "T_IPV6ADDR" */
-#line 174 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2075 "parser.cxx"
-	break;
-      case 21: /* "T_PARAMVAL" */
-#line 175 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2080 "parser.cxx"
-	break;
-      case 82: /* "T_HDR_UNKNOWN" */
-#line 176 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
+
+/* Line 1000 of yacc.c  */
 #line 2085 "parser.cxx"
 	break;
-      case 107: /* "sip_version" */
-#line 239 "parser.yxx"
+      case 10: /* "T_DISPLAY" */
+
+/* Line 1000 of yacc.c  */
+#line 169 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2090 "parser.cxx"
+
+/* Line 1000 of yacc.c  */
+#line 2094 "parser.cxx"
 	break;
-      case 177: /* "media_range" */
-#line 232 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_media)); delete (yyvaluep->yyt_media); };
-#line 2095 "parser.cxx"
-	break;
-      case 178: /* "parameters" */
-#line 235 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_params)); delete (yyvaluep->yyt_params); };
-#line 2100 "parser.cxx"
-	break;
-      case 179: /* "parameter" */
-#line 233 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_param)); delete (yyvaluep->yyt_param); };
-#line 2105 "parser.cxx"
-	break;
-      case 182: /* "parameter_val" */
-#line 234 "parser.yxx"
+      case 11: /* "T_LANG" */
+
+/* Line 1000 of yacc.c  */
+#line 170 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2110 "parser.cxx"
+
+/* Line 1000 of yacc.c  */
+#line 2103 "parser.cxx"
 	break;
-      case 184: /* "content_coding" */
-#line 220 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_coding)); delete (yyvaluep->yyt_coding); };
-#line 2115 "parser.cxx"
-	break;
-      case 189: /* "language" */
-#line 231 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_language)); delete (yyvaluep->yyt_language); };
-#line 2120 "parser.cxx"
-	break;
-      case 192: /* "alert_param" */
-#line 212 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_alert_param)); delete (yyvaluep->yyt_alert_param); };
-#line 2125 "parser.cxx"
-	break;
-      case 199: /* "call_id" */
-#line 214 "parser.yxx"
+      case 12: /* "T_WORD" */
+
+/* Line 1000 of yacc.c  */
+#line 171 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
+
+/* Line 1000 of yacc.c  */
+#line 2112 "parser.cxx"
+	break;
+      case 17: /* "T_METHOD" */
+
+/* Line 1000 of yacc.c  */
+#line 172 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
+
+/* Line 1000 of yacc.c  */
+#line 2121 "parser.cxx"
+	break;
+      case 19: /* "T_AUTH_OTHER" */
+
+/* Line 1000 of yacc.c  */
+#line 173 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
+
+/* Line 1000 of yacc.c  */
 #line 2130 "parser.cxx"
 	break;
-      case 201: /* "info_param" */
-#line 230 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_info_param)); delete (yyvaluep->yyt_info_param); };
-#line 2135 "parser.cxx"
-	break;
-      case 207: /* "contacts" */
-#line 219 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_contacts)); delete (yyvaluep->yyt_contacts); };
-#line 2140 "parser.cxx"
-	break;
-      case 208: /* "contact_param" */
-#line 218 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_contact)); delete (yyvaluep->yyt_contact); };
-#line 2145 "parser.cxx"
-	break;
-      case 209: /* "contact_addr" */
-#line 217 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_contact)); delete (yyvaluep->yyt_contact); };
-#line 2150 "parser.cxx"
-	break;
-      case 215: /* "display_name" */
-#line 224 "parser.yxx"
+      case 20: /* "T_IPV6ADDR" */
+
+/* Line 1000 of yacc.c  */
+#line 174 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2155 "parser.cxx"
+
+/* Line 1000 of yacc.c  */
+#line 2139 "parser.cxx"
 	break;
-      case 232: /* "error_param" */
-#line 225 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_error_param)); delete (yyvaluep->yyt_error_param); };
-#line 2160 "parser.cxx"
-	break;
-      case 240: /* "from_addr" */
-#line 226 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_from_addr)); delete (yyvaluep->yyt_from_addr); };
-#line 2165 "parser.cxx"
-	break;
-      case 267: /* "rec_route" */
-#line 236 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_route)); delete (yyvaluep->yyt_route); };
-#line 2170 "parser.cxx"
-	break;
-      case 280: /* "comment" */
-#line 216 "parser.yxx"
+      case 21: /* "T_PARAMVAL" */
+
+/* Line 1000 of yacc.c  */
+#line 175 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
+
+/* Line 1000 of yacc.c  */
+#line 2148 "parser.cxx"
+	break;
+      case 82: /* "T_HDR_UNKNOWN" */
+
+/* Line 1000 of yacc.c  */
+#line 176 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
+
+/* Line 1000 of yacc.c  */
+#line 2157 "parser.cxx"
+	break;
+      case 107: /* "sip_version" */
+
+/* Line 1000 of yacc.c  */
+#line 239 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
+
+/* Line 1000 of yacc.c  */
+#line 2166 "parser.cxx"
+	break;
+      case 177: /* "media_range" */
+
+/* Line 1000 of yacc.c  */
+#line 232 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_media)); delete (yyvaluep->yyt_media); };
+
+/* Line 1000 of yacc.c  */
 #line 2175 "parser.cxx"
 	break;
-      case 285: /* "server" */
-#line 238 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_server)); delete (yyvaluep->yyt_server); };
-#line 2180 "parser.cxx"
-	break;
-      case 300: /* "via_parm" */
-#line 240 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_via)); delete (yyvaluep->yyt_via); };
-#line 2185 "parser.cxx"
-	break;
-      case 301: /* "sent_protocol" */
-#line 237 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_via)); delete (yyvaluep->yyt_via); };
-#line 2190 "parser.cxx"
-	break;
-      case 302: /* "host" */
-#line 228 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_via)); delete (yyvaluep->yyt_via); };
-#line 2195 "parser.cxx"
-	break;
-      case 307: /* "ipv6reference" */
-#line 229 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2200 "parser.cxx"
-	break;
-      case 311: /* "warning" */
-#line 241 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_warning)); delete (yyvaluep->yyt_warning); };
-#line 2205 "parser.cxx"
-	break;
-      case 314: /* "hdr_unknown" */
-#line 227 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
-#line 2210 "parser.cxx"
-	break;
-      case 319: /* "digest_response" */
-#line 223 "parser.yxx"
-	{ MEMMAN_DELETE((yyvaluep->yyt_dig_resp)); delete (yyvaluep->yyt_dig_resp); };
-#line 2215 "parser.cxx"
-	break;
-      case 320: /* "auth_params" */
-#line 213 "parser.yxx"
+      case 178: /* "parameters" */
+
+/* Line 1000 of yacc.c  */
+#line 235 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_params)); delete (yyvaluep->yyt_params); };
+
+/* Line 1000 of yacc.c  */
+#line 2184 "parser.cxx"
+	break;
+      case 179: /* "parameter" */
+
+/* Line 1000 of yacc.c  */
+#line 233 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_param)); delete (yyvaluep->yyt_param); };
+
+/* Line 1000 of yacc.c  */
+#line 2193 "parser.cxx"
+	break;
+      case 182: /* "parameter_val" */
+
+/* Line 1000 of yacc.c  */
+#line 234 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
+
+/* Line 1000 of yacc.c  */
+#line 2202 "parser.cxx"
+	break;
+      case 184: /* "content_coding" */
+
+/* Line 1000 of yacc.c  */
+#line 220 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_coding)); delete (yyvaluep->yyt_coding); };
+
+/* Line 1000 of yacc.c  */
+#line 2211 "parser.cxx"
+	break;
+      case 189: /* "language" */
+
+/* Line 1000 of yacc.c  */
+#line 231 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_language)); delete (yyvaluep->yyt_language); };
+
+/* Line 1000 of yacc.c  */
 #line 2220 "parser.cxx"
 	break;
+      case 192: /* "alert_param" */
+
+/* Line 1000 of yacc.c  */
+#line 212 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_alert_param)); delete (yyvaluep->yyt_alert_param); };
+
+/* Line 1000 of yacc.c  */
+#line 2229 "parser.cxx"
+	break;
+      case 199: /* "call_id" */
+
+/* Line 1000 of yacc.c  */
+#line 214 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
+
+/* Line 1000 of yacc.c  */
+#line 2238 "parser.cxx"
+	break;
+      case 201: /* "info_param" */
+
+/* Line 1000 of yacc.c  */
+#line 230 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_info_param)); delete (yyvaluep->yyt_info_param); };
+
+/* Line 1000 of yacc.c  */
+#line 2247 "parser.cxx"
+	break;
+      case 207: /* "contacts" */
+
+/* Line 1000 of yacc.c  */
+#line 219 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_contacts)); delete (yyvaluep->yyt_contacts); };
+
+/* Line 1000 of yacc.c  */
+#line 2256 "parser.cxx"
+	break;
+      case 208: /* "contact_param" */
+
+/* Line 1000 of yacc.c  */
+#line 218 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_contact)); delete (yyvaluep->yyt_contact); };
+
+/* Line 1000 of yacc.c  */
+#line 2265 "parser.cxx"
+	break;
+      case 209: /* "contact_addr" */
+
+/* Line 1000 of yacc.c  */
+#line 217 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_contact)); delete (yyvaluep->yyt_contact); };
+
+/* Line 1000 of yacc.c  */
+#line 2274 "parser.cxx"
+	break;
+      case 215: /* "display_name" */
+
+/* Line 1000 of yacc.c  */
+#line 224 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
+
+/* Line 1000 of yacc.c  */
+#line 2283 "parser.cxx"
+	break;
+      case 232: /* "error_param" */
+
+/* Line 1000 of yacc.c  */
+#line 225 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_error_param)); delete (yyvaluep->yyt_error_param); };
+
+/* Line 1000 of yacc.c  */
+#line 2292 "parser.cxx"
+	break;
+      case 240: /* "from_addr" */
+
+/* Line 1000 of yacc.c  */
+#line 226 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_from_addr)); delete (yyvaluep->yyt_from_addr); };
+
+/* Line 1000 of yacc.c  */
+#line 2301 "parser.cxx"
+	break;
+      case 267: /* "rec_route" */
+
+/* Line 1000 of yacc.c  */
+#line 236 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_route)); delete (yyvaluep->yyt_route); };
+
+/* Line 1000 of yacc.c  */
+#line 2310 "parser.cxx"
+	break;
+      case 280: /* "comment" */
+
+/* Line 1000 of yacc.c  */
+#line 216 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
+
+/* Line 1000 of yacc.c  */
+#line 2319 "parser.cxx"
+	break;
+      case 285: /* "server" */
+
+/* Line 1000 of yacc.c  */
+#line 238 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_server)); delete (yyvaluep->yyt_server); };
+
+/* Line 1000 of yacc.c  */
+#line 2328 "parser.cxx"
+	break;
+      case 300: /* "via_parm" */
+
+/* Line 1000 of yacc.c  */
+#line 240 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_via)); delete (yyvaluep->yyt_via); };
+
+/* Line 1000 of yacc.c  */
+#line 2337 "parser.cxx"
+	break;
+      case 301: /* "sent_protocol" */
+
+/* Line 1000 of yacc.c  */
+#line 237 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_via)); delete (yyvaluep->yyt_via); };
+
+/* Line 1000 of yacc.c  */
+#line 2346 "parser.cxx"
+	break;
+      case 302: /* "host" */
+
+/* Line 1000 of yacc.c  */
+#line 228 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_via)); delete (yyvaluep->yyt_via); };
+
+/* Line 1000 of yacc.c  */
+#line 2355 "parser.cxx"
+	break;
+      case 307: /* "ipv6reference" */
+
+/* Line 1000 of yacc.c  */
+#line 229 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
+
+/* Line 1000 of yacc.c  */
+#line 2364 "parser.cxx"
+	break;
+      case 311: /* "warning" */
+
+/* Line 1000 of yacc.c  */
+#line 241 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_warning)); delete (yyvaluep->yyt_warning); };
+
+/* Line 1000 of yacc.c  */
+#line 2373 "parser.cxx"
+	break;
+      case 314: /* "hdr_unknown" */
+
+/* Line 1000 of yacc.c  */
+#line 227 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_str)); delete (yyvaluep->yyt_str); };
+
+/* Line 1000 of yacc.c  */
+#line 2382 "parser.cxx"
+	break;
+      case 319: /* "digest_response" */
+
+/* Line 1000 of yacc.c  */
+#line 223 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_dig_resp)); delete (yyvaluep->yyt_dig_resp); };
+
+/* Line 1000 of yacc.c  */
+#line 2391 "parser.cxx"
+	break;
+      case 320: /* "auth_params" */
+
+/* Line 1000 of yacc.c  */
+#line 213 "parser.yxx"
+	{ MEMMAN_DELETE((yyvaluep->yyt_params)); delete (yyvaluep->yyt_params); };
+
+/* Line 1000 of yacc.c  */
+#line 2400 "parser.cxx"
+	break;
       case 321: /* "credentials" */
+
+/* Line 1000 of yacc.c  */
 #line 221 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_credentials)); delete (yyvaluep->yyt_credentials); };
-#line 2225 "parser.cxx"
+
+/* Line 1000 of yacc.c  */
+#line 2409 "parser.cxx"
 	break;
       case 326: /* "digest_challenge" */
+
+/* Line 1000 of yacc.c  */
 #line 222 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_dig_chlg)); delete (yyvaluep->yyt_dig_chlg); };
-#line 2230 "parser.cxx"
+
+/* Line 1000 of yacc.c  */
+#line 2418 "parser.cxx"
 	break;
       case 327: /* "challenge" */
+
+/* Line 1000 of yacc.c  */
 #line 215 "parser.yxx"
 	{ MEMMAN_DELETE((yyvaluep->yyt_challenge)); delete (yyvaluep->yyt_challenge); };
-#line 2235 "parser.cxx"
+
+/* Line 1000 of yacc.c  */
+#line 2427 "parser.cxx"
 	break;
 
       default:
 	break;
     }
 }
-
 
 /* Prevent warnings from -Wmissing-prototypes.  */
-
 #ifdef YYPARSE_PARAM
 #if defined __STDC__ || defined __cplusplus
 int yyparse (void *YYPARSE_PARAM);
@@ -2257,11 +2447,10 @@ int yyparse ();
 #endif /* ! YYPARSE_PARAM */
 
 
-
-/* The look-ahead symbol.  */
+/* The lookahead symbol.  */
 int yychar;
 
-/* The semantic value of the look-ahead symbol.  */
+/* The semantic value of the lookahead symbol.  */
 YYSTYPE yylval;
 
 /* Number of syntax errors so far.  */
@@ -2269,9 +2458,9 @@ int yynerrs;
 
 
 
-/*----------.
-| yyparse.  |
-`----------*/
+/*-------------------------.
+| yyparse or yypush_parse.  |
+`-------------------------*/
 
 #ifdef YYPARSE_PARAM
 #if (defined __STDC__ || defined __C99__FUNC__ \
@@ -2295,14 +2484,39 @@ yyparse ()
 #endif
 #endif
 {
-  
-  int yystate;
+
+
+    int yystate;
+    /* Number of tokens to shift before error messages enabled.  */
+    int yyerrstatus;
+
+    /* The stacks and their tools:
+       `yyss': related to states.
+       `yyvs': related to semantic values.
+
+       Refer to the stacks thru separate pointers, to allow yyoverflow
+       to reallocate them elsewhere.  */
+
+    /* The state stack.  */
+    yytype_int16 yyssa[YYINITDEPTH];
+    yytype_int16 *yyss;
+    yytype_int16 *yyssp;
+
+    /* The semantic value stack.  */
+    YYSTYPE yyvsa[YYINITDEPTH];
+    YYSTYPE *yyvs;
+    YYSTYPE *yyvsp;
+
+    YYSIZE_T yystacksize;
+
   int yyn;
   int yyresult;
-  /* Number of tokens to shift before error messages enabled.  */
-  int yyerrstatus;
-  /* Look-ahead token as an internal (translated) token number.  */
-  int yytoken = 0;
+  /* Lookahead token as an internal (translated) token number.  */
+  int yytoken;
+  /* The variables used to return semantic value and location from the
+     action routines.  */
+  YYSTYPE yyval;
+
 #if YYERROR_VERBOSE
   /* Buffer for error messages, and its allocated size.  */
   char yymsgbuf[128];
@@ -2310,51 +2524,28 @@ yyparse ()
   YYSIZE_T yymsg_alloc = sizeof yymsgbuf;
 #endif
 
-  /* Three stacks and their tools:
-     `yyss': related to states,
-     `yyvs': related to semantic values,
-     `yyls': related to locations.
-
-     Refer to the stacks thru separate pointers, to allow yyoverflow
-     to reallocate them elsewhere.  */
-
-  /* The state stack.  */
-  yytype_int16 yyssa[YYINITDEPTH];
-  yytype_int16 *yyss = yyssa;
-  yytype_int16 *yyssp;
-
-  /* The semantic value stack.  */
-  YYSTYPE yyvsa[YYINITDEPTH];
-  YYSTYPE *yyvs = yyvsa;
-  YYSTYPE *yyvsp;
-
-
-
 #define YYPOPSTACK(N)   (yyvsp -= (N), yyssp -= (N))
-
-  YYSIZE_T yystacksize = YYINITDEPTH;
-
-  /* The variables used to return semantic value and location from the
-     action routines.  */
-  YYSTYPE yyval;
-
 
   /* The number of symbols on the RHS of the reduced rule.
      Keep to zero when no symbol should be popped.  */
   int yylen = 0;
+
+  yytoken = 0;
+  yyss = yyssa;
+  yyvs = yyvsa;
+  yystacksize = YYINITDEPTH;
 
   YYDPRINTF ((stderr, "Starting parse\n"));
 
   yystate = 0;
   yyerrstatus = 0;
   yynerrs = 0;
-  yychar = YYEMPTY;		/* Cause a token to be read.  */
+  yychar = YYEMPTY; /* Cause a token to be read.  */
 
   /* Initialize stack pointers.
      Waste one element of value and location stack
      so that they stay on the same level as the state stack.
      The wasted elements are never initialized.  */
-
   yyssp = yyss;
   yyvsp = yyvs;
 
@@ -2384,7 +2575,6 @@ yyparse ()
 	YYSTYPE *yyvs1 = yyvs;
 	yytype_int16 *yyss1 = yyss;
 
-
 	/* Each stack pointer address is followed by the size of the
 	   data in use in that stack, in bytes.  This used to be a
 	   conditional around just the two extra args, but that might
@@ -2392,7 +2582,6 @@ yyparse ()
 	yyoverflow (YY_("memory exhausted"),
 		    &yyss1, yysize * sizeof (*yyssp),
 		    &yyvs1, yysize * sizeof (*yyvsp),
-
 		    &yystacksize);
 
 	yyss = yyss1;
@@ -2415,9 +2604,8 @@ yyparse ()
 	  (union yyalloc *) YYSTACK_ALLOC (YYSTACK_BYTES (yystacksize));
 	if (! yyptr)
 	  goto yyexhaustedlab;
-	YYSTACK_RELOCATE (yyss);
-	YYSTACK_RELOCATE (yyvs);
-
+	YYSTACK_RELOCATE (yyss_alloc, yyss);
+	YYSTACK_RELOCATE (yyvs_alloc, yyvs);
 #  undef YYSTACK_RELOCATE
 	if (yyss1 != yyssa)
 	  YYSTACK_FREE (yyss1);
@@ -2428,7 +2616,6 @@ yyparse ()
       yyssp = yyss + yysize - 1;
       yyvsp = yyvs + yysize - 1;
 
-
       YYDPRINTF ((stderr, "Stack size increased to %lu\n",
 		  (unsigned long int) yystacksize));
 
@@ -2438,6 +2625,9 @@ yyparse ()
 
   YYDPRINTF ((stderr, "Entering state %d\n", yystate));
 
+  if (yystate == YYFINAL)
+    YYACCEPT;
+
   goto yybackup;
 
 /*-----------.
@@ -2446,16 +2636,16 @@ yyparse ()
 yybackup:
 
   /* Do appropriate processing given the current state.  Read a
-     look-ahead token if we need one and don't already have one.  */
+     lookahead token if we need one and don't already have one.  */
 
-  /* First try to decide what to do without reference to look-ahead token.  */
+  /* First try to decide what to do without reference to lookahead token.  */
   yyn = yypact[yystate];
   if (yyn == YYPACT_NINF)
     goto yydefault;
 
-  /* Not known => get a look-ahead token if don't already have one.  */
+  /* Not known => get a lookahead token if don't already have one.  */
 
-  /* YYCHAR is either YYEMPTY or YYEOF or a valid look-ahead symbol.  */
+  /* YYCHAR is either YYEMPTY or YYEOF or a valid lookahead symbol.  */
   if (yychar == YYEMPTY)
     {
       YYDPRINTF ((stderr, "Reading a token: "));
@@ -2487,20 +2677,16 @@ yybackup:
       goto yyreduce;
     }
 
-  if (yyn == YYFINAL)
-    YYACCEPT;
-
   /* Count tokens shifted since error; after three, turn off error
      status.  */
   if (yyerrstatus)
     yyerrstatus--;
 
-  /* Shift the look-ahead token.  */
+  /* Shift the lookahead token.  */
   YY_SYMBOL_PRINT ("Shifting", yytoken, &yylval, &yylloc);
 
-  /* Discard the shifted token unless it is eof.  */
-  if (yychar != YYEOF)
-    yychar = YYEMPTY;
+  /* Discard the shifted token.  */
+  yychar = YYEMPTY;
 
   yystate = yyn;
   *++yyvsp = yylval;
@@ -2540,11 +2726,15 @@ yyreduce:
   switch (yyn)
     {
         case 2:
+
+/* Line 1455 of yacc.c  */
 #line 244 "parser.yxx"
     { CTXT_NEW; }
     break;
 
   case 6:
+
+/* Line 1455 of yacc.c  */
 #line 249 "parser.yxx"
     {
 			/* KLUDGE to work around a memory leak in bison.
@@ -2567,6 +2757,8 @@ yyreduce:
     break;
 
   case 7:
+
+/* Line 1455 of yacc.c  */
 #line 269 "parser.yxx"
     {
 		  	/* Parsing stops here. Remaining text is
@@ -2576,16 +2768,22 @@ yyreduce:
     break;
 
   case 8:
+
+/* Line 1455 of yacc.c  */
 #line 278 "parser.yxx"
     { CTXT_URI; }
     break;
 
   case 9:
+
+/* Line 1455 of yacc.c  */
 #line 278 "parser.yxx"
     { CTXT_NEW; }
     break;
 
   case 10:
+
+/* Line 1455 of yacc.c  */
 #line 279 "parser.yxx"
     {
 		  	MSG = new t_request();
@@ -2605,17 +2803,23 @@ yyreduce:
     break;
 
   case 11:
+
+/* Line 1455 of yacc.c  */
 #line 296 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 12:
+
+/* Line 1455 of yacc.c  */
 #line 296 "parser.yxx"
     {
 			(yyval.yyt_str) = (yyvsp[(4) - (4)].yyt_str); }
     break;
 
   case 13:
+
+/* Line 1455 of yacc.c  */
 #line 300 "parser.yxx"
     {
 		  	/* Parsing stops here. Remaining text is
@@ -2625,21 +2829,29 @@ yyreduce:
     break;
 
   case 14:
+
+/* Line 1455 of yacc.c  */
 #line 307 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 15:
+
+/* Line 1455 of yacc.c  */
 #line 307 "parser.yxx"
     { CTXT_LINE; }
     break;
 
   case 16:
+
+/* Line 1455 of yacc.c  */
 #line 308 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 17:
+
+/* Line 1455 of yacc.c  */
 #line 308 "parser.yxx"
     {
 			MSG = new t_response();
@@ -2652,6 +2864,8 @@ yyreduce:
     break;
 
   case 80:
+
+/* Line 1455 of yacc.c  */
 #line 382 "parser.yxx"
     {
 			MSG->add_unknown_header(*(yyvsp[(1) - (4)].yyt_str), trim(*(yyvsp[(3) - (4)].yyt_str)));
@@ -2660,471 +2874,659 @@ yyreduce:
     break;
 
   case 81:
+
+/* Line 1455 of yacc.c  */
 #line 387 "parser.yxx"
     { PARSE_ERROR("Accept"); }
     break;
 
   case 82:
+
+/* Line 1455 of yacc.c  */
 #line 389 "parser.yxx"
     { PARSE_ERROR("Accept-Encoding"); }
     break;
 
   case 83:
+
+/* Line 1455 of yacc.c  */
 #line 391 "parser.yxx"
     { PARSE_ERROR("Accept-Language"); }
     break;
 
   case 84:
+
+/* Line 1455 of yacc.c  */
 #line 393 "parser.yxx"
     { PARSE_ERROR("Alert-Info"); }
     break;
 
   case 85:
+
+/* Line 1455 of yacc.c  */
 #line 395 "parser.yxx"
     { PARSE_ERROR("Allow"); }
     break;
 
   case 86:
+
+/* Line 1455 of yacc.c  */
 #line 397 "parser.yxx"
     { PARSE_ERROR("Allow-Events"); }
     break;
 
   case 87:
+
+/* Line 1455 of yacc.c  */
 #line 399 "parser.yxx"
     { PARSE_ERROR("Authentication-Info"); }
     break;
 
   case 88:
+
+/* Line 1455 of yacc.c  */
 #line 401 "parser.yxx"
     { PARSE_ERROR("Authorization"); }
     break;
 
   case 89:
+
+/* Line 1455 of yacc.c  */
 #line 403 "parser.yxx"
     { PARSE_ERROR("Call-ID"); }
     break;
 
   case 90:
+
+/* Line 1455 of yacc.c  */
 #line 405 "parser.yxx"
     { PARSE_ERROR("Call-Info"); }
     break;
 
   case 91:
+
+/* Line 1455 of yacc.c  */
 #line 407 "parser.yxx"
     { PARSE_ERROR("Contact"); }
     break;
 
   case 92:
+
+/* Line 1455 of yacc.c  */
 #line 409 "parser.yxx"
     { PARSE_ERROR("Content-Disposition"); }
     break;
 
   case 93:
+
+/* Line 1455 of yacc.c  */
 #line 411 "parser.yxx"
     { PARSE_ERROR("Content-Encoding"); }
     break;
 
   case 94:
+
+/* Line 1455 of yacc.c  */
 #line 413 "parser.yxx"
     { PARSE_ERROR("Content-Language"); }
     break;
 
   case 95:
+
+/* Line 1455 of yacc.c  */
 #line 415 "parser.yxx"
     { PARSE_ERROR("Content-Length"); }
     break;
 
   case 96:
+
+/* Line 1455 of yacc.c  */
 #line 417 "parser.yxx"
     { PARSE_ERROR("Content-Type"); }
     break;
 
   case 97:
+
+/* Line 1455 of yacc.c  */
 #line 419 "parser.yxx"
     { PARSE_ERROR("CSeq"); }
     break;
 
   case 98:
+
+/* Line 1455 of yacc.c  */
 #line 421 "parser.yxx"
     { PARSE_ERROR("Date"); }
     break;
 
   case 99:
+
+/* Line 1455 of yacc.c  */
 #line 423 "parser.yxx"
     { PARSE_ERROR("Error-Info"); }
     break;
 
   case 100:
+
+/* Line 1455 of yacc.c  */
 #line 425 "parser.yxx"
     { PARSE_ERROR("Event"); }
     break;
 
   case 101:
+
+/* Line 1455 of yacc.c  */
 #line 427 "parser.yxx"
     { PARSE_ERROR("Expires"); }
     break;
 
   case 102:
+
+/* Line 1455 of yacc.c  */
 #line 429 "parser.yxx"
     { PARSE_ERROR("From"); }
     break;
 
   case 103:
+
+/* Line 1455 of yacc.c  */
 #line 431 "parser.yxx"
     { PARSE_ERROR("In-Reply-To"); }
     break;
 
   case 104:
+
+/* Line 1455 of yacc.c  */
 #line 433 "parser.yxx"
     { PARSE_ERROR("Max-Forwards"); }
     break;
 
   case 105:
+
+/* Line 1455 of yacc.c  */
 #line 435 "parser.yxx"
     { PARSE_ERROR("Min-Expires"); }
     break;
 
   case 106:
+
+/* Line 1455 of yacc.c  */
 #line 437 "parser.yxx"
     { PARSE_ERROR("MIME-Version"); }
     break;
 
   case 107:
+
+/* Line 1455 of yacc.c  */
 #line 439 "parser.yxx"
     { PARSE_ERROR("Organization"); }
     break;
 
   case 108:
+
+/* Line 1455 of yacc.c  */
 #line 441 "parser.yxx"
     { PARSE_ERROR("P-Asserted-Identity"); }
     break;
 
   case 109:
+
+/* Line 1455 of yacc.c  */
 #line 443 "parser.yxx"
     { PARSE_ERROR("P-Preferred-Identity"); }
     break;
 
   case 110:
+
+/* Line 1455 of yacc.c  */
 #line 445 "parser.yxx"
     { PARSE_ERROR("Priority"); }
     break;
 
   case 111:
+
+/* Line 1455 of yacc.c  */
 #line 447 "parser.yxx"
     { PARSE_ERROR("Privacy"); }
     break;
 
   case 112:
+
+/* Line 1455 of yacc.c  */
 #line 449 "parser.yxx"
     { PARSE_ERROR("Proxy-Authenticate"); }
     break;
 
   case 113:
+
+/* Line 1455 of yacc.c  */
 #line 451 "parser.yxx"
     { PARSE_ERROR("Proxy-Authorization"); }
     break;
 
   case 114:
+
+/* Line 1455 of yacc.c  */
 #line 453 "parser.yxx"
     { PARSE_ERROR("Proxy-Require"); }
     break;
 
   case 115:
+
+/* Line 1455 of yacc.c  */
 #line 455 "parser.yxx"
     { PARSE_ERROR("RAck"); }
     break;
 
   case 116:
+
+/* Line 1455 of yacc.c  */
 #line 457 "parser.yxx"
     { PARSE_ERROR("Record-Route"); }
     break;
 
   case 117:
+
+/* Line 1455 of yacc.c  */
 #line 459 "parser.yxx"
     { PARSE_ERROR("Refer-Sub"); }
     break;
 
   case 118:
+
+/* Line 1455 of yacc.c  */
 #line 461 "parser.yxx"
     { PARSE_ERROR("Refer-To"); }
     break;
 
   case 119:
+
+/* Line 1455 of yacc.c  */
 #line 463 "parser.yxx"
     { PARSE_ERROR("Referred-By"); }
     break;
 
   case 120:
+
+/* Line 1455 of yacc.c  */
 #line 465 "parser.yxx"
     { PARSE_ERROR("Replaces"); }
     break;
 
   case 121:
+
+/* Line 1455 of yacc.c  */
 #line 467 "parser.yxx"
     { PARSE_ERROR("Reply-To"); }
     break;
 
   case 122:
+
+/* Line 1455 of yacc.c  */
 #line 469 "parser.yxx"
     { PARSE_ERROR("Require"); }
     break;
 
   case 123:
+
+/* Line 1455 of yacc.c  */
 #line 471 "parser.yxx"
     { PARSE_ERROR("Request-Disposition"); }
     break;
 
   case 124:
+
+/* Line 1455 of yacc.c  */
 #line 473 "parser.yxx"
     { PARSE_ERROR("Retry-After"); }
     break;
 
   case 125:
+
+/* Line 1455 of yacc.c  */
 #line 475 "parser.yxx"
     { PARSE_ERROR("Route"); }
     break;
 
   case 126:
+
+/* Line 1455 of yacc.c  */
 #line 477 "parser.yxx"
     { PARSE_ERROR("RSeq"); }
     break;
 
   case 127:
+
+/* Line 1455 of yacc.c  */
 #line 479 "parser.yxx"
     { PARSE_ERROR("Server"); }
     break;
 
   case 128:
+
+/* Line 1455 of yacc.c  */
 #line 481 "parser.yxx"
     { PARSE_ERROR("Service-Route"); }
     break;
 
   case 129:
+
+/* Line 1455 of yacc.c  */
 #line 483 "parser.yxx"
     { PARSE_ERROR("SIP-ETag"); }
     break;
 
   case 130:
+
+/* Line 1455 of yacc.c  */
 #line 485 "parser.yxx"
     { PARSE_ERROR("SIP-If-Match"); }
     break;
 
   case 131:
+
+/* Line 1455 of yacc.c  */
 #line 487 "parser.yxx"
     { PARSE_ERROR("Subject"); }
     break;
 
   case 132:
+
+/* Line 1455 of yacc.c  */
 #line 489 "parser.yxx"
     { PARSE_ERROR("Subscription-State"); }
     break;
 
   case 133:
+
+/* Line 1455 of yacc.c  */
 #line 491 "parser.yxx"
     { PARSE_ERROR("Supported"); }
     break;
 
   case 134:
+
+/* Line 1455 of yacc.c  */
 #line 493 "parser.yxx"
     { PARSE_ERROR("Timestamp"); }
     break;
 
   case 135:
+
+/* Line 1455 of yacc.c  */
 #line 495 "parser.yxx"
     { PARSE_ERROR("To"); }
     break;
 
   case 136:
+
+/* Line 1455 of yacc.c  */
 #line 497 "parser.yxx"
     { PARSE_ERROR("Unsupported"); }
     break;
 
   case 137:
+
+/* Line 1455 of yacc.c  */
 #line 499 "parser.yxx"
     { PARSE_ERROR("User-Agent"); }
     break;
 
   case 138:
+
+/* Line 1455 of yacc.c  */
 #line 501 "parser.yxx"
     { PARSE_ERROR("Via"); }
     break;
 
   case 139:
+
+/* Line 1455 of yacc.c  */
 #line 503 "parser.yxx"
     { PARSE_ERROR("Warning"); }
     break;
 
   case 140:
+
+/* Line 1455 of yacc.c  */
 #line 505 "parser.yxx"
     { PARSE_ERROR("WWW-Authenticate"); }
     break;
 
   case 143:
+
+/* Line 1455 of yacc.c  */
 #line 521 "parser.yxx"
     { CTXT_LANG; }
     break;
 
   case 148:
+
+/* Line 1455 of yacc.c  */
 #line 531 "parser.yxx"
     { CTXT_AUTH_SCHEME; }
     break;
 
   case 149:
+
+/* Line 1455 of yacc.c  */
 #line 533 "parser.yxx"
     { CTXT_WORD; }
     break;
 
   case 151:
+
+/* Line 1455 of yacc.c  */
 #line 537 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 154:
+
+/* Line 1455 of yacc.c  */
 #line 543 "parser.yxx"
     { CTXT_LANG; }
     break;
 
   case 155:
+
+/* Line 1455 of yacc.c  */
 #line 545 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 157:
+
+/* Line 1455 of yacc.c  */
 #line 549 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 158:
+
+/* Line 1455 of yacc.c  */
 #line 551 "parser.yxx"
     { CTXT_DATE;}
     break;
 
   case 161:
+
+/* Line 1455 of yacc.c  */
 #line 557 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 162:
+
+/* Line 1455 of yacc.c  */
 #line 559 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 163:
+
+/* Line 1455 of yacc.c  */
 #line 561 "parser.yxx"
     { CTXT_WORD; }
     break;
 
   case 164:
+
+/* Line 1455 of yacc.c  */
 #line 563 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 165:
+
+/* Line 1455 of yacc.c  */
 #line 565 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 167:
+
+/* Line 1455 of yacc.c  */
 #line 569 "parser.yxx"
     { CTXT_LINE; }
     break;
 
   case 168:
+
+/* Line 1455 of yacc.c  */
 #line 571 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 169:
+
+/* Line 1455 of yacc.c  */
 #line 573 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 172:
+
+/* Line 1455 of yacc.c  */
 #line 579 "parser.yxx"
     { CTXT_AUTH_SCHEME; }
     break;
 
   case 173:
+
+/* Line 1455 of yacc.c  */
 #line 581 "parser.yxx"
     { CTXT_AUTH_SCHEME; }
     break;
 
   case 175:
+
+/* Line 1455 of yacc.c  */
 #line 585 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 176:
+
+/* Line 1455 of yacc.c  */
 #line 587 "parser.yxx"
     { CTXT_URI; }
     break;
 
   case 178:
+
+/* Line 1455 of yacc.c  */
 #line 591 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 179:
+
+/* Line 1455 of yacc.c  */
 #line 593 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 180:
+
+/* Line 1455 of yacc.c  */
 #line 595 "parser.yxx"
     { CTXT_WORD; }
     break;
 
   case 181:
+
+/* Line 1455 of yacc.c  */
 #line 597 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 184:
+
+/* Line 1455 of yacc.c  */
 #line 603 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 185:
+
+/* Line 1455 of yacc.c  */
 #line 605 "parser.yxx"
     { CTXT_URI; }
     break;
 
   case 186:
+
+/* Line 1455 of yacc.c  */
 #line 607 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 188:
+
+/* Line 1455 of yacc.c  */
 #line 611 "parser.yxx"
     { CTXT_URI; }
     break;
 
   case 191:
+
+/* Line 1455 of yacc.c  */
 #line 617 "parser.yxx"
     { CTXT_LINE; }
     break;
 
   case 194:
+
+/* Line 1455 of yacc.c  */
 #line 623 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 195:
+
+/* Line 1455 of yacc.c  */
 #line 625 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 199:
+
+/* Line 1455 of yacc.c  */
 #line 633 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 200:
+
+/* Line 1455 of yacc.c  */
 #line 635 "parser.yxx"
     { CTXT_AUTH_SCHEME; }
     break;
 
   case 202:
+
+/* Line 1455 of yacc.c  */
 #line 639 "parser.yxx"
     {
 			(yyvsp[(1) - (2)].yyt_media)->add_params(*(yyvsp[(2) - (2)].yyt_params));
@@ -3134,6 +3536,8 @@ yyreduce:
     break;
 
   case 203:
+
+/* Line 1455 of yacc.c  */
 #line 644 "parser.yxx"
     {
 			(yyvsp[(3) - (4)].yyt_media)->add_params(*(yyvsp[(4) - (4)].yyt_params));
@@ -3143,6 +3547,8 @@ yyreduce:
     break;
 
   case 204:
+
+/* Line 1455 of yacc.c  */
 #line 651 "parser.yxx"
     { (yyval.yyt_media) = new t_media(tolower(*(yyvsp[(1) - (3)].yyt_str)), tolower(*(yyvsp[(3) - (3)].yyt_str)));
 					MEMMAN_NEW((yyval.yyt_media));
@@ -3151,11 +3557,15 @@ yyreduce:
     break;
 
   case 205:
+
+/* Line 1455 of yacc.c  */
 #line 657 "parser.yxx"
     { (yyval.yyt_params) = new list<t_parameter>; MEMMAN_NEW((yyval.yyt_params)); }
     break;
 
   case 206:
+
+/* Line 1455 of yacc.c  */
 #line 658 "parser.yxx"
     {
 			(yyvsp[(1) - (3)].yyt_params)->push_back(*(yyvsp[(3) - (3)].yyt_param));
@@ -3164,6 +3574,8 @@ yyreduce:
     break;
 
   case 207:
+
+/* Line 1455 of yacc.c  */
 #line 664 "parser.yxx"
     {
 			(yyval.yyt_param) = new t_parameter(tolower(*(yyvsp[(1) - (1)].yyt_str)));
@@ -3172,16 +3584,22 @@ yyreduce:
     break;
 
   case 208:
+
+/* Line 1455 of yacc.c  */
 #line 668 "parser.yxx"
     { CTXT_PARAMVAL; }
     break;
 
   case 209:
+
+/* Line 1455 of yacc.c  */
 #line 668 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 210:
+
+/* Line 1455 of yacc.c  */
 #line 668 "parser.yxx"
     {
 			(yyval.yyt_param) = new t_parameter(tolower(*(yyvsp[(1) - (5)].yyt_str)), *(yyvsp[(4) - (5)].yyt_str));
@@ -3191,18 +3609,24 @@ yyreduce:
     break;
 
   case 211:
+
+/* Line 1455 of yacc.c  */
 #line 675 "parser.yxx"
     {
 			(yyval.yyt_str) = (yyvsp[(1) - (1)].yyt_str); }
     break;
 
   case 212:
+
+/* Line 1455 of yacc.c  */
 #line 677 "parser.yxx"
     {
 			(yyval.yyt_str) = (yyvsp[(1) - (1)].yyt_str); }
     break;
 
   case 213:
+
+/* Line 1455 of yacc.c  */
 #line 681 "parser.yxx"
     {
 			MSG->hdr_accept_encoding.add_coding(*(yyvsp[(1) - (1)].yyt_coding));
@@ -3210,6 +3634,8 @@ yyreduce:
     break;
 
   case 214:
+
+/* Line 1455 of yacc.c  */
 #line 684 "parser.yxx"
     {
 			MSG->hdr_accept_encoding.add_coding(*(yyvsp[(3) - (3)].yyt_coding));
@@ -3217,6 +3643,8 @@ yyreduce:
     break;
 
   case 215:
+
+/* Line 1455 of yacc.c  */
 #line 689 "parser.yxx"
     {
 			(yyval.yyt_coding) = new t_coding(tolower(*(yyvsp[(1) - (1)].yyt_str)));
@@ -3225,6 +3653,8 @@ yyreduce:
     break;
 
   case 216:
+
+/* Line 1455 of yacc.c  */
 #line 693 "parser.yxx"
     {
 			(yyval.yyt_coding) = new t_coding(tolower(*(yyvsp[(1) - (2)].yyt_str)));
@@ -3234,6 +3664,8 @@ yyreduce:
     break;
 
   case 217:
+
+/* Line 1455 of yacc.c  */
 #line 700 "parser.yxx"
     {
 			if ((yyvsp[(2) - (2)].yyt_param)->name != "q") YYERROR;
@@ -3243,11 +3675,15 @@ yyreduce:
     break;
 
   case 218:
+
+/* Line 1455 of yacc.c  */
 #line 707 "parser.yxx"
     { CTXT_LANG; }
     break;
 
   case 219:
+
+/* Line 1455 of yacc.c  */
 #line 707 "parser.yxx"
     {
 			MSG->hdr_accept_language.add_language(*(yyvsp[(2) - (2)].yyt_language));
@@ -3255,11 +3691,15 @@ yyreduce:
     break;
 
   case 220:
+
+/* Line 1455 of yacc.c  */
 #line 710 "parser.yxx"
     { CTXT_LANG; }
     break;
 
   case 221:
+
+/* Line 1455 of yacc.c  */
 #line 710 "parser.yxx"
     {
 			MSG->hdr_accept_language.add_language(*(yyvsp[(4) - (4)].yyt_language));
@@ -3267,6 +3707,8 @@ yyreduce:
     break;
 
   case 222:
+
+/* Line 1455 of yacc.c  */
 #line 715 "parser.yxx"
     {
 			CTXT_INITIAL;
@@ -3276,11 +3718,15 @@ yyreduce:
     break;
 
   case 223:
+
+/* Line 1455 of yacc.c  */
 #line 720 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 224:
+
+/* Line 1455 of yacc.c  */
 #line 720 "parser.yxx"
     {
 			(yyval.yyt_language) = new t_language(tolower(*(yyvsp[(1) - (3)].yyt_str)));
@@ -3290,6 +3736,8 @@ yyreduce:
     break;
 
   case 225:
+
+/* Line 1455 of yacc.c  */
 #line 727 "parser.yxx"
     {
 			MSG->hdr_alert_info.add_param(*(yyvsp[(1) - (1)].yyt_alert_param));
@@ -3297,6 +3745,8 @@ yyreduce:
     break;
 
   case 226:
+
+/* Line 1455 of yacc.c  */
 #line 730 "parser.yxx"
     {
 			MSG->hdr_alert_info.add_param(*(yyvsp[(3) - (3)].yyt_alert_param));
@@ -3304,16 +3754,22 @@ yyreduce:
     break;
 
   case 227:
+
+/* Line 1455 of yacc.c  */
 #line 735 "parser.yxx"
     { CTXT_URI; }
     break;
 
   case 228:
+
+/* Line 1455 of yacc.c  */
 #line 735 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 229:
+
+/* Line 1455 of yacc.c  */
 #line 735 "parser.yxx"
     {
 		  	(yyval.yyt_alert_param) = new t_alert_param();
@@ -3331,6 +3787,8 @@ yyreduce:
     break;
 
   case 230:
+
+/* Line 1455 of yacc.c  */
 #line 750 "parser.yxx"
     {
 			MSG->hdr_allow.add_method(*(yyvsp[(1) - (1)].yyt_str));
@@ -3338,6 +3796,8 @@ yyreduce:
     break;
 
   case 231:
+
+/* Line 1455 of yacc.c  */
 #line 753 "parser.yxx"
     {
 			MSG->hdr_allow.add_method(*(yyvsp[(3) - (3)].yyt_str));
@@ -3345,16 +3805,22 @@ yyreduce:
     break;
 
   case 232:
+
+/* Line 1455 of yacc.c  */
 #line 758 "parser.yxx"
     { CTXT_WORD; }
     break;
 
   case 233:
+
+/* Line 1455 of yacc.c  */
 #line 758 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 234:
+
+/* Line 1455 of yacc.c  */
 #line 758 "parser.yxx"
     {
 			MSG->hdr_call_id.set_call_id(*(yyvsp[(2) - (3)].yyt_str));
@@ -3362,11 +3828,15 @@ yyreduce:
     break;
 
   case 235:
+
+/* Line 1455 of yacc.c  */
 #line 763 "parser.yxx"
     { (yyval.yyt_str) = (yyvsp[(1) - (1)].yyt_str); }
     break;
 
   case 236:
+
+/* Line 1455 of yacc.c  */
 #line 764 "parser.yxx"
     {
 			(yyval.yyt_str) = new string(*(yyvsp[(1) - (3)].yyt_str) + '@' + *(yyvsp[(3) - (3)].yyt_str));
@@ -3376,6 +3846,8 @@ yyreduce:
     break;
 
   case 237:
+
+/* Line 1455 of yacc.c  */
 #line 771 "parser.yxx"
     {
 			MSG->hdr_call_info.add_param(*(yyvsp[(1) - (1)].yyt_info_param));
@@ -3383,6 +3855,8 @@ yyreduce:
     break;
 
   case 238:
+
+/* Line 1455 of yacc.c  */
 #line 774 "parser.yxx"
     {
 			MSG->hdr_call_info.add_param(*(yyvsp[(3) - (3)].yyt_info_param));
@@ -3390,16 +3864,22 @@ yyreduce:
     break;
 
   case 239:
+
+/* Line 1455 of yacc.c  */
 #line 779 "parser.yxx"
     { CTXT_URI; }
     break;
 
   case 240:
+
+/* Line 1455 of yacc.c  */
 #line 779 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 241:
+
+/* Line 1455 of yacc.c  */
 #line 779 "parser.yxx"
     {
 		  	(yyval.yyt_info_param) = new t_info_param();
@@ -3417,22 +3897,30 @@ yyreduce:
     break;
 
   case 242:
+
+/* Line 1455 of yacc.c  */
 #line 794 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 243:
+
+/* Line 1455 of yacc.c  */
 #line 794 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 244:
+
+/* Line 1455 of yacc.c  */
 #line 794 "parser.yxx"
     {
 			MSG->hdr_contact.set_any(); }
     break;
 
   case 245:
+
+/* Line 1455 of yacc.c  */
 #line 796 "parser.yxx"
     {
 			MSG->hdr_contact.add_contacts(*(yyvsp[(1) - (1)].yyt_contacts));
@@ -3440,6 +3928,8 @@ yyreduce:
     break;
 
   case 246:
+
+/* Line 1455 of yacc.c  */
 #line 801 "parser.yxx"
     {
 			(yyval.yyt_contacts) = new list<t_contact_param>;
@@ -3449,6 +3939,8 @@ yyreduce:
     break;
 
   case 247:
+
+/* Line 1455 of yacc.c  */
 #line 806 "parser.yxx"
     {
 			(yyvsp[(1) - (3)].yyt_contacts)->push_back(*(yyvsp[(3) - (3)].yyt_contact));
@@ -3457,6 +3949,8 @@ yyreduce:
     break;
 
   case 248:
+
+/* Line 1455 of yacc.c  */
 #line 812 "parser.yxx"
     {
 			(yyval.yyt_contact) = (yyvsp[(1) - (2)].yyt_contact);
@@ -3475,16 +3969,22 @@ yyreduce:
     break;
 
   case 249:
+
+/* Line 1455 of yacc.c  */
 #line 828 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 250:
+
+/* Line 1455 of yacc.c  */
 #line 828 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 251:
+
+/* Line 1455 of yacc.c  */
 #line 828 "parser.yxx"
     {
 			(yyval.yyt_contact) = new t_contact_param();
@@ -3500,21 +4000,29 @@ yyreduce:
     break;
 
   case 252:
+
+/* Line 1455 of yacc.c  */
 #line 839 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 253:
+
+/* Line 1455 of yacc.c  */
 #line 839 "parser.yxx"
     { CTXT_URI; }
     break;
 
   case 254:
+
+/* Line 1455 of yacc.c  */
 #line 839 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 255:
+
+/* Line 1455 of yacc.c  */
 #line 839 "parser.yxx"
     {
 			(yyval.yyt_contact) = new t_contact_param();
@@ -3532,11 +4040,15 @@ yyreduce:
     break;
 
   case 256:
+
+/* Line 1455 of yacc.c  */
 #line 854 "parser.yxx"
     { (yyval.yyt_str) = new string(); MEMMAN_NEW((yyval.yyt_str)); }
     break;
 
   case 257:
+
+/* Line 1455 of yacc.c  */
 #line 855 "parser.yxx"
     {
 			(yyval.yyt_str) = new string(rtrim(*(yyvsp[(1) - (1)].yyt_str)));
@@ -3545,11 +4057,15 @@ yyreduce:
     break;
 
   case 258:
+
+/* Line 1455 of yacc.c  */
 #line 859 "parser.yxx"
     { (yyval.yyt_str) = (yyvsp[(1) - (1)].yyt_str); }
     break;
 
   case 259:
+
+/* Line 1455 of yacc.c  */
 #line 862 "parser.yxx"
     {
 			MSG->hdr_content_disp.set_type(tolower(*(yyvsp[(1) - (2)].yyt_str)));
@@ -3568,6 +4084,8 @@ yyreduce:
     break;
 
   case 260:
+
+/* Line 1455 of yacc.c  */
 #line 878 "parser.yxx"
     {
 			MSG->hdr_content_encoding.add_coding(*(yyvsp[(1) - (1)].yyt_coding));
@@ -3575,6 +4093,8 @@ yyreduce:
     break;
 
   case 261:
+
+/* Line 1455 of yacc.c  */
 #line 881 "parser.yxx"
     {
 			MSG->hdr_content_encoding.add_coding(*(yyvsp[(3) - (3)].yyt_coding));
@@ -3582,11 +4102,15 @@ yyreduce:
     break;
 
   case 262:
+
+/* Line 1455 of yacc.c  */
 #line 886 "parser.yxx"
     { CTXT_LANG; }
     break;
 
   case 263:
+
+/* Line 1455 of yacc.c  */
 #line 886 "parser.yxx"
     {
 			MSG->hdr_content_language.add_language(*(yyvsp[(2) - (2)].yyt_language));
@@ -3594,11 +4118,15 @@ yyreduce:
     break;
 
   case 264:
+
+/* Line 1455 of yacc.c  */
 #line 889 "parser.yxx"
     { CTXT_LANG; }
     break;
 
   case 265:
+
+/* Line 1455 of yacc.c  */
 #line 889 "parser.yxx"
     {
 			MSG->hdr_content_language.add_language(*(yyvsp[(4) - (4)].yyt_language));
@@ -3606,22 +4134,30 @@ yyreduce:
     break;
 
   case 266:
+
+/* Line 1455 of yacc.c  */
 #line 894 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 267:
+
+/* Line 1455 of yacc.c  */
 #line 894 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 268:
+
+/* Line 1455 of yacc.c  */
 #line 894 "parser.yxx"
     {
 			MSG->hdr_content_length.set_length((yyvsp[(2) - (3)].yyt_ulong)); }
     break;
 
   case 269:
+
+/* Line 1455 of yacc.c  */
 #line 898 "parser.yxx"
     {
 			(yyvsp[(1) - (2)].yyt_media)->add_params(*(yyvsp[(2) - (2)].yyt_params));
@@ -3631,16 +4167,22 @@ yyreduce:
     break;
 
   case 270:
+
+/* Line 1455 of yacc.c  */
 #line 905 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 271:
+
+/* Line 1455 of yacc.c  */
 #line 905 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 272:
+
+/* Line 1455 of yacc.c  */
 #line 905 "parser.yxx"
     {
 			MSG->hdr_cseq.set_seqnr((yyvsp[(2) - (4)].yyt_ulong));
@@ -3649,16 +4191,22 @@ yyreduce:
     break;
 
   case 273:
+
+/* Line 1455 of yacc.c  */
 #line 911 "parser.yxx"
     { CTXT_DATE;}
     break;
 
   case 274:
+
+/* Line 1455 of yacc.c  */
 #line 914 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 275:
+
+/* Line 1455 of yacc.c  */
 #line 914 "parser.yxx"
     {
 			struct tm t;
@@ -3672,6 +4220,8 @@ yyreduce:
     break;
 
   case 276:
+
+/* Line 1455 of yacc.c  */
 #line 925 "parser.yxx"
     {
 			MSG->hdr_error_info.add_param(*(yyvsp[(1) - (1)].yyt_error_param));
@@ -3679,6 +4229,8 @@ yyreduce:
     break;
 
   case 277:
+
+/* Line 1455 of yacc.c  */
 #line 928 "parser.yxx"
     {
 			MSG->hdr_error_info.add_param(*(yyvsp[(3) - (3)].yyt_error_param));
@@ -3686,16 +4238,22 @@ yyreduce:
     break;
 
   case 278:
+
+/* Line 1455 of yacc.c  */
 #line 933 "parser.yxx"
     { CTXT_URI; }
     break;
 
   case 279:
+
+/* Line 1455 of yacc.c  */
 #line 933 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 280:
+
+/* Line 1455 of yacc.c  */
 #line 933 "parser.yxx"
     {
 		  	(yyval.yyt_error_param) = new t_error_param();
@@ -3713,27 +4271,37 @@ yyreduce:
     break;
 
   case 281:
+
+/* Line 1455 of yacc.c  */
 #line 948 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 282:
+
+/* Line 1455 of yacc.c  */
 #line 948 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 283:
+
+/* Line 1455 of yacc.c  */
 #line 948 "parser.yxx"
     {
 			MSG->hdr_expires.set_time((yyvsp[(2) - (3)].yyt_ulong)); }
     break;
 
   case 284:
+
+/* Line 1455 of yacc.c  */
 #line 952 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 285:
+
+/* Line 1455 of yacc.c  */
 #line 952 "parser.yxx"
     {
 			MSG->hdr_from.set_display((yyvsp[(2) - (3)].yyt_from_addr)->display);
@@ -3751,11 +4319,15 @@ yyreduce:
     break;
 
   case 286:
+
+/* Line 1455 of yacc.c  */
 #line 967 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 287:
+
+/* Line 1455 of yacc.c  */
 #line 967 "parser.yxx"
     {
 			(yyval.yyt_from_addr) = new t_identity();
@@ -3771,16 +4343,22 @@ yyreduce:
     break;
 
   case 288:
+
+/* Line 1455 of yacc.c  */
 #line 978 "parser.yxx"
     { CTXT_URI; }
     break;
 
   case 289:
+
+/* Line 1455 of yacc.c  */
 #line 978 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 290:
+
+/* Line 1455 of yacc.c  */
 #line 978 "parser.yxx"
     {
 			(yyval.yyt_from_addr) = new t_identity();
@@ -3798,16 +4376,22 @@ yyreduce:
     break;
 
   case 291:
+
+/* Line 1455 of yacc.c  */
 #line 993 "parser.yxx"
     { CTXT_WORD; }
     break;
 
   case 292:
+
+/* Line 1455 of yacc.c  */
 #line 993 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 293:
+
+/* Line 1455 of yacc.c  */
 #line 993 "parser.yxx"
     {
 			MSG->hdr_in_reply_to.add_call_id(*(yyvsp[(2) - (3)].yyt_str));
@@ -3815,16 +4399,22 @@ yyreduce:
     break;
 
   case 294:
+
+/* Line 1455 of yacc.c  */
 #line 996 "parser.yxx"
     { CTXT_WORD; }
     break;
 
   case 295:
+
+/* Line 1455 of yacc.c  */
 #line 996 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 296:
+
+/* Line 1455 of yacc.c  */
 #line 996 "parser.yxx"
     {
 			MSG->hdr_in_reply_to.add_call_id(*(yyvsp[(4) - (5)].yyt_str));
@@ -3832,38 +4422,52 @@ yyreduce:
     break;
 
   case 297:
+
+/* Line 1455 of yacc.c  */
 #line 1001 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 298:
+
+/* Line 1455 of yacc.c  */
 #line 1001 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 299:
+
+/* Line 1455 of yacc.c  */
 #line 1001 "parser.yxx"
     {
 			MSG->hdr_max_forwards.set_max_forwards((yyvsp[(2) - (3)].yyt_ulong)); }
     break;
 
   case 300:
+
+/* Line 1455 of yacc.c  */
 #line 1005 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 301:
+
+/* Line 1455 of yacc.c  */
 #line 1005 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 302:
+
+/* Line 1455 of yacc.c  */
 #line 1005 "parser.yxx"
     {
 			MSG->hdr_min_expires.set_time((yyvsp[(2) - (3)].yyt_ulong)); }
     break;
 
   case 303:
+
+/* Line 1455 of yacc.c  */
 #line 1009 "parser.yxx"
     {
 			MSG->hdr_mime_version.set_version(*(yyvsp[(1) - (1)].yyt_str));
@@ -3871,16 +4475,22 @@ yyreduce:
     break;
 
   case 304:
+
+/* Line 1455 of yacc.c  */
 #line 1014 "parser.yxx"
     { CTXT_LINE; }
     break;
 
   case 305:
+
+/* Line 1455 of yacc.c  */
 #line 1014 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 306:
+
+/* Line 1455 of yacc.c  */
 #line 1014 "parser.yxx"
     {
 			MSG->hdr_organization.set_name(trim(*(yyvsp[(2) - (3)].yyt_str)));
@@ -3888,11 +4498,15 @@ yyreduce:
     break;
 
   case 307:
+
+/* Line 1455 of yacc.c  */
 #line 1019 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 308:
+
+/* Line 1455 of yacc.c  */
 #line 1019 "parser.yxx"
     {
 				MSG->hdr_p_asserted_identity.add_identity(*(yyvsp[(2) - (2)].yyt_from_addr));
@@ -3900,6 +4514,8 @@ yyreduce:
     break;
 
   case 309:
+
+/* Line 1455 of yacc.c  */
 #line 1022 "parser.yxx"
     {
 				MSG->hdr_p_asserted_identity.add_identity(*(yyvsp[(3) - (3)].yyt_from_addr));
@@ -3907,11 +4523,15 @@ yyreduce:
     break;
 
   case 310:
+
+/* Line 1455 of yacc.c  */
 #line 1027 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 311:
+
+/* Line 1455 of yacc.c  */
 #line 1027 "parser.yxx"
     {
 				MSG->hdr_p_preferred_identity.add_identity(*(yyvsp[(2) - (2)].yyt_from_addr));
@@ -3919,6 +4539,8 @@ yyreduce:
     break;
 
   case 312:
+
+/* Line 1455 of yacc.c  */
 #line 1030 "parser.yxx"
     {
 				MSG->hdr_p_preferred_identity.add_identity(*(yyvsp[(3) - (3)].yyt_from_addr));
@@ -3926,6 +4548,8 @@ yyreduce:
     break;
 
   case 313:
+
+/* Line 1455 of yacc.c  */
 #line 1035 "parser.yxx"
     {
 			MSG->hdr_priority.set_priority(tolower(*(yyvsp[(1) - (1)].yyt_str)));
@@ -3933,6 +4557,8 @@ yyreduce:
     break;
 
   case 314:
+
+/* Line 1455 of yacc.c  */
 #line 1040 "parser.yxx"
     {
 			MSG->hdr_privacy.add_privacy(tolower(*(yyvsp[(1) - (1)].yyt_str)));
@@ -3940,6 +4566,8 @@ yyreduce:
     break;
 
   case 315:
+
+/* Line 1455 of yacc.c  */
 #line 1043 "parser.yxx"
     {
 			MSG->hdr_privacy.add_privacy(tolower(*(yyvsp[(3) - (3)].yyt_str)));
@@ -3947,6 +4575,8 @@ yyreduce:
     break;
 
   case 316:
+
+/* Line 1455 of yacc.c  */
 #line 1048 "parser.yxx"
     {
 			MSG->hdr_proxy_require.add_feature(tolower(*(yyvsp[(1) - (1)].yyt_str)));
@@ -3954,6 +4584,8 @@ yyreduce:
     break;
 
   case 317:
+
+/* Line 1455 of yacc.c  */
 #line 1051 "parser.yxx"
     {
 			MSG->hdr_proxy_require.add_feature(tolower(*(yyvsp[(3) - (3)].yyt_str)));
@@ -3961,6 +4593,8 @@ yyreduce:
     break;
 
   case 318:
+
+/* Line 1455 of yacc.c  */
 #line 1056 "parser.yxx"
     {
 			MSG->hdr_record_route.add_route(*(yyvsp[(1) - (1)].yyt_route));
@@ -3968,6 +4602,8 @@ yyreduce:
     break;
 
   case 319:
+
+/* Line 1455 of yacc.c  */
 #line 1059 "parser.yxx"
     {
 		  	MSG->hdr_record_route.add_route(*(yyvsp[(3) - (3)].yyt_route));
@@ -3975,16 +4611,22 @@ yyreduce:
     break;
 
   case 320:
+
+/* Line 1455 of yacc.c  */
 #line 1064 "parser.yxx"
     { CTXT_URI; }
     break;
 
   case 321:
+
+/* Line 1455 of yacc.c  */
 #line 1064 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 322:
+
+/* Line 1455 of yacc.c  */
 #line 1065 "parser.yxx"
     {
 			(yyval.yyt_route) = new t_route;
@@ -4004,6 +4646,8 @@ yyreduce:
     break;
 
   case 323:
+
+/* Line 1455 of yacc.c  */
 #line 1082 "parser.yxx"
     {
 			MSG->hdr_service_route.add_route(*(yyvsp[(1) - (1)].yyt_route));
@@ -4011,6 +4655,8 @@ yyreduce:
     break;
 
   case 324:
+
+/* Line 1455 of yacc.c  */
 #line 1085 "parser.yxx"
     {
 		  	MSG->hdr_service_route.add_route(*(yyvsp[(3) - (3)].yyt_route));
@@ -4018,16 +4664,22 @@ yyreduce:
     break;
 
   case 325:
+
+/* Line 1455 of yacc.c  */
 #line 1090 "parser.yxx"
     { CTXT_WORD; }
     break;
 
   case 326:
+
+/* Line 1455 of yacc.c  */
 #line 1090 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 327:
+
+/* Line 1455 of yacc.c  */
 #line 1090 "parser.yxx"
     {
 			MSG->hdr_replaces.set_call_id(*(yyvsp[(2) - (4)].yyt_str));
@@ -4052,11 +4704,15 @@ yyreduce:
     break;
 
   case 328:
+
+/* Line 1455 of yacc.c  */
 #line 1112 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 329:
+
+/* Line 1455 of yacc.c  */
 #line 1112 "parser.yxx"
     {
 			MSG->hdr_reply_to.set_display((yyvsp[(2) - (3)].yyt_from_addr)->display);
@@ -4067,6 +4723,8 @@ yyreduce:
     break;
 
   case 330:
+
+/* Line 1455 of yacc.c  */
 #line 1120 "parser.yxx"
     {
 			MSG->hdr_require.add_feature(tolower(*(yyvsp[(1) - (1)].yyt_str)));
@@ -4074,6 +4732,8 @@ yyreduce:
     break;
 
   case 331:
+
+/* Line 1455 of yacc.c  */
 #line 1123 "parser.yxx"
     {
 			MSG->hdr_require.add_feature(tolower(*(yyvsp[(3) - (3)].yyt_str)));
@@ -4081,16 +4741,22 @@ yyreduce:
     break;
 
   case 332:
+
+/* Line 1455 of yacc.c  */
 #line 1128 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 333:
+
+/* Line 1455 of yacc.c  */
 #line 1128 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 334:
+
+/* Line 1455 of yacc.c  */
 #line 1128 "parser.yxx"
     {
 			MSG->hdr_retry_after.set_time((yyvsp[(2) - (5)].yyt_ulong));
@@ -4109,27 +4775,37 @@ yyreduce:
     break;
 
   case 335:
+
+/* Line 1455 of yacc.c  */
 #line 1144 "parser.yxx"
     { (yyval.yyt_str) = new string(); MEMMAN_NEW((yyval.yyt_str)); }
     break;
 
   case 336:
+
+/* Line 1455 of yacc.c  */
 #line 1145 "parser.yxx"
     { CTXT_COMMENT; }
     break;
 
   case 337:
+
+/* Line 1455 of yacc.c  */
 #line 1145 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 338:
+
+/* Line 1455 of yacc.c  */
 #line 1145 "parser.yxx"
     {
 			(yyval.yyt_str) = (yyvsp[(3) - (5)].yyt_str); }
     break;
 
   case 339:
+
+/* Line 1455 of yacc.c  */
 #line 1149 "parser.yxx"
     {
 			MSG->hdr_route.add_route(*(yyvsp[(1) - (1)].yyt_route));
@@ -4137,6 +4813,8 @@ yyreduce:
     break;
 
   case 340:
+
+/* Line 1455 of yacc.c  */
 #line 1152 "parser.yxx"
     {
 		  	MSG->hdr_route.add_route(*(yyvsp[(3) - (3)].yyt_route));
@@ -4144,6 +4822,8 @@ yyreduce:
     break;
 
   case 341:
+
+/* Line 1455 of yacc.c  */
 #line 1157 "parser.yxx"
     {
 			MSG->hdr_server.add_server(*(yyvsp[(1) - (1)].yyt_server));
@@ -4151,6 +4831,8 @@ yyreduce:
     break;
 
   case 342:
+
+/* Line 1455 of yacc.c  */
 #line 1160 "parser.yxx"
     {
 			MSG->hdr_server.add_server(*(yyvsp[(2) - (2)].yyt_server));
@@ -4158,6 +4840,8 @@ yyreduce:
     break;
 
   case 343:
+
+/* Line 1455 of yacc.c  */
 #line 1165 "parser.yxx"
     {
 			(yyval.yyt_server) = new t_server();
@@ -4167,6 +4851,8 @@ yyreduce:
     break;
 
   case 344:
+
+/* Line 1455 of yacc.c  */
 #line 1170 "parser.yxx"
     {
 			(yyval.yyt_server) = new t_server();
@@ -4178,6 +4864,8 @@ yyreduce:
     break;
 
   case 345:
+
+/* Line 1455 of yacc.c  */
 #line 1177 "parser.yxx"
     {
 			(yyval.yyt_server) = new t_server();
@@ -4191,16 +4879,22 @@ yyreduce:
     break;
 
   case 346:
+
+/* Line 1455 of yacc.c  */
 #line 1188 "parser.yxx"
     { CTXT_LINE; }
     break;
 
   case 347:
+
+/* Line 1455 of yacc.c  */
 #line 1188 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 348:
+
+/* Line 1455 of yacc.c  */
 #line 1188 "parser.yxx"
     {
 			MSG->hdr_subject.set_subject(trim(*(yyvsp[(2) - (3)].yyt_str)));
@@ -4208,12 +4902,16 @@ yyreduce:
     break;
 
   case 349:
+
+/* Line 1455 of yacc.c  */
 #line 1193 "parser.yxx"
     {
 			MSG->hdr_supported.set_empty(); }
     break;
 
   case 350:
+
+/* Line 1455 of yacc.c  */
 #line 1195 "parser.yxx"
     {
 			MSG->hdr_supported.add_feature(tolower(*(yyvsp[(1) - (1)].yyt_str)));
@@ -4221,6 +4919,8 @@ yyreduce:
     break;
 
   case 351:
+
+/* Line 1455 of yacc.c  */
 #line 1198 "parser.yxx"
     {
 			MSG->hdr_supported.add_feature(tolower(*(yyvsp[(3) - (3)].yyt_str)));
@@ -4228,22 +4928,30 @@ yyreduce:
     break;
 
   case 352:
+
+/* Line 1455 of yacc.c  */
 #line 1203 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 353:
+
+/* Line 1455 of yacc.c  */
 #line 1203 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 354:
+
+/* Line 1455 of yacc.c  */
 #line 1206 "parser.yxx"
     {
 			MSG->hdr_timestamp.set_timestamp((yyvsp[(1) - (1)].yyt_float)); }
     break;
 
   case 355:
+
+/* Line 1455 of yacc.c  */
 #line 1208 "parser.yxx"
     {
 			MSG->hdr_timestamp.set_timestamp((yyvsp[(1) - (2)].yyt_float));
@@ -4251,11 +4959,15 @@ yyreduce:
     break;
 
   case 356:
+
+/* Line 1455 of yacc.c  */
 #line 1213 "parser.yxx"
     { (yyval.yyt_float) = (yyvsp[(1) - (1)].yyt_ulong); }
     break;
 
   case 357:
+
+/* Line 1455 of yacc.c  */
 #line 1214 "parser.yxx"
     {
 			string s = int2str((yyvsp[(1) - (3)].yyt_ulong)) + '.' + int2str((yyvsp[(3) - (3)].yyt_ulong));
@@ -4263,11 +4975,15 @@ yyreduce:
     break;
 
   case 358:
+
+/* Line 1455 of yacc.c  */
 #line 1219 "parser.yxx"
     { (yyval.yyt_float) = (yyvsp[(1) - (1)].yyt_ulong); }
     break;
 
   case 359:
+
+/* Line 1455 of yacc.c  */
 #line 1220 "parser.yxx"
     {
 			string s = int2str((yyvsp[(1) - (3)].yyt_ulong)) + '.' + int2str((yyvsp[(3) - (3)].yyt_ulong));
@@ -4275,11 +4991,15 @@ yyreduce:
     break;
 
   case 360:
+
+/* Line 1455 of yacc.c  */
 #line 1225 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 361:
+
+/* Line 1455 of yacc.c  */
 #line 1225 "parser.yxx"
     {
 			MSG->hdr_to.set_display((yyvsp[(2) - (3)].yyt_from_addr)->display);
@@ -4297,6 +5017,8 @@ yyreduce:
     break;
 
   case 362:
+
+/* Line 1455 of yacc.c  */
 #line 1240 "parser.yxx"
     {
 			MSG->hdr_unsupported.add_feature(tolower(*(yyvsp[(1) - (1)].yyt_str)));
@@ -4304,6 +5026,8 @@ yyreduce:
     break;
 
   case 363:
+
+/* Line 1455 of yacc.c  */
 #line 1243 "parser.yxx"
     {
 			MSG->hdr_unsupported.add_feature(tolower(*(yyvsp[(3) - (3)].yyt_str)));
@@ -4311,6 +5035,8 @@ yyreduce:
     break;
 
   case 364:
+
+/* Line 1455 of yacc.c  */
 #line 1248 "parser.yxx"
     {
 			MSG->hdr_user_agent.add_server(*(yyvsp[(1) - (1)].yyt_server));
@@ -4318,6 +5044,8 @@ yyreduce:
     break;
 
   case 365:
+
+/* Line 1455 of yacc.c  */
 #line 1251 "parser.yxx"
     {
 			MSG->hdr_user_agent.add_server(*(yyvsp[(2) - (2)].yyt_server));
@@ -4325,6 +5053,8 @@ yyreduce:
     break;
 
   case 366:
+
+/* Line 1455 of yacc.c  */
 #line 1256 "parser.yxx"
     {
 			MSG->hdr_via.add_via(*(yyvsp[(1) - (1)].yyt_via));
@@ -4332,6 +5062,8 @@ yyreduce:
     break;
 
   case 367:
+
+/* Line 1455 of yacc.c  */
 #line 1259 "parser.yxx"
     {
 			MSG->hdr_via.add_via(*(yyvsp[(3) - (3)].yyt_via));
@@ -4339,6 +5071,8 @@ yyreduce:
     break;
 
   case 368:
+
+/* Line 1455 of yacc.c  */
 #line 1264 "parser.yxx"
     {
 			(yyval.yyt_via) = (yyvsp[(1) - (3)].yyt_via);
@@ -4369,6 +5103,8 @@ yyreduce:
     break;
 
   case 369:
+
+/* Line 1455 of yacc.c  */
 #line 1292 "parser.yxx"
     {
 			(yyval.yyt_via) = new t_via();
@@ -4382,6 +5118,8 @@ yyreduce:
     break;
 
   case 370:
+
+/* Line 1455 of yacc.c  */
 #line 1303 "parser.yxx"
     {
 			(yyval.yyt_via) = new t_via();
@@ -4391,16 +5129,22 @@ yyreduce:
     break;
 
   case 371:
+
+/* Line 1455 of yacc.c  */
 #line 1308 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 372:
+
+/* Line 1455 of yacc.c  */
 #line 1308 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 373:
+
+/* Line 1455 of yacc.c  */
 #line 1308 "parser.yxx"
     {
 			if ((yyvsp[(4) - (5)].yyt_ulong) > 65535) YYERROR;
@@ -4413,6 +5157,8 @@ yyreduce:
     break;
 
   case 374:
+
+/* Line 1455 of yacc.c  */
 #line 1316 "parser.yxx"
     {
 			(yyval.yyt_via) = new t_via();
@@ -4422,16 +5168,22 @@ yyreduce:
     break;
 
   case 375:
+
+/* Line 1455 of yacc.c  */
 #line 1321 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 376:
+
+/* Line 1455 of yacc.c  */
 #line 1321 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 377:
+
+/* Line 1455 of yacc.c  */
 #line 1321 "parser.yxx"
     {
 			(yyval.yyt_via) = new t_via();
@@ -4442,16 +5194,22 @@ yyreduce:
     break;
 
   case 378:
+
+/* Line 1455 of yacc.c  */
 #line 1329 "parser.yxx"
     { CTXT_IPV6ADDR; }
     break;
 
   case 379:
+
+/* Line 1455 of yacc.c  */
 #line 1329 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 380:
+
+/* Line 1455 of yacc.c  */
 #line 1329 "parser.yxx"
     {
 			// TODO: check correct format of IPv6 address
@@ -4461,6 +5219,8 @@ yyreduce:
     break;
 
   case 381:
+
+/* Line 1455 of yacc.c  */
 #line 1336 "parser.yxx"
     {
 			MSG->hdr_warning.add_warning(*(yyvsp[(1) - (1)].yyt_warning));
@@ -4468,6 +5228,8 @@ yyreduce:
     break;
 
   case 382:
+
+/* Line 1455 of yacc.c  */
 #line 1339 "parser.yxx"
     {
 			MSG->hdr_warning.add_warning(*(yyvsp[(3) - (3)].yyt_warning));
@@ -4475,16 +5237,22 @@ yyreduce:
     break;
 
   case 383:
+
+/* Line 1455 of yacc.c  */
 #line 1344 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 384:
+
+/* Line 1455 of yacc.c  */
 #line 1344 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 385:
+
+/* Line 1455 of yacc.c  */
 #line 1344 "parser.yxx"
     {
 			(yyval.yyt_warning) = new t_warning();
@@ -4498,21 +5266,29 @@ yyreduce:
     break;
 
   case 386:
+
+/* Line 1455 of yacc.c  */
 #line 1355 "parser.yxx"
     { CTXT_LINE; }
     break;
 
   case 387:
+
+/* Line 1455 of yacc.c  */
 #line 1355 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 388:
+
+/* Line 1455 of yacc.c  */
 #line 1355 "parser.yxx"
     { (yyval.yyt_str) = (yyvsp[(2) - (3)].yyt_str); }
     break;
 
   case 389:
+
+/* Line 1455 of yacc.c  */
 #line 1358 "parser.yxx"
     {
 			if ((yyvsp[(1) - (1)].yyt_param)->name == "nextnonce")
@@ -4535,6 +5311,8 @@ yyreduce:
     break;
 
   case 392:
+
+/* Line 1455 of yacc.c  */
 #line 1382 "parser.yxx"
     {
 			(yyval.yyt_dig_resp) = new t_digest_response();
@@ -4547,6 +5325,8 @@ yyreduce:
     break;
 
   case 393:
+
+/* Line 1455 of yacc.c  */
 #line 1390 "parser.yxx"
     {
 			(yyval.yyt_dig_resp) = (yyvsp[(1) - (3)].yyt_dig_resp);
@@ -4557,6 +5337,8 @@ yyreduce:
     break;
 
   case 394:
+
+/* Line 1455 of yacc.c  */
 #line 1398 "parser.yxx"
     {
 			(yyval.yyt_params) = new list<t_parameter>;
@@ -4566,6 +5348,8 @@ yyreduce:
     break;
 
   case 395:
+
+/* Line 1455 of yacc.c  */
 #line 1403 "parser.yxx"
     {
 			(yyval.yyt_params) = (yyvsp[(1) - (3)].yyt_params);
@@ -4574,11 +5358,15 @@ yyreduce:
     break;
 
   case 396:
+
+/* Line 1455 of yacc.c  */
 #line 1409 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 397:
+
+/* Line 1455 of yacc.c  */
 #line 1409 "parser.yxx"
     {
 			(yyval.yyt_credentials) = new t_credentials;
@@ -4589,11 +5377,15 @@ yyreduce:
     break;
 
   case 398:
+
+/* Line 1455 of yacc.c  */
 #line 1415 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 399:
+
+/* Line 1455 of yacc.c  */
 #line 1415 "parser.yxx"
     {
 			(yyval.yyt_credentials) = new t_credentials;
@@ -4605,11 +5397,15 @@ yyreduce:
     break;
 
   case 400:
+
+/* Line 1455 of yacc.c  */
 #line 1424 "parser.yxx"
     { CTXT_AUTH_SCHEME; }
     break;
 
   case 401:
+
+/* Line 1455 of yacc.c  */
 #line 1424 "parser.yxx"
     {
 			MSG->hdr_authorization.add_credentials(*(yyvsp[(2) - (2)].yyt_credentials));
@@ -4617,6 +5413,8 @@ yyreduce:
     break;
 
   case 402:
+
+/* Line 1455 of yacc.c  */
 #line 1429 "parser.yxx"
     {
 			(yyval.yyt_dig_chlg) = new t_digest_challenge();
@@ -4629,6 +5427,8 @@ yyreduce:
     break;
 
   case 403:
+
+/* Line 1455 of yacc.c  */
 #line 1437 "parser.yxx"
     {
 			(yyval.yyt_dig_chlg) = (yyvsp[(1) - (3)].yyt_dig_chlg);
@@ -4639,11 +5439,15 @@ yyreduce:
     break;
 
   case 404:
+
+/* Line 1455 of yacc.c  */
 #line 1445 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 405:
+
+/* Line 1455 of yacc.c  */
 #line 1445 "parser.yxx"
     {
 			(yyval.yyt_challenge) = new t_challenge;
@@ -4654,11 +5458,15 @@ yyreduce:
     break;
 
   case 406:
+
+/* Line 1455 of yacc.c  */
 #line 1451 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 407:
+
+/* Line 1455 of yacc.c  */
 #line 1451 "parser.yxx"
     {
 			(yyval.yyt_challenge) = new t_challenge;
@@ -4670,11 +5478,15 @@ yyreduce:
     break;
 
   case 408:
+
+/* Line 1455 of yacc.c  */
 #line 1460 "parser.yxx"
     { CTXT_AUTH_SCHEME; }
     break;
 
   case 409:
+
+/* Line 1455 of yacc.c  */
 #line 1460 "parser.yxx"
     {
 				MSG->hdr_proxy_authenticate.set_challenge(*(yyvsp[(2) - (2)].yyt_challenge));
@@ -4682,11 +5494,15 @@ yyreduce:
     break;
 
   case 410:
+
+/* Line 1455 of yacc.c  */
 #line 1465 "parser.yxx"
     { CTXT_AUTH_SCHEME; }
     break;
 
   case 411:
+
+/* Line 1455 of yacc.c  */
 #line 1465 "parser.yxx"
     {
 				MSG->hdr_proxy_authorization.
@@ -4695,11 +5511,15 @@ yyreduce:
     break;
 
   case 412:
+
+/* Line 1455 of yacc.c  */
 #line 1471 "parser.yxx"
     { CTXT_AUTH_SCHEME; }
     break;
 
   case 413:
+
+/* Line 1455 of yacc.c  */
 #line 1471 "parser.yxx"
     {
 				MSG->hdr_www_authenticate.set_challenge(*(yyvsp[(2) - (2)].yyt_challenge));
@@ -4707,32 +5527,44 @@ yyreduce:
     break;
 
   case 414:
+
+/* Line 1455 of yacc.c  */
 #line 1476 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 415:
+
+/* Line 1455 of yacc.c  */
 #line 1476 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 416:
+
+/* Line 1455 of yacc.c  */
 #line 1476 "parser.yxx"
     {
 			MSG->hdr_rseq.set_resp_nr((yyvsp[(2) - (3)].yyt_ulong)); }
     break;
 
   case 417:
+
+/* Line 1455 of yacc.c  */
 #line 1480 "parser.yxx"
     { CTXT_NUM; }
     break;
 
   case 418:
+
+/* Line 1455 of yacc.c  */
 #line 1480 "parser.yxx"
     { CTXT_INITIAL; }
     break;
 
   case 419:
+
+/* Line 1455 of yacc.c  */
 #line 1480 "parser.yxx"
     {
 			MSG->hdr_rack.set_resp_nr((yyvsp[(2) - (5)].yyt_ulong));
@@ -4742,6 +5574,8 @@ yyreduce:
     break;
 
   case 420:
+
+/* Line 1455 of yacc.c  */
 #line 1487 "parser.yxx"
     {
 			MSG->hdr_event.set_event_type(tolower(*(yyvsp[(1) - (2)].yyt_str)));
@@ -4758,6 +5592,8 @@ yyreduce:
     break;
 
   case 421:
+
+/* Line 1455 of yacc.c  */
 #line 1501 "parser.yxx"
     {
 				MSG->hdr_allow_events.add_event_type(tolower(*(yyvsp[(1) - (1)].yyt_str)));
@@ -4765,6 +5601,8 @@ yyreduce:
     break;
 
   case 422:
+
+/* Line 1455 of yacc.c  */
 #line 1504 "parser.yxx"
     {
 		      		MSG->hdr_allow_events.add_event_type(tolower(*(yyvsp[(3) - (3)].yyt_str)));
@@ -4772,6 +5610,8 @@ yyreduce:
     break;
 
   case 423:
+
+/* Line 1455 of yacc.c  */
 #line 1509 "parser.yxx"
     {
 				MSG->hdr_subscription_state.set_substate(tolower(*(yyvsp[(1) - (2)].yyt_str)));
@@ -4800,11 +5640,15 @@ yyreduce:
     break;
 
   case 424:
+
+/* Line 1455 of yacc.c  */
 #line 1535 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 425:
+
+/* Line 1455 of yacc.c  */
 #line 1535 "parser.yxx"
     {
 			MSG->hdr_refer_to.set_display((yyvsp[(2) - (3)].yyt_from_addr)->display);
@@ -4815,11 +5659,15 @@ yyreduce:
     break;
 
   case 426:
+
+/* Line 1455 of yacc.c  */
 #line 1543 "parser.yxx"
     { CTXT_URI_SPECIAL; }
     break;
 
   case 427:
+
+/* Line 1455 of yacc.c  */
 #line 1543 "parser.yxx"
     {
 			MSG->hdr_referred_by.set_display((yyvsp[(2) - (3)].yyt_from_addr)->display);
@@ -4837,6 +5685,8 @@ yyreduce:
     break;
 
   case 428:
+
+/* Line 1455 of yacc.c  */
 #line 1558 "parser.yxx"
     {
 			string value(tolower(*(yyvsp[(1) - (2)].yyt_str)));
@@ -4850,6 +5700,8 @@ yyreduce:
     break;
 
   case 429:
+
+/* Line 1455 of yacc.c  */
 #line 1569 "parser.yxx"
     {
 			MSG->hdr_sip_etag.set_etag(*(yyvsp[(1) - (1)].yyt_str));
@@ -4857,6 +5709,8 @@ yyreduce:
     break;
 
   case 430:
+
+/* Line 1455 of yacc.c  */
 #line 1574 "parser.yxx"
     {
 			MSG->hdr_sip_if_match.set_etag(*(yyvsp[(1) - (1)].yyt_str));
@@ -4864,6 +5718,8 @@ yyreduce:
     break;
 
   case 431:
+
+/* Line 1455 of yacc.c  */
 #line 1579 "parser.yxx"
     {
 				bool ret = MSG->hdr_request_disposition.set_directive(*(yyvsp[(1) - (1)].yyt_str));
@@ -4872,6 +5728,8 @@ yyreduce:
     break;
 
   case 432:
+
+/* Line 1455 of yacc.c  */
 #line 1583 "parser.yxx"
     {
 				bool ret = MSG->hdr_request_disposition.set_directive(*(yyvsp[(3) - (3)].yyt_str));
@@ -4880,8 +5738,9 @@ yyreduce:
     break;
 
 
-/* Line 1267 of yacc.c.  */
-#line 4885 "parser.cxx"
+
+/* Line 1455 of yacc.c  */
+#line 5744 "parser.cxx"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -4891,7 +5750,6 @@ yyreduce:
   YY_STACK_PRINT (yyss, yyssp);
 
   *++yyvsp = yyval;
-
 
   /* Now `shift' the result of the reduction.  Determine what state
      that goes to, based on the state we popped back to and the rule
@@ -4957,7 +5815,7 @@ yyerrlab:
 
   if (yyerrstatus == 3)
     {
-      /* If just tried and failed to reuse look-ahead token after an
+      /* If just tried and failed to reuse lookahead token after an
 	 error, discard it.  */
 
       if (yychar <= YYEOF)
@@ -4974,7 +5832,7 @@ yyerrlab:
 	}
     }
 
-  /* Else will try to reuse look-ahead token after shifting the error
+  /* Else will try to reuse lookahead token after shifting the error
      token.  */
   goto yyerrlab1;
 
@@ -5031,9 +5889,6 @@ yyerrlab1:
       YY_STACK_PRINT (yyss, yyssp);
     }
 
-  if (yyn == YYFINAL)
-    YYACCEPT;
-
   *++yyvsp = yylval;
 
 
@@ -5058,7 +5913,7 @@ yyabortlab:
   yyresult = 1;
   goto yyreturn;
 
-#ifndef yyoverflow
+#if !defined(yyoverflow) || YYERROR_VERBOSE
 /*-------------------------------------------------.
 | yyexhaustedlab -- memory exhaustion comes here.  |
 `-------------------------------------------------*/
@@ -5069,7 +5924,7 @@ yyexhaustedlab:
 #endif
 
 yyreturn:
-  if (yychar != YYEOF && yychar != YYEMPTY)
+  if (yychar != YYEMPTY)
      yydestruct ("Cleanup: discarding lookahead",
 		 yytoken, &yylval);
   /* Do not reclaim the symbols of the rule which action triggered
@@ -5095,6 +5950,8 @@ yyreturn:
 }
 
 
+
+/* Line 1675 of yacc.c  */
 #line 1588 "parser.yxx"
 
 
