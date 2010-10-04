@@ -279,7 +279,7 @@ public:
 	void set_fmtp_int_param(t_sdp_media_type media_type, unsigned short codec,
 			const string &param, int value);
 	void set_zrtp_support(t_sdp_media_type media_type);
-	void set_srpp_support(t_sdp_media_type media_type);
+	void set_srpp_support(t_sdp_media_type media_type, int thiskey);
 	string get_srpp_param(t_sdp_media_type media_type);
 
 	// Returns a pointer to the first media stream in the list of media
