@@ -354,7 +354,7 @@ bool t_session::process_sdp_offer(t_sdp *sdp, int &warn_code,
 	{
 		std::cout << "Saswat:: SIP says SRPP Supported\n";
 		std::cout << "Saswat::"<< sdp->get_srpp_param(SDP_AUDIO)<< endl;
-		sdpsrpp.process_sdp_srpp(0);
+		sdpsrpp.process_sdp_srpp(0,sdp->get_srpp_param(SDP_AUDIO));
 		sdpsrpp.activate_srpp();
 		srpp::enable_srpp();
 
@@ -444,7 +444,7 @@ bool t_session::process_sdp_answer(t_sdp *sdp, int &warn_code,
 	{
 		std::cout << "Saswat:: SIP says SRPP Supported\n";
 		std::cout << "Saswat::"<< sdp->get_srpp_param(SDP_AUDIO)<< endl;
-		sdpsrpp.process_sdp_srpp(1);
+		sdpsrpp.process_sdp_srpp(1,sdp->get_srpp_param(SDP_AUDIO));
 		sdpsrpp.activate_srpp();
 	}
 	else {
