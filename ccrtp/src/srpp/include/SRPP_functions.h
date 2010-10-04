@@ -9,6 +9,7 @@
 
 #include "SRPPMessage.hpp"
 #include "rtp.hpp"
+#include "srtp.hpp"
 #include "CryptoProfile.hpp"
 #include "Padding_functions.h"
 #include "sdp_srpp.hpp"
@@ -53,10 +54,10 @@ namespace srpp {
 	RTPMessage srpp_to_rtp(SRPPMessage* srpp_msg);
 
 	// Convert a SRTP packet to SRPP packet
-	SRPPMessage srtp_to_srpp(RTPMessage* srtp_msg);
+	SRPPMessage srtp_to_srpp(SRTPMessage* srtp_msg);
 
 	//Convert a SRPP packet back to SRTP
-	RTPMessage srpp_to_srtp(SRPPMessage* srpp_msg);
+	SRTPMessage srpp_to_srtp(SRPPMessage* srpp_msg);
 
 	//Create a SRPP Message with the data and encrypt it and return it
 	SRPPMessage create_and_encrypt_srpp(string data);
@@ -95,6 +96,7 @@ namespace srpp {
 
 	//Check whether the signaling is complete
 	 int isSignalingComplete();
+	 int setSignalingComplete();
 
 	 //Check whether media session is complete
 	  int isMediaSessionComplete();
