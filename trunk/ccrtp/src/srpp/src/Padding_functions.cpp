@@ -30,6 +30,7 @@ PaddingFunctions::PaddingFunctions()
 	for(int i = 0; i < MAXDUMMYCACHESIZE; i++)
 	{
 		SRPPMessage* thisdummy = new SRPPMessage();
+		cout << "MAXPACKETSIZE HERE: " << maxpacketsize << endl;
 		thisdummysize = srpp::srpp_rand(1, maxpacketsize);
 
 		for (int j = 0; j < thisdummysize; j++)
@@ -183,6 +184,7 @@ int PaddingFunctions::add_to_dummy_cache(SRPPMessage srpp_msg)
 
 	int thisdummysize, j=0;
 
+	cout << "MAXPACKETSIZE HEREIN: " << maxpacketsize << endl;
 	thisdummysize = srpp::srpp_rand(1, maxpacketsize);
 
 	for (; j < (int)srpp_msg.encrypted_part.original_payload.size(); j++)
