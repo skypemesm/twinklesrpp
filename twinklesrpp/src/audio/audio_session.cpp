@@ -489,7 +489,7 @@ void t_audio_session::run(void) {
 
 	/** START SRPP SESSION **/
 	if (sdpsrpp.is_valid() == 1)
-		rtp_session->startSRPPsession(0,sdpsrpp); //NEGOTIATED BY SIP
+		rtp_session->startSRPPsession(1,sdpsrpp); //NEGOTIATED BY SIP
 	else
 		rtp_session->startSRPPsession(0,sdp_srpp()); // NOT NEGOTIATED BY SIP
 

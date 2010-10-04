@@ -272,15 +272,11 @@ int signaling_by_srpp = 1;
 		if (padding_functions.unpad(srpp_msg) > 0 )
 		{
 			//Create a SRTPMessage with the data from SRPP packet
-			/*string data (srpp_msg->encrypted_part.original_payload.begin(),srpp_msg->encrypted_part.original_payload.end());
-			srtp_msg = create_rtp_message(data);*/
+			string data (srpp_msg->encrypted_part.original_payload.begin(),srpp_msg->encrypted_part.original_payload.end());
+			srtp_msg = (SRTPMessage *)data.c_str();
 		}
 
-
 		return *srtp_msg;
-
-
-
 	}
 
 	//Create a SRPP Message with the data and encrypt it and return it
